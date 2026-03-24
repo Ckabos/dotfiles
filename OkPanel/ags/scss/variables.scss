@@ -1,0 +1,256 @@
+@use "sass:color"; // Sintaxis moderna de Sass
+
+$font: "JetBrainsMono NF";
+$systemMenuClockDayFont: "JetBrainsMono NF";
+
+$gaps: 5px;
+$buttonBorderRadius: 8px;
+$windowBorderRadius: 8px;
+$windowBorderWidth: 2px;
+$largeButtonBorderRadius: 16px;
+
+// Hex revert robusto y seguro
+$bg: #000000;
+$fg: #FFFFFF;
+$primary: #009911;
+$buttonPrimary: #224466;
+$warning: #DD3322;
+$windowBorder: #009911;
+$alertBorder: #009911;
+$scrimColor: #00000001;
+$windowBackgroundColor: #000000;
+$frameBackgroundColor: #000000;
+
+// Frame groups
+
+$frameLeftGroupBackgroundColor: #000000;
+$frameLeftGroupBorderColor: #000000;
+$frameLeftGroupBorderRadius: 0px;
+$frameLeftGroupBorderWidth: 0px;
+
+$frameRightGroupBackgroundColor: #000000;
+$frameRightGroupBorderColor: #000000;
+$frameRightGroupBorderRadius: 0px;
+$frameRightGroupBorderWidth: 0px;
+
+// Bars
+
+$topBarBorder: #000000;
+$topBarBackgroundColor: #000000;
+$topBarBorderRadius: 8px;
+$topBarBorderWidth: 8px;
+
+$bottomBarBorder: #000000;
+$bottomBarBackgroundColor: #000000;
+$bottomBarBorderRadius: 8px;
+$bottomBarBorderWidth: 8px;
+
+// Bar widgets
+// Actualizamos `$widgetBg` para que sea semi-transparente (aprox. 30%)
+// para que se vea como cristal y no como bloques sólidos "raros".
+$widgetBg: rgba(#000000, 0.3); 
+$widgetFg: #ffffff;
+$widgetBorder: #009911;
+
+$barMenuForeground: #ffffff;
+$barMenuBackground: #000000;
+$barMenuBorderRadius: 8px;
+$barMenuBorderWidth: 1px;
+$barMenuBorderColor: #009911;
+
+// Re-aplicamos la legibilidad para los workspaces
+$barWorkspacesForeground: #ffffff; // Texto legible por defecto
+$barWorkspacesInactiveForeground: rgba(#ffffff, 0.4); // Inactivos más apagados
+$barWorkspacesBackground: #000000; // Fondo de workspaces estático
+$barWorkspacesBorderRadius: 8px;
+$barWorkspacesBorderWidth: 1px;
+$barWorkspacesBorderColor: #009911;
+
+$barClockForeground: #ffffff;
+$barClockBackground: #000000;
+$barClockBorderRadius: 8px;
+$barClockBorderWidth: 1px;
+$barClockBorderColor: #009911;
+
+$barAudioOutForeground: #ffffff;
+$barAudioOutBackground: #000000;
+$barAudioOutBorderRadius: 8px;
+$barAudioOutBorderWidth: 1px;
+$barAudioOutBorderColor: #009911;
+
+$barAudioInForeground: #ffffff;
+$barAudioInBackground: #000000;
+$barAudioInBorderRadius: 8px;
+$barAudioInBorderWidth: 1px;
+$barAudioInBorderColor: #009911;
+
+$barBluetoothForeground: #ffffff;
+$barBluetoothBackground: #000000;
+$barBluetoothBorderRadius: 8px;
+$barBluetoothBorderWidth: 1px;
+$barBluetoothBorderColor: #009911;
+
+$barNetworkForeground: #ffffff;
+$barNetworkBackground: #000000;
+$barNetworkBorderRadius: 8px;
+$barNetworkBorderWidth: 1px;
+$barNetworkBorderColor: #009911;
+
+$barRecordingIndicatorForeground: #ffffff;
+$barRecordingIndicatorBackground: #000000;
+$barRecordingIndicatorBorderRadius: 8px;
+$barRecordingIndicatorBorderWidth: 1px;
+$barRecordingIndicatorBorderColor: #009911;
+
+$barVpnIndicatorForeground: #ffffff;
+$barVpnIndicatorBackground: #000000;
+$barVpnIndicatorBorderRadius: 8px;
+$barVpnIndicatorBorderWidth: 1px;
+$barVpnIndicatorBorderColor: #009911;
+
+$barBatteryForeground: #ffffff;
+$barBatteryBackground: #000000;
+$barBatteryBorderRadius: 8px;
+$barBatteryBorderWidth: 1px;
+$barBatteryBorderColor: #009911;
+
+$barTrayForeground: #ffffff;
+$barTrayBackground: #000000;
+$barTrayBorderRadius: 8px;
+$barTrayBorderWidth: 1px;
+$barTrayBorderColor: #009911;
+
+$barAppLauncherForeground: #ffffff;
+$barAppLauncherBackground: #000000;
+$barAppLauncherBorderRadius: 8px;
+$barAppLauncherBorderWidth: 1px;
+$barAppLauncherBorderColor: #009911;
+
+$barScreenshotForeground: #ffffff;
+$barScreenshotBackground: #000000;
+$barScreenshotBorderRadius: 8px;
+$barScreenshotBorderWidth: 1px;
+$barScreenshotBorderColor: #009911;
+
+$barClipboardManagerForeground: #ffffff;
+$barClipboardManagerBackground: #000000;
+$barClipboardManagerBorderRadius: 8px;
+$barClipboardManagerBorderWidth: 1px;
+$barClipboardManagerBorderColor: #009911;
+
+$barPowerProfileForeground: #ffffff;
+$barPowerProfileBackground: #000000;
+$barPowerProfileBorderRadius: 8px;
+$barPowerProfileBorderWidth: 1px;
+$barPowerProfileBorderColor: #009911;
+
+$barCavaWaveformForeground: #ffffff;
+$barCavaWaveformBackground: #000000;
+$barCavaWaveformBorderRadius: 8px;
+$barCavaWaveformBorderWidth: 1px;
+$barCavaWaveformBorderColor: #009911;
+
+$barMprisControlsForeground: #ffffff;
+$barMprisControlsBackground: #000000;
+$barMprisControlsBorderRadius: 8px;
+$barMprisControlsBorderWidth: 1px;
+$barMprisControlsBorderColor: #009911;
+
+$barMprisTrackInfoForeground: #ffffff;
+$barMprisTrackInfoBackground: #000000;
+$barMprisTrackInfoBorderRadius: 8px;
+$barMprisTrackInfoBorderWidth: 1px;
+$barMprisTrackInfoBorderColor: #009911;
+
+$barMprisPrimaryPlayerSwitcherForeground: #ffffff;
+$barMprisPrimaryPlayerSwitcherBackground: #000000;
+$barMprisPrimaryPlayerSwitcherBorderRadius: 8px;
+$barMprisPrimaryPlayerSwitcherBorderWidth: 1px;
+$barMprisPrimaryPlayerSwitcherBorderColor: #009911;
+
+$barNotificationHistoryForeground: #ffffff;
+$barNotificationHistoryBackground: #000000;
+$barNotificationHistoryBorderRadius: 8px;
+$barNotificationHistoryBorderWidth: 1px;
+$barNotificationHistoryBorderColor: #009911;
+$barNotificationHistoryIndicatorForeground: #009911;
+
+$barColorPickerForeground: #ffffff;
+$barColorPickerBackground: #000000;
+$barColorPickerBorderRadius: 8px;
+$barColorPickerBorderWidth: 1px;
+$barColorPickerBorderColor: #009911;
+
+$barLogoutForeground: #ffffff;
+$barLogoutBackground: #000000;
+$barLogoutBorderRadius: 8px;
+$barLogoutBorderWidth: 1px;
+$barLogoutBorderColor: #009911;
+
+$barLockForeground: #ffffff;
+$barLockBackground: #000000;
+$barLockBorderRadius: 8px;
+$barLockBorderWidth: 1px;
+$barLockBorderColor: #009911;
+
+$barRestartForeground: #ffffff;
+$barRestartBackground: #000000;
+$barRestartBorderRadius: 8px;
+$barRestartBorderWidth: 1px;
+$barRestartBorderColor: #009911;
+
+$barShutdownForeground: #ffffff;
+$barShutdownBackground: #000000;
+$barShutdownBorderRadius: 8px;
+$barShutdownBorderWidth: 1px;
+$barShutdownBorderColor: #009911;
+
+$barTimerForeground: #ffffff;
+$barTimerBackground: #000000;
+$barTimerBorderRadius: 8px;
+$barTimerBorderWidth: 1px;
+$barTimerBorderColor: #009911;
+
+// ---- barCustom ----
+$barCustom1Foreground: #ffffff; $barCustom1Background: #000000; $barCustom1BorderRadius: 8px; $barCustom1BorderWidth: 1px; $barCustom1BorderColor: #009911;
+$barCustom2Foreground: #ffffff; $barCustom2Background: #000000; $barCustom2BorderRadius: 8px; $barCustom2BorderWidth: 1px; $barCustom2BorderColor: #009911;
+$barCustom3Foreground: #ffffff; $barCustom3Background: #000000; $barCustom3BorderRadius: 8px; $barCustom3BorderWidth: 1px; $barCustom3BorderColor: #009911;
+$barCustom4Foreground: #ffffff; $barCustom4Background: #000000; $barCustom4BorderRadius: 8px; $barCustom4BorderWidth: 1px; $barCustom4BorderColor: #009911;
+$barCustom5Foreground: #ffffff; $barCustom5Background: #000000; $barCustom5BorderRadius: 8px; $barCustom5BorderWidth: 1px; $barCustom5BorderColor: #009911;
+$barCustom6Foreground: #ffffff; $barCustom6Background: #000000; $barCustom6BorderRadius: 8px; $barCustom6BorderWidth: 1px; $barCustom6BorderColor: #009911;
+$barCustom7Foreground: #ffffff; $barCustom7Background: #000000; $barCustom7BorderRadius: 8px; $barCustom7BorderWidth: 1px; $barCustom7BorderColor: #009911;
+$barCustom8Foreground: #ffffff; $barCustom8Background: #000000; $barCustom8BorderRadius: 8px; $barCustom8BorderWidth: 1px; $barCustom8BorderColor: #009911;
+$barCustom9Foreground: #ffffff; $barCustom9Background: #000000; $barCustom9BorderRadius: 8px; $barCustom9BorderWidth: 1px; $barCustom9BorderColor: #009911;
+$barCustom10Foreground: #ffffff; $barCustom10Background: #000000; $barCustom10BorderRadius: 8px; $barCustom10BorderWidth: 1px; $barCustom10BorderColor: #009911;
+$barCustom11Foreground: #ffffff; $barCustom11Background: #000000; $barCustom11BorderRadius: 8px; $barCustom11BorderWidth: 1px; $barCustom11BorderColor: #009911;
+$barCustom12Foreground: #ffffff; $barCustom12Background: #000000; $barCustom12BorderRadius: 8px; $barCustom12BorderWidth: 1px; $barCustom12BorderColor: #009911;
+$barCustom13Foreground: #ffffff; $barCustom13Background: #000000; $barCustom13BorderRadius: 8px; $barCustom13BorderWidth: 1px; $barCustom13BorderColor: #009911;
+$barCustom14Foreground: #ffffff; $barCustom14Background: #000000; $barCustom14BorderRadius: 8px; $barCustom14BorderWidth: 1px; $barCustom14BorderColor: #009911;
+$barCustom15Foreground: #ffffff; $barCustom15Background: #000000; $barCustom15BorderRadius: 8px; $barCustom15BorderWidth: 1px; $barCustom15BorderColor: #009911;
+$barCustom16Foreground: #ffffff; $barCustom16Background: #000000; $barCustom16BorderRadius: 8px; $barCustom16BorderWidth: 1px; $barCustom16BorderColor: #009911;
+$barCustom17Foreground: #ffffff; $barCustom17Background: #000000; $barCustom17BorderRadius: 8px; $barCustom17BorderWidth: 1px; $barCustom17BorderColor: #009911;
+$barCustom18Foreground: #ffffff; $barCustom18Background: #000000; $barCustom18BorderRadius: 8px; $barCustom18BorderWidth: 1px; $barCustom18BorderColor: #009911;
+$barCustom19Foreground: #ffffff; $barCustom19Background: #000000; $barCustom19BorderRadius: 8px; $barCustom19BorderWidth: 1px; $barCustom19BorderColor: #009911;
+$barCustom20Foreground: #ffffff; $barCustom20Background: #000000; $barCustom20BorderRadius: 8px; $barCustom20BorderWidth: 1px; $barCustom20BorderColor: #009911;
+
+// ---- barShortcut ----
+$barShortcut1Foreground: #ffffff; $barShortcut1Background: #000000; $barShortcut1BorderRadius: 8px; $barShortcut1BorderWidth: 1px; $barShortcut1BorderColor: #009911; $barShortcut1SelectedColor: #009911;
+$barShortcut2Foreground: #ffffff; $barShortcut2Background: #000000; $barShortcut2BorderRadius: 8px; $barShortcut2BorderWidth: 1px; $barShortcut2BorderColor: #009911; $barShortcut2SelectedColor: #009911;
+$barShortcut3Foreground: #ffffff; $barShortcut3Background: #000000; $barShortcut3BorderRadius: 8px; $barShortcut3BorderWidth: 1px; $barShortcut3BorderColor: #009911; $barShortcut3SelectedColor: #009911;
+$barShortcut4Foreground: #ffffff; $barShortcut4Background: #000000; $barShortcut4BorderRadius: 8px; $barShortcut4BorderWidth: 1px; $barShortcut4BorderColor: #009911; $barShortcut4SelectedColor: #009911;
+$barShortcut5Foreground: #ffffff; $barShortcut5Background: #000000; $barShortcut5BorderRadius: 8px; $barShortcut5BorderWidth: 1px; $barShortcut5BorderColor: #009911; $barShortcut5SelectedColor: #009911;
+$barShortcut6Foreground: #ffffff; $barShortcut6Background: #000000; $barShortcut6BorderRadius: 8px; $barShortcut6BorderWidth: 1px; $barShortcut6BorderColor: #009911; $barShortcut6SelectedColor: #009911;
+$barShortcut7Foreground: #ffffff; $barShortcut7Background: #000000; $barShortcut7BorderRadius: 8px; $barShortcut7BorderWidth: 1px; $barShortcut7BorderColor: #009911; $barShortcut7SelectedColor: #009911;
+$barShortcut8Foreground: #ffffff; $barShortcut8Background: #000000; $barShortcut8BorderRadius: 8px; $barShortcut8BorderWidth: 1px; $barShortcut8BorderColor: #009911; $barShortcut8SelectedColor: #009911;
+$barShortcut9Foreground: #ffffff; $barShortcut9Background: #000000; $barShortcut9BorderRadius: 8px; $barShortcut9BorderWidth: 1px; $barShortcut9BorderColor: #009911; $barShortcut9SelectedColor: #009911;
+$barShortcut10Foreground: #ffffff; $barShortcut10Background: #000000; $barShortcut10BorderRadius: 8px; $barShortcut10BorderWidth: 1px; $barShortcut10BorderColor: #009911; $barShortcut10SelectedColor: #009911;
+$barShortcut11Foreground: #ffffff; $barShortcut11Background: #000000; $barShortcut11BorderRadius: 8px; $barShortcut11BorderWidth: 1px; $barShortcut11BorderColor: #009911; $barShortcut11SelectedColor: #009911;
+$barShortcut12Foreground: #ffffff; $barShortcut12Background: #000000; $barShortcut12BorderRadius: 8px; $barShortcut12BorderWidth: 1px; $barShortcut12BorderColor: #009911; $barShortcut12SelectedColor: #009911;
+$barShortcut13Foreground: #ffffff; $barShortcut13Background: #000000; $barShortcut13BorderRadius: 8px; $barShortcut13BorderWidth: 1px; $barShortcut13BorderColor: #009911; $barShortcut13SelectedColor: #009911;
+$barShortcut14Foreground: #ffffff; $barShortcut14Background: #000000; $barShortcut14BorderRadius: 8px; $barShortcut14BorderWidth: 1px; $barShortcut14BorderColor: #009911; $barShortcut14SelectedColor: #009911;
+$barShortcut15Foreground: #ffffff; $barShortcut15Background: #000000; $barShortcut15BorderRadius: 8px; $barShortcut15BorderWidth: 1px; $barShortcut15BorderColor: #009911; $barShortcut15SelectedColor: #009911;
+$barShortcut16Foreground: #ffffff; $barShortcut16Background: #000000; $barShortcut16BorderRadius: 8px; $barShortcut16BorderWidth: 1px; $barShortcut16BorderColor: #009911; $barShortcut16SelectedColor: #009911;
+$barShortcut17Foreground: #ffffff; $barShortcut17Background: #000000; $barShortcut17BorderRadius: 8px; $barShortcut17BorderWidth: 1px; $barShortcut17BorderColor: #009911; $barShortcut17SelectedColor: #009911;
+$barShortcut18Foreground: #ffffff; $barShortcut18Background: #000000; $barShortcut18BorderRadius: 8px; $barShortcut18BorderWidth: 1px; $barShortcut18BorderColor: #009911; $barShortcut18SelectedColor: #009911;
+$barShortcut19Foreground: #ffffff; $barShortcut19Background: #000000; $barShortcut19BorderRadius: 8px; $barShortcut19BorderWidth: 1px; $barShortcut19BorderColor: #009911; $barShortcut19SelectedColor: #009911;
+$barShortcut20Foreground: #ffffff; $barShortcut20Background: #000000; $barShortcut20BorderRadius: 8px; $barShortcut20BorderWidth: 1px; $barShortcut20BorderColor: #009911; $barShortcut20SelectedColor: #009911;

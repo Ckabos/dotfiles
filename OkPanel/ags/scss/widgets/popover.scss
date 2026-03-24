@@ -1,0 +1,23 @@
+@use "../variables" as vars;
+@use "../functions" as fun;
+
+.ok-popover > contents {
+  background-color: vars.$windowBackgroundColor;
+  border-radius: vars.$windowBorderRadius;
+  border: vars.$windowBorderWidth solid vars.$windowBorder;
+  padding: 6px;
+}
+
+.ok-popover modelbutton {
+  background-color: transparent;
+  color: vars.$fg;
+  padding: 4px 4px;
+  margin: 2px 0;
+  border-radius: 4px;
+  border: none;
+  @include fun.hoverLighten(vars.$bg);
+}
+
+.ok-popover arrow {
+  margin: 0 8px 0 0;
+}

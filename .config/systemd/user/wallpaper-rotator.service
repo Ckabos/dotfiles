@@ -1,0 +1,17 @@
+[Unit]
+Description=OkPanel Hybrid Wallpaper Rotator (Local + Google Photos)
+After=network.target
+
+[Service]
+Type=simple
+# Usamos bash para asegurar la ejecución y pasamos 15m como intervalo
+ExecStart=/usr/bin/bash /home/efrain/Varda-Theme/themes/wallpaperRotator.sh /home/efrain/Imágenes/Wallpapers 15m
+Restart=always
+RestartSec=10
+Environment=DISPLAY=:0
+Environment=WAYLAND_DISPLAY=wayland-1
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+
+[Install]
+WantedBy=default.target

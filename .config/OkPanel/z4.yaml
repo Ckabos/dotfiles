@@ -1,0 +1,73 @@
+icon: "󰚌"
+iconOffset: 2
+wallpaper:
+  wallpaperUpdateScript: /home/efrain/Varda-Theme/themes/wallpaperUpdate.sh
+  wallpaperDir: /home/efrain/Imágenes/Wallpapers
+
+frame:
+  leftThickness: 2
+  bottomThickness: 2
+  rightThickness: 0
+  topThickness: 0
+  borderRadius: 12
+  borderWidth: 2
+
+topBar:
+#  marginStart: 10
+#  marginEnd: 10
+#  marginTop: 10
+#  borderRadius: 8
+#  borderWidth: 2
+  leftWidgets:
+    - menu
+    - workspaces
+  centerWidgets:
+    - clock
+  rightWidgets:
+    - clipboardManager
+    - audioIn
+    - bluetooth
+    - vpnIndicator
+    - network
+    - audioOut
+    - battery
+    - targetTracker
+    - ipIndicator
+    - tray
+
+leftBar:
+  topWidgets: []
+  centerWidgets: []
+  bottomWidgets: []
+
+rightBar:
+  centerWidgets: []
+
+bottomBar:
+  compact: true
+  leftWidgets: [cavaWaveform]
+  centerWidgets:
+    - mprisTrackInfo
+    - mprisControls
+  rightWidgets: [portMonitor]
+
+barWidgets:
+  cavaWaveform:
+    length: 700
+  tray:
+    collapsable: false
+
+theme:
+  name: bloodrust
+  colors:
+    # Ajustamos el background base añadiendo '66' al final (aprox. 40% de opacidad)
+    background: "#432D2380" 
+    foreground: "#D6D8DB"
+    primary: "#FABA50"
+    buttonPrimary: "#5098FA"
+    warning: "#FBC369"
+    # Damos más contraste a los bordes
+    barBorder: "#FABA50"
+    windowBorder: "#5098FA"
+    alertBorder: "#50A5FA"
+    scrimColor: "#00000080"

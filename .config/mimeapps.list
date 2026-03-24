@@ -1,0 +1,107 @@
+[Default Applications]
+# =============================================================================
+# ASOCIACIONES DE APLICACIONES POR DEFECTO (MIME TYPES)
+# Usuario: Efrain (Ckabos) | Entorno: Hyprland / Arch Linux
+# =============================================================================
+
+# --- NAVEGACIÓN Y PROTOCOLOS WEB ---
+text/html=firefox.desktop;google-chrome.desktop
+x-scheme-handler/http=firefox.desktop;google-chrome.desktop
+x-scheme-handler/https=firefox.desktop;google-chrome.desktop
+x-scheme-handler/about=firefox.desktop
+x-scheme-handler/unknown=firefox.desktop
+
+# --- SISTEMA DE ARCHIVOS Y CONTENEDORES ---
+inode/directory=org.gnome.Nautilus.desktop;yazi.desktop;ranger.desktop
+application/zip=org.gnome.Nautilus.desktop
+application/x-tar=org.gnome.Nautilus.desktop
+application/x-7z-compressed=org.gnome.Nautilus.desktop
+application/x-rar=org.gnome.Nautilus.desktop
+application/x-bzip2=org.gnome.Nautilus.desktop
+application/x-gzip=org.gnome.Nautilus.desktop
+
+# --- PENTESTING, AUDITORÍA Y ANÁLISIS DE DATOS ---
+# Tráfico de Red y PCAPs
+application/vnd.tcpdump.pcap=wireshark.desktop
+application/x-pcapng=wireshark.desktop
+
+# APIs y Tráfico Web
+application/json=postman.desktop;caido.desktop;nvim.desktop
+application/xml=nvim.desktop;firefox.desktop
+
+# Ingeniería Inversa y Malware (Análisis estático/dinámico)
+application/x-executable=ghidra.desktop;nvim.desktop
+application/x-sharedlib=ghidra.desktop
+application/x-ms-dos-executable=ghidra.desktop;nvim.desktop
+application/x-java-archive=java-java-openjdk.desktop;ghidra.desktop
+
+# BASES DE DATOS (Forense y Administración)
+text/x-sql=dbeaver.desktop;nvim.desktop
+application/sql=dbeaver.desktop;nvim.desktop
+application/x-sqlite3=sqlitebrowser.desktop;dbeaver.desktop;nvim.desktop
+application/vnd.sqlite3=sqlitebrowser.desktop
+
+# --- VIRTUALIZACIÓN Y FORENSE (Dumps de disco/VMs) ---
+# Si usas VirtualBox, VMware o QEMU
+application/x-virt-viewer=virt-viewer.desktop
+application/x-virtualbox-ova=virtualbox.desktop
+application/x-raw-disk-image=nvim.desktop # Para ver headers de imágenes de disco
+
+# --- SEGURIDAD, LLAVES Y CERTIFICADOS ---
+application/x-x509-ca-cert=gcr-viewer.desktop
+application/x-pkcs12=gcr-viewer.desktop
+application/pgp-keys=gcr-viewer.desktop
+application/pgp-signature=gcr-viewer.desktop
+application/x-pem-key=nvim.desktop
+application/x-ssh-key=nvim.desktop
+
+# --- DOCUMENTOS TÉCNICOS Y NOTAS (KB) ---
+application/pdf=org.pwmt.zathura.desktop;google-chrome.desktop
+text/markdown=obsidian.desktop
+
+# --- CÓDIGO FUENTE Y PAYLOADS (NeoVim es la ley) ---
+text/plain=nvim.desktop;kitty.desktop
+application/x-shellscript=nvim.desktop
+text/x-python=nvim.desktop
+text/x-java=nvim.desktop
+text/x-csrc=nvim.desktop
+text/x-c++src=nvim.desktop
+text/x-perl=nvim.desktop
+text/x-php=nvim.desktop
+text/x-ruby=nvim.desktop
+text/x-log=nvim.desktop;kitty.desktop
+
+# --- OFIMÁTICA (Visor vía Navegador) ---
+application/msword=google-chrome.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=google-chrome.desktop
+application/vnd.ms-excel=google-chrome.desktop
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=google-chrome.desktop
+application/vnd.ms-powerpoint=google-chrome.desktop
+application/rtf=google-chrome.desktop
+
+# --- IMÁGENES Y EVIDENCIAS (PoC) ---
+image/png=imv.desktop;google-chrome.desktop
+image/jpeg=imv.desktop;google-chrome.desktop
+image/gif=imv.desktop;mpv.desktop
+image/svg+xml=google-chrome.desktop;imv.desktop
+image/webp=imv.desktop;google-chrome.desktop
+image/x-icns=imv.desktop
+image/bmp=imv.desktop
+image/vnd.adobe.photoshop=google-chrome.desktop # Visualizar PSDs rápido
+
+# --- MULTIMEDIA (PoC en Video y Audio) ---
+video/mp4=mpv.desktop;vlc.desktop
+video/x-matroska=mpv.desktop;vlc.desktop
+video/webm=mpv.desktop;vlc.desktop
+video/quicktime=mpv.desktop;vlc.desktop
+audio/mpeg=vlc.desktop;mpv.desktop
+audio/x-wav=vlc.desktop
+audio/flac=vlc.desktop
+
+# --- HANDLERS DE PROTOCOLO Y COMUNICACIÓN ---
+x-scheme-handler/geo=google-maps-geo-handler.desktop;wheelmap-geo-handler.desktop
+x-scheme-handler/tg=org.telegram.desktop.desktop
+x-scheme-handler/discord=discord.desktop
+x-scheme-handler/spotify=spotify.desktop
+x-scheme-handler/mailto=firefox.desktop;google-chrome.desktop
+x-scheme-handler/ssh=kitty.desktop # Para abrir enlaces ssh:// directamente en tu terminal

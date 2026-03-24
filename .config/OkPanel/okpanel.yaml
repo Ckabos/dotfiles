@@ -1,0 +1,77 @@
+configUpdateScript: /home/efrain/Varda-Theme/themes/setTheme.sh
+topBar:
+  leftWidgets:
+    - menu
+    - workspaces
+  centerWidgets: []
+  rightWidgets:
+    - tray
+    - clipboardManager
+    - audioOut
+    - audioIn
+    - bluetooth
+    - vpnIndicator
+    - network
+    - battery
+    - clock
+barWidgets:
+  kitty:
+    icon: ""
+    iconOffset: 2
+    launch: "kitty -d ~/"
+    newWindow: "kitty -d ~/"
+    class: "kitty"
+  firefox:
+    icon: "󰈹"
+    iconOffset: 2
+    launch: "/usr/bin/firefox"
+    newWindow: "/home/.local/share/firefox-nightly/firefox"
+    class: "firefox-nightly"
+  intellij:
+    icon: ""
+    iconOffset: 3
+    launch: "/home/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea"
+    class: "jetbrains-idea"
+  androidStudio:
+    icon: "󰀴"
+    launch: "/home/.local/share/JetBrains/Toolbox/apps/android-studio/bin/studio.sh"
+    class: "jetbrains-studio"
+  signal:
+    icon: "󰭹"
+    launch: "flatpak run org.signal.Signal"
+    class: "org.signal.Signal"
+  darktable:
+    icon: "󰄄"
+    launch: "darktable"
+    class: "Darktable"
+  steam:
+    icon: ""
+    launch: "steam"
+    class: "steam"
+systemMenu:
+  widgets:
+    - clock
+    - network
+    - bluetooth
+    - audioOut
+    - audioIn
+    - powerProfile
+    - lookAndFeel
+    - mprisPlayers
+    - quickActions1
+    - quickActions2
+    - notificationHistory
+  clock:
+    dayFont: "Anurati"
+    dayAllCaps: true
+weather:
+  latitude: "42.1656"
+  longitude: "-88.2943"
+workspaces:
+  1: ""
+  2: ""
+  3: ""
+  4: ""
+  5: ""
+  6: ""
+  7: ""

@@ -1,0 +1,16 @@
+icon: "󰌪"
+iconOffset: 1
+wallpaper:
+  wallpaperDir: /home/efrain/workspace/Varda-Theme/themes/everforest/wallpaper
+
+theme:
+  name: everforest
+  colors:
+    background: "#1E2326"
+    foreground: "#D3C6AA"
+    primary: "#7A8478"
+    buttonPrimary: "#384B55"
+    warning: "#E67E80"
+    barBorder: "#7A8478"
+    windowBorder: "#D3C6AA"
+    alertBorder: "#7A8478"

@@ -1,0 +1,29 @@
+[manager]
+ratio = [1, 2, 3]
+sort_by = "natural"
+sort_dir_first = true
+
+[preview]
+max_width = 960
+image_filter = "nearest"
+
+[opener]
+text = [
+	{ run = 'nvim "$@"', block = true },
+]
+pdf = [
+  { run = 'zathura "$@"', block = false },
+]
+
+[open]
+rules = [
+	{ mime = "text/*", use = "text" },
+	{ mime = "image/*", use = "image" },
+
+	# { mime = "application/json", use = "text" },
+	{ name = "*.json", use = "text" },
+	{ name = "*.pdf", use = "pdf" },
+
+	# Multiple openers for a single rule
+	{ name = "*.html", use = [ "browser", "text" ] },
+]

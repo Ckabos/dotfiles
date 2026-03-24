@@ -1,0 +1,45 @@
+@use "../variables" as vars;
+@use "sass:color";
+@use "../functions" as fun;
+
+.appLauncher {
+  padding: 2px;
+
+  .appButton {
+    margin: 2px 8px 0 8px;
+    padding: 8px;
+    border-radius: vars.$buttonBorderRadius;
+
+    // fade between states
+    transition: padding-left 200ms ease-in-out;
+
+    // start fully transparent but same hue (so the fade looks right)
+    background-color: rgba(vars.$primary, 0);
+
+    @include fun.hoverLighten(vars.$bg);
+
+    &.selectedAppButton {
+      padding-left: 30px;
+      background-color: vars.$primary;
+    }
+
+    label.name {
+      font-weight: bold;
+      color: vars.$fg;
+    }
+  }
+
+  .searchField {
+    margin: 4px;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  .searchIcon {
+    color: vars.$fg;
+    padding: 4px 4px 4px 2px;
+    border: none;
+    min-height: 25px;
+    min-width: 30px;
+  }
+}

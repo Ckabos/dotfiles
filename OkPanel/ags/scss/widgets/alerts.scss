@@ -1,0 +1,32 @@
+@use "../variables" as vars;
+@use "sass:color";
+@use "../functions" as fun;
+
+.alertIcon {
+  all: unset;
+  font-size: 50px;
+  color: vars.$fg;
+}
+
+.alertProgress {
+  all: unset;
+  min-width: 150px;
+}
+
+.alertProgress trough {
+  all: unset;
+  background: fun.smart-lighten(vars.$bg);
+  min-height: 8px;
+  border-radius: 16px;
+}
+
+.alertProgress trough slider {
+  all: unset;
+}
+
+.alertProgress trough highlight {
+  all: unset;
+  min-width: 8px;
+  border-radius: 16px;
+  background: vars.$fg;
+}

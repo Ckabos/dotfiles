@@ -1,0 +1,9 @@
+@use "../variables" as vars;
+
+.window {
+    background-color: vars.$windowBackgroundColor;
+    border-radius: vars.$windowBorderRadius;
+    border-color: vars.$windowBorder;
+    border-width: vars.$windowBorderWidth;
+    border-style: solid;
+}

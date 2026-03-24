@@ -1,0 +1,1215 @@
+@use "../variables" as vars;
+@use "sass:color";
+@use "../functions" as fun;
+
+.barMenuForeground {
+  color: vars.$barMenuForeground;
+}
+
+.barMenuBackground {
+  background-color: vars.$barMenuBackground;
+  border-radius: vars.$barMenuBorderRadius;
+  border-width: vars.$barMenuBorderWidth;
+  border-color: vars.$barMenuBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barMenuBackground);
+}
+
+.barWorkspacesForeground {
+  color: vars.$barWorkspacesForeground;
+}
+
+.barWorkspacesOccupiedForeground {
+    color: #11ffff;
+}
+
+.barWorkspaceButtonActiveBackground {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+}
+
+.barWorkspacesInactiveForeground {
+  color: vars.$barWorkspacesInactiveForeground;
+}
+
+.barWorkspacesBackground {
+  background-color: vars.$barWorkspacesBackground;
+  border-radius: vars.$barWorkspacesBorderRadius;
+  border-width: vars.$barWorkspacesBorderWidth;
+  border-color: vars.$barWorkspacesBorderColor;
+  border-style: solid;
+}
+
+.barWorkspaceButtonBackground {
+  background-color: transparent;
+  @include fun.hoverLighten(vars.$barWorkspacesBackground);
+}
+
+.barClockForeground {
+  color: vars.$barClockForeground;
+}
+
+.barClockBackground {
+  background-color: vars.$barClockBackground;
+  border-radius: vars.$barClockBorderRadius;
+  border-width: vars.$barClockBorderWidth;
+  border-color: vars.$barClockBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barClockBackground);
+}
+
+.barAudioOutForeground {
+  color: vars.$barAudioOutForeground;
+}
+
+.barAudioOutBackground {
+  background-color: vars.$barAudioOutBackground;
+  border-radius: vars.$barAudioOutBorderRadius;
+  border-width: vars.$barAudioOutBorderWidth;
+  border-color: vars.$barAudioOutBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barAudioOutBackground);
+}
+
+.barAudioInForeground {
+  color: vars.$barAudioInForeground;
+}
+
+.barAudioInBackground {
+  background-color: vars.$barAudioInBackground;
+  border-radius: vars.$barAudioInBorderRadius;
+  border-width: vars.$barAudioInBorderWidth;
+  border-color: vars.$barAudioInBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barAudioInBackground);
+}
+
+.barBluetoothForeground {
+  color: vars.$barBluetoothForeground;
+}
+
+.barBluetoothBackground {
+  background-color: vars.$barBluetoothBackground;
+  border-radius: vars.$barBluetoothBorderRadius;
+  border-width: vars.$barBluetoothBorderWidth;
+  border-color: vars.$barBluetoothBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barBluetoothBackground);
+}
+
+.barNetworkForeground {
+  color: vars.$barNetworkForeground;
+}
+
+.barNetworkBackground {
+  background-color: vars.$barNetworkBackground;
+  border-radius: vars.$barNetworkBorderRadius;
+  border-width: vars.$barNetworkBorderWidth;
+  border-color: vars.$barNetworkBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barNetworkBackground);
+}
+
+.barRecordingIndicatorForeground {
+  color: vars.$barRecordingIndicatorForeground;
+}
+
+.barRecordingIndicatorBackground {
+  background-color: vars.$barRecordingIndicatorBackground;
+  border-radius: vars.$barRecordingIndicatorBorderRadius;
+  border-width: vars.$barRecordingIndicatorBorderWidth;
+  border-color: vars.$barRecordingIndicatorBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barRecordingIndicatorBackground);
+}
+
+.barVpnIndicatorForeground {
+  color: vars.$barVpnIndicatorForeground;
+}
+
+.barVpnIndicatorBackground {
+  background-color: vars.$barVpnIndicatorBackground;
+  border-radius: vars.$barVpnIndicatorBorderRadius;
+  border-width: vars.$barVpnIndicatorBorderWidth;
+  border-color: vars.$barVpnIndicatorBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barVpnIndicatorBackground);
+}
+
+.barBatteryForeground {
+  color: vars.$barBatteryForeground;
+}
+
+.barBatteryBackground {
+  background-color: vars.$barBatteryBackground;
+  border-radius: vars.$barBatteryBorderRadius;
+  border-width: vars.$barBatteryBorderWidth;
+  border-color: vars.$barBatteryBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barBatteryBackground);
+}
+
+.barTrayForeground {
+  color: vars.$barTrayForeground;
+}
+
+.barTrayBackground {
+  background-color: vars.$barTrayBackground;
+  border-radius: vars.$barTrayBorderRadius;
+  border-width: vars.$barTrayBorderWidth;
+  border-color: vars.$barTrayBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barTrayBackground);
+}
+
+.barAppLauncherForeground {
+  color: vars.$barAppLauncherForeground;
+}
+
+.barAppLauncherBackground {
+  background-color: vars.$barAppLauncherBackground;
+  border-radius: vars.$barAppLauncherBorderRadius;
+  border-width: vars.$barAppLauncherBorderWidth;
+  border-color: vars.$barAppLauncherBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barAppLauncherBackground);
+}
+
+.barScreenshotForeground {
+  color: vars.$barScreenshotForeground;
+}
+
+.barScreenshotBackground {
+  background-color: vars.$barScreenshotBackground;
+  border-radius: vars.$barScreenshotBorderRadius;
+  border-width: vars.$barScreenshotBorderWidth;
+  border-color: vars.$barScreenshotBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barScreenshotBackground);
+}
+
+.barClipboardManagerForeground {
+  color: vars.$barClipboardManagerForeground;
+}
+
+.barClipboardManagerBackground {
+  background-color: vars.$barClipboardManagerBackground;
+  border-radius: vars.$barClipboardManagerBorderRadius;
+  border-width: vars.$barClipboardManagerBorderWidth;
+  border-color: vars.$barClipboardManagerBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barClipboardManagerBackground);
+}
+
+.barPowerProfileForeground {
+  color: vars.$barPowerProfileForeground;
+}
+
+.barPowerProfileBackground {
+  background-color: vars.$barPowerProfileBackground;
+  border-radius: vars.$barPowerProfileBorderRadius;
+  border-width: vars.$barPowerProfileBorderWidth;
+  border-color: vars.$barPowerProfileBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barPowerProfileBackground);
+}
+
+.barCavaWaveformForeground {
+  color: vars.$barCavaWaveformForeground;
+}
+
+.barCavaWaveformBackground {
+  background-color: vars.$barCavaWaveformBackground;
+  border-radius: vars.$barCavaWaveformBorderRadius;
+  border-width: vars.$barCavaWaveformBorderWidth;
+  border-color: vars.$barCavaWaveformBorderColor;
+  border-style: solid;
+}
+
+.barMprisControlsForeground {
+  color: vars.$barMprisControlsForeground;
+}
+
+.barMprisControlsButtonBackground {
+  background-color: transparent;
+  @include fun.hoverLighten(vars.$barMprisControlsBackground);
+}
+
+.barMprisControlsBackground {
+  background-color: vars.$barMprisControlsBackground;
+  border-radius: vars.$barMprisControlsBorderRadius;
+  border-width: vars.$barMprisControlsBorderWidth;
+  border-color: vars.$barMprisControlsBorderColor;
+  border-style: solid;
+}
+
+.barMprisTrackInfoForeground {
+  color: vars.$barMprisTrackInfoForeground;
+}
+
+.barMprisTrackInfoBackground {
+  background-color: vars.$barMprisTrackInfoBackground;
+  border-radius: vars.$barMprisTrackInfoBorderRadius;
+  border-width: vars.$barMprisTrackInfoBorderWidth;
+  border-color: vars.$barMprisTrackInfoBorderColor;
+  border-style: solid;
+}
+
+.barMprisPrimaryPlayerSwitcherForeground {
+  color: vars.$barMprisPrimaryPlayerSwitcherForeground;
+}
+
+.barMprisPrimaryPlayerSwitcherBackground {
+  background-color: vars.$barMprisPrimaryPlayerSwitcherBackground;
+  border-radius: vars.$barMprisPrimaryPlayerSwitcherBorderRadius;
+  border-width: vars.$barMprisPrimaryPlayerSwitcherBorderWidth;
+  border-color: vars.$barMprisPrimaryPlayerSwitcherBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barMprisPrimaryPlayerSwitcherBackground);
+}
+
+.barNotificationHistoryForeground {
+  color: vars.$barNotificationHistoryForeground;
+}
+
+.barNotificationHistoryBackground {
+  background-color: vars.$barNotificationHistoryBackground;
+  border-radius: vars.$barNotificationHistoryBorderRadius;
+  border-width: vars.$barNotificationHistoryBorderWidth;
+  border-color: vars.$barNotificationHistoryBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barNotificationHistoryBackground);
+}
+
+.barColorPickerForeground {
+  color: vars.$barColorPickerForeground;
+}
+
+.barColorPickerBackground {
+  background-color: vars.$barColorPickerBackground;
+  border-radius: vars.$barColorPickerBorderRadius;
+  border-width: vars.$barColorPickerBorderWidth;
+  border-color: vars.$barColorPickerBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barColorPickerBackground);
+}
+
+.barLogoutForeground {
+  color: vars.$barLogoutForeground;
+}
+
+.barLogoutBackground {
+  background-color: vars.$barLogoutBackground;
+  border-radius: vars.$barLogoutBorderRadius;
+  border-width: vars.$barLogoutBorderWidth;
+  border-color: vars.$barLogoutBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barLogoutBackground);
+}
+
+.barLockForeground {
+  color: vars.$barLockForeground;
+}
+
+.barLockBackground {
+  background-color: vars.$barLockBackground;
+  border-radius: vars.$barLockBorderRadius;
+  border-width: vars.$barLockBorderWidth;
+  border-color: vars.$barLockBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barLockBackground);
+}
+
+.barRestartForeground {
+  color: vars.$barRestartForeground;
+}
+
+.barRestartBackground {
+  background-color: vars.$barRestartBackground;
+  border-radius: vars.$barRestartBorderRadius;
+  border-width: vars.$barRestartBorderWidth;
+  border-color: vars.$barRestartBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barRestartBackground);
+}
+
+.barShutdownForeground {
+  color: vars.$barShutdownForeground;
+}
+
+.barShutdownBackground {
+  background-color: vars.$barShutdownBackground;
+  border-radius: vars.$barShutdownBorderRadius;
+  border-width: vars.$barShutdownBorderWidth;
+  border-color: vars.$barShutdownBorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShutdownBackground);
+}
+
+.barTimerForeground {
+  color: vars.$barTimerForeground;
+}
+
+.barTimerButtonBackground {
+  background-color: transparent;
+  @include fun.hoverLighten(vars.$barTimerBackground);
+}
+
+.barTimerBackground {
+  background-color: vars.$barTimerBackground;
+  border-radius: vars.$barTimerBorderRadius;
+  border-width: vars.$barTimerBorderWidth;
+  border-color: vars.$barTimerBorderColor;
+  border-style: solid;
+}
+
+// ---- barCustom ----
+.barCustom1Foreground {
+  color: vars.$barCustom1Foreground;
+}
+.barCustom1Background {
+  background-color: vars.$barCustom1Background;
+  border-radius: vars.$barCustom1BorderRadius;
+  border-width: vars.$barCustom1BorderWidth;
+  border-color: vars.$barCustom1BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom1Background);
+}
+
+.barCustom2Foreground {
+  color: vars.$barCustom2Foreground;
+}
+.barCustom2Background {
+  background-color: vars.$barCustom2Background;
+  border-radius: vars.$barCustom2BorderRadius;
+  border-width: vars.$barCustom2BorderWidth;
+  border-color: vars.$barCustom2BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom2Background);
+}
+
+.barCustom3Foreground {
+  color: vars.$barCustom3Foreground;
+}
+.barCustom3Background {
+  background-color: vars.$barCustom3Background;
+  border-radius: vars.$barCustom3BorderRadius;
+  border-width: vars.$barCustom3BorderWidth;
+  border-color: vars.$barCustom3BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom3Background);
+}
+
+.barCustom4Foreground {
+  color: vars.$barCustom4Foreground;
+}
+.barCustom4Background {
+  background-color: vars.$barCustom4Background;
+  border-radius: vars.$barCustom4BorderRadius;
+  border-width: vars.$barCustom4BorderWidth;
+  border-color: vars.$barCustom4BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom4Background);
+}
+
+.barCustom5Foreground {
+  color: vars.$barCustom5Foreground;
+}
+.barCustom5Background {
+  background-color: vars.$barCustom5Background;
+  border-radius: vars.$barCustom5BorderRadius;
+  border-width: vars.$barCustom5BorderWidth;
+  border-color: vars.$barCustom5BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom5Background);
+}
+
+.barCustom6Foreground {
+  color: vars.$barCustom6Foreground;
+}
+.barCustom6Background {
+  background-color: vars.$barCustom6Background;
+  border-radius: vars.$barCustom6BorderRadius;
+  border-width: vars.$barCustom6BorderWidth;
+  border-color: vars.$barCustom6BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom6Background);
+}
+
+.barCustom7Foreground {
+  color: vars.$barCustom7Foreground;
+}
+.barCustom7Background {
+  background-color: vars.$barCustom7Background;
+  border-radius: vars.$barCustom7BorderRadius;
+  border-width: vars.$barCustom7BorderWidth;
+  border-color: vars.$barCustom7BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom7Background);
+}
+
+.barCustom8Foreground {
+  color: vars.$barCustom8Foreground;
+}
+.barCustom8Background {
+  background-color: vars.$barCustom8Background;
+  border-radius: vars.$barCustom8BorderRadius;
+  border-width: vars.$barCustom8BorderWidth;
+  border-color: vars.$barCustom8BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom8Background);
+}
+
+.barCustom9Foreground {
+  color: vars.$barCustom9Foreground;
+}
+.barCustom9Background {
+  background-color: vars.$barCustom9Background;
+  border-radius: vars.$barCustom9BorderRadius;
+  border-width: vars.$barCustom9BorderWidth;
+  border-color: vars.$barCustom9BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom9Background);
+}
+
+.barCustom10Foreground {
+  color: vars.$barCustom10Foreground;
+}
+.barCustom10Background {
+  background-color: vars.$barCustom10Background;
+  border-radius: vars.$barCustom10BorderRadius;
+  border-width: vars.$barCustom10BorderWidth;
+  border-color: vars.$barCustom10BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom10Background);
+}
+
+.barCustom11Foreground {
+  color: vars.$barCustom11Foreground;
+}
+.barCustom11Background {
+  background-color: vars.$barCustom11Background;
+  border-radius: vars.$barCustom11BorderRadius;
+  border-width: vars.$barCustom11BorderWidth;
+  border-color: vars.$barCustom11BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom11Background);
+}
+
+.barCustom12Foreground {
+  color: vars.$barCustom12Foreground;
+}
+.barCustom12Background {
+  background-color: vars.$barCustom12Background;
+  border-radius: vars.$barCustom12BorderRadius;
+  border-width: vars.$barCustom12BorderWidth;
+  border-color: vars.$barCustom12BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom12Background);
+}
+
+.barCustom13Foreground {
+  color: vars.$barCustom13Foreground;
+}
+.barCustom13Background {
+  background-color: vars.$barCustom13Background;
+  border-radius: vars.$barCustom13BorderRadius;
+  border-width: vars.$barCustom13BorderWidth;
+  border-color: vars.$barCustom13BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom13Background);
+}
+
+.barCustom14Foreground {
+  color: vars.$barCustom14Foreground;
+}
+.barCustom14Background {
+  background-color: vars.$barCustom14Background;
+  border-radius: vars.$barCustom14BorderRadius;
+  border-width: vars.$barCustom14BorderWidth;
+  border-color: vars.$barCustom14BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom14Background);
+}
+
+.barCustom15Foreground {
+  color: vars.$barCustom15Foreground;
+}
+.barCustom15Background {
+  background-color: vars.$barCustom15Background;
+  border-radius: vars.$barCustom15BorderRadius;
+  border-width: vars.$barCustom15BorderWidth;
+  border-color: vars.$barCustom15BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom15Background);
+}
+
+.barCustom16Foreground {
+  color: vars.$barCustom16Foreground;
+}
+.barCustom16Background {
+  background-color: vars.$barCustom16Background;
+  border-radius: vars.$barCustom16BorderRadius;
+  border-width: vars.$barCustom16BorderWidth;
+  border-color: vars.$barCustom16BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom16Background);
+}
+
+.barCustom17Foreground {
+  color: vars.$barCustom17Foreground;
+}
+.barCustom17Background {
+  background-color: vars.$barCustom17Background;
+  border-radius: vars.$barCustom17BorderRadius;
+  border-width: vars.$barCustom17BorderWidth;
+  border-color: vars.$barCustom17BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom17Background);
+}
+
+.barCustom18Foreground {
+  color: vars.$barCustom18Foreground;
+}
+.barCustom18Background {
+  background-color: vars.$barCustom18Background;
+  border-radius: vars.$barCustom18BorderRadius;
+  border-width: vars.$barCustom18BorderWidth;
+  border-color: vars.$barCustom18BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom18Background);
+}
+
+.barCustom19Foreground {
+  color: vars.$barCustom19Foreground;
+}
+.barCustom19Background {
+  background-color: vars.$barCustom19Background;
+  border-radius: vars.$barCustom19BorderRadius;
+  border-width: vars.$barCustom19BorderWidth;
+  border-color: vars.$barCustom19BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom19Background);
+}
+
+.barCustom20Foreground {
+  color: vars.$barCustom20Foreground;
+}
+.barCustom20Background {
+  background-color: vars.$barCustom20Background;
+  border-radius: vars.$barCustom20BorderRadius;
+  border-width: vars.$barCustom20BorderWidth;
+  border-color: vars.$barCustom20BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barCustom20Background);
+}
+
+
+// ---- barShortcut ----
+.barShortcut1Foreground {
+  color: vars.$barShortcut1Foreground;
+}
+.barShortcut1Background {
+  background-color: vars.$barShortcut1Background;
+  border-radius: vars.$barShortcut1BorderRadius;
+  border-width: vars.$barShortcut1BorderWidth;
+  border-color: vars.$barShortcut1BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut1Background);
+}
+
+.barShortcut2Foreground {
+  color: vars.$barShortcut2Foreground;
+}
+.barShortcut2Background {
+  background-color: vars.$barShortcut2Background;
+  border-radius: vars.$barShortcut2BorderRadius;
+  border-width: vars.$barShortcut2BorderWidth;
+  border-color: vars.$barShortcut2BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut2Background);
+}
+
+.barShortcut3Foreground {
+  color: vars.$barShortcut3Foreground;
+}
+.barShortcut3Background {
+  background-color: vars.$barShortcut3Background;
+  border-radius: vars.$barShortcut3BorderRadius;
+  border-width: vars.$barShortcut3BorderWidth;
+  border-color: vars.$barShortcut3BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut3Background);
+}
+
+.barShortcut4Foreground {
+  color: vars.$barShortcut4Foreground;
+}
+.barShortcut4Background {
+  background-color: vars.$barShortcut4Background;
+  border-radius: vars.$barShortcut4BorderRadius;
+  border-width: vars.$barShortcut4BorderWidth;
+  border-color: vars.$barShortcut4BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut4Background);
+}
+
+.barShortcut5Foreground {
+  color: vars.$barShortcut5Foreground;
+}
+.barShortcut5Background {
+  background-color: vars.$barShortcut5Background;
+  border-radius: vars.$barShortcut5BorderRadius;
+  border-width: vars.$barShortcut5BorderWidth;
+  border-color: vars.$barShortcut5BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut5Background);
+}
+
+.barShortcut6Foreground {
+  color: vars.$barShortcut6Foreground;
+}
+.barShortcut6Background {
+  background-color: vars.$barShortcut6Background;
+  border-radius: vars.$barShortcut6BorderRadius;
+  border-width: vars.$barShortcut6BorderWidth;
+  border-color: vars.$barShortcut6BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut6Background);
+}
+
+.barShortcut7Foreground {
+  color: vars.$barShortcut7Foreground;
+}
+.barShortcut7Background {
+  background-color: vars.$barShortcut7Background;
+  border-radius: vars.$barShortcut7BorderRadius;
+  border-width: vars.$barShortcut7BorderWidth;
+  border-color: vars.$barShortcut7BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut7Background);
+}
+
+.barShortcut8Foreground {
+  color: vars.$barShortcut8Foreground;
+}
+.barShortcut8Background {
+  background-color: vars.$barShortcut8Background;
+  border-radius: vars.$barShortcut8BorderRadius;
+  border-width: vars.$barShortcut8BorderWidth;
+  border-color: vars.$barShortcut8BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut8Background);
+}
+
+.barShortcut9Foreground {
+  color: vars.$barShortcut9Foreground;
+}
+.barShortcut9Background {
+  background-color: vars.$barShortcut9Background;
+  border-radius: vars.$barShortcut9BorderRadius;
+  border-width: vars.$barShortcut9BorderWidth;
+  border-color: vars.$barShortcut9BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut9Background);
+}
+
+.barShortcut10Foreground {
+  color: vars.$barShortcut10Foreground;
+}
+.barShortcut10Background {
+  background-color: vars.$barShortcut10Background;
+  border-radius: vars.$barShortcut10BorderRadius;
+  border-width: vars.$barShortcut10BorderWidth;
+  border-color: vars.$barShortcut10BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut10Background);
+}
+
+.barShortcut11Foreground {
+  color: vars.$barShortcut11Foreground;
+}
+.barShortcut11Background {
+  background-color: vars.$barShortcut11Background;
+  border-radius: vars.$barShortcut11BorderRadius;
+  border-width: vars.$barShortcut11BorderWidth;
+  border-color: vars.$barShortcut11BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut11Background);
+}
+
+.barShortcut12Foreground {
+  color: vars.$barShortcut12Foreground;
+}
+.barShortcut12Background {
+  background-color: vars.$barShortcut12Background;
+  border-radius: vars.$barShortcut12BorderRadius;
+  border-width: vars.$barShortcut12BorderWidth;
+  border-color: vars.$barShortcut12BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut12Background);
+}
+
+.barShortcut13Foreground {
+  color: vars.$barShortcut13Foreground;
+}
+.barShortcut13Background {
+  background-color: vars.$barShortcut13Background;
+  border-radius: vars.$barShortcut13BorderRadius;
+  border-width: vars.$barShortcut13BorderWidth;
+  border-color: vars.$barShortcut13BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut13Background);
+}
+
+.barShortcut14Foreground {
+  color: vars.$barShortcut14Foreground;
+}
+.barShortcut14Background {
+  background-color: vars.$barShortcut14Background;
+  border-radius: vars.$barShortcut14BorderRadius;
+  border-width: vars.$barShortcut14BorderWidth;
+  border-color: vars.$barShortcut14BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut14Background);
+}
+
+.barShortcut15Foreground {
+  color: vars.$barShortcut15Foreground;
+}
+.barShortcut15Background {
+  background-color: vars.$barShortcut15Background;
+  border-radius: vars.$barShortcut15BorderRadius;
+  border-width: vars.$barShortcut15BorderWidth;
+  border-color: vars.$barShortcut15BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut15Background);
+}
+
+.barShortcut16Foreground {
+  color: vars.$barShortcut16Foreground;
+}
+.barShortcut16Background {
+  background-color: vars.$barShortcut16Background;
+  border-radius: vars.$barShortcut16BorderRadius;
+  border-width: vars.$barShortcut16BorderWidth;
+  border-color: vars.$barShortcut16BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut16Background);
+}
+
+.barShortcut17Foreground {
+  color: vars.$barShortcut17Foreground;
+}
+.barShortcut17Background {
+  background-color: vars.$barShortcut17Background;
+  border-radius: vars.$barShortcut17BorderRadius;
+  border-width: vars.$barShortcut17BorderWidth;
+  border-color: vars.$barShortcut17BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut17Background);
+}
+
+.barShortcut18Foreground {
+  color: vars.$barShortcut18Foreground;
+}
+.barShortcut18Background {
+  background-color: vars.$barShortcut18Background;
+  border-radius: vars.$barShortcut18BorderRadius;
+  border-width: vars.$barShortcut18BorderWidth;
+  border-color: vars.$barShortcut18BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut18Background);
+}
+
+.barShortcut19Foreground {
+  color: vars.$barShortcut19Foreground;
+}
+.barShortcut19Background {
+  background-color: vars.$barShortcut19Background;
+  border-radius: vars.$barShortcut19BorderRadius;
+  border-width: vars.$barShortcut19BorderWidth;
+  border-color: vars.$barShortcut19BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut19Background);
+}
+
+.barShortcut20Foreground {
+  color: vars.$barShortcut20Foreground;
+}
+.barShortcut20Background {
+  background-color: vars.$barShortcut20Background;
+  border-radius: vars.$barShortcut20BorderRadius;
+  border-width: vars.$barShortcut20BorderWidth;
+  border-color: vars.$barShortcut20BorderColor;
+  border-style: solid;
+  @include fun.hoverLighten(vars.$barShortcut20Background);
+}
+
+.barShortcut1Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut1Foreground;
+}
+
+.barShortcut2Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut2Foreground;
+}
+
+.barShortcut3Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut3Foreground;
+}
+
+.barShortcut4Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut4Foreground;
+}
+
+.barShortcut5Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut5Foreground;
+}
+
+.barShortcut6Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut6Foreground;
+}
+
+.barShortcut7Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut7Foreground;
+}
+
+.barShortcut8Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut8Foreground;
+}
+
+.barShortcut9Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut9Foreground;
+}
+
+.barShortcut10Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut10Foreground;
+}
+
+.barShortcut11Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut11Foreground;
+}
+
+.barShortcut12Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut12Foreground;
+}
+
+.barShortcut13Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut13Foreground;
+}
+
+.barShortcut14Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut14Foreground;
+}
+
+.barShortcut15Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut15Foreground;
+}
+
+.barShortcut16Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut16Foreground;
+}
+
+.barShortcut17Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut17Foreground;
+}
+
+.barShortcut18Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut18Foreground;
+}
+
+.barShortcut19Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut19Foreground;
+}
+
+.barShortcut20Indicator {
+  border-radius: 90px;
+  background-color: vars.$barShortcut20Foreground;
+}
+
+.barShortcut1Selected {
+  background-color: vars.$barShortcut1SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut1SelectedColor);
+}
+
+.barShortcut2Selected {
+  background-color: vars.$barShortcut2SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut2SelectedColor);
+}
+
+.barShortcut3Selected {
+  background-color: vars.$barShortcut3SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut3SelectedColor);
+}
+
+.barShortcut4Selected {
+  background-color: vars.$barShortcut4SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut5SelectedColor);
+}
+
+.barShortcut5Selected {
+  background-color: vars.$barShortcut5SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut5SelectedColor);
+}
+
+.barShortcut6Selected {
+  background-color: vars.$barShortcut6SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut6SelectedColor);
+}
+
+.barShortcut7Selected {
+  background-color: vars.$barShortcut7SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut7SelectedColor);
+}
+
+.barShortcut8Selected {
+  background-color: vars.$barShortcut8SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut8SelectedColor);
+}
+
+.barShortcut9Selected {
+ background-color: vars.$barShortcut9SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut9SelectedColor);
+}
+
+.barShortcut10Selected {
+  background-color: vars.$barShortcut10SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut10SelectedColor);
+}
+
+.barShortcut11Selected {
+  background-color: vars.$barShortcut11SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut11SelectedColor);
+}
+
+.barShortcut12Selected {
+  background-color: vars.$barShortcut12SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut12SelectedColor);
+}
+
+.barShortcut13Selected {
+  background-color: vars.$barShortcut13SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut13SelectedColor);
+}
+
+.barShortcut14Selected {
+  background-color: vars.$barShortcut14SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut14SelectedColor);
+}
+
+.barShortcut15Selected {
+  background-color: vars.$barShortcut15SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut15SelectedColor);
+}
+
+.barShortcut16Selected {
+  background-color: vars.$barShortcut16SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut16SelectedColor);
+}
+
+.barShortcut17Selected {
+  background-color: vars.$barShortcut17SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut17SelectedColor);
+}
+
+.barShortcut18Selected {
+  background-color: vars.$barShortcut18SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut18SelectedColor);
+}
+
+.barShortcut19Selected {
+  background-color: vars.$barShortcut19SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut19SelectedColor);
+}
+
+.barShortcut20Selected {
+  background-color: vars.$barShortcut20SelectedColor;
+  @include fun.hoverLighten(vars.$barShortcut20SelectedColor);
+}
+
+// ---- IpWidget / LHOST Monitor ----
+.ipBadge {
+  // Modo Normal (Red local)
+  background-color: rgba(#ffffff, 0.05); // Gris/Blanco muy transparente
+  border: 1px solid rgba(#ffffff, 0.1);
+  border-radius: 4px;
+  margin: 2px 0;
+  transition: all 0.3s ease;
+  
+  .btn-copy-ip {
+    all: unset;
+    padding: 0 6px;
+  }
+  
+  .ip-label, .ip-icon {
+    color: inherit; // Hereda el color del texto base del panel
+    opacity: 0.7;   // Lo hace un poco más tenue
+    font-family: monospace; 
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    background-color: rgba(#ffffff, 0.1);
+    border-color: rgba(#ffffff, 0.3);
+  }
+
+  // Modo Ofensivo (VPN Activa)
+  &.vpn-active {
+    background-color: rgba(#50fa7b, 0.15); // Verde HTB
+    border-color: rgba(#50fa7b, 0.4);
+
+    .ip-label, .ip-icon {
+      color: #50fa7b; 
+      opacity: 1; // Le quitamos la transparencia al texto verde
+    }
+
+    &:hover {
+      background-color: rgba(#50fa7b, 0.3);
+      border-color: #50fa7b;
+    }
+  }
+}
+// ---- barPortMonitor (LPORT / Hacking Toolset) ----
+.dim-port {
+  opacity: 0.4;
+  font-size: 1rem;
+  padding: 0 8px;
+}
+
+.portBadge {
+  background-color: rgba(#ff5555, 0.15); // Fondo rojo translúcido (Offensive Red)
+  border: 1px solid rgba(#ff5555, 0.3);
+  border-radius: 4px;
+  margin: 2px 0;
+  transition: all 0.2s ease;
+  
+  // 1. Botón izquierdo (Copiar)
+  .btn-copy {
+    all: unset;
+    padding: 0 4px 0 6px;
+  }
+  
+  // 2. Botón derecho (Matar proceso)
+  .btn-kill {
+    all: unset;
+    padding: 0 6px 0 4px;
+    color: inherit;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: #ff5555;
+      opacity: 1;
+    }
+  }
+
+  // Tanto el icono como el texto comparten el rojo agresivo
+  .port-label, .port-icon {
+    color: #ff5555; 
+    font-family: "JetBrainsMono Nerd Font", monospace; 
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+
+  // Brillo extra al pasar el ratón
+  &:hover {
+    background-color: rgba(#ff5555, 0.3);
+    border-color: #ff5555;
+  }
+}
+
+// ---- barTargetTracker ----
+.targetBadge {
+  background-color: rgba(#ffb86c, 0.15); 
+  border: 1px solid rgba(#ffb86c, 0.3);
+  border-radius: 4px;
+  margin: 2px 0;
+  transition: all 0.2s ease;
+  
+  .btn-copy-target {
+    all: unset;
+    padding: 0 4px 0 6px;
+  }
+  
+  .btn-kill-target {
+    all: unset;
+    padding: 0 6px 0 4px;
+    color: inherit;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: #ff5555;
+      opacity: 1;
+    }
+  }
+
+  .target-label, .target-icon {
+    color: #ffb86c; // Naranja ofensivo
+    font-family: monospace; 
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+
+  &:hover {
+    background-color: rgba(#ffb86c, 0.3);
+    border-color: #ffb86c;
+  }
+}
+
+// ---- Clipboard Persistent Entries ----
+.persistent-entry {
+  background-color: rgba(#bd93f9, 0.05); // Un toque morado muy tenue (estilo Dracula/Everforest)
+  border-left: 3px solid #bd93f9; // Una barra lateral para indicar que es permanente
+  padding-left: 8px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.pin-indicator {
+  color: #bd93f9;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+// Opcional: Que el icono de pin en los botones también brille si está activo
+.pinned-active {
+  color: #f1fa8c; // Amarillo brillante
+}
+
+/* Limpia el estilo por defecto del botón de GTK para que parezca texto normal */
+button.mprisClickableArea {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    min-height: 0;
+    min-width: 0;
+}
+
+/* Opcional: un ligero feedback visual al pasar el ratón por encima */
+button.mprisClickableArea:hover {
+    background: rgba(255, 255, 255, 0.05); 
+}
+

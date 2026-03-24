@@ -1,0 +1,31 @@
+@use "../variables" as vars;
+@use "sass:color";
+@use "../functions" as fun;
+
+.systemMenuVolumeProgress {
+  all: unset;
+  min-width: 200px;
+  margin-right: 20px;
+}
+
+.systemMenuVolumeProgress trough {
+  all: unset;
+  background: fun.smart-lighten(vars.$bg);
+  min-height: 8px;
+  border-radius: 16px;
+}
+.systemMenuVolumeProgress trough slider {
+  all: unset;
+}
+
+.systemMenuVolumeProgress trough highlight {
+  all: unset;
+  min-width: 8px;
+  border-radius: 16px;
+  background: vars.$fg;
+}
+
+.systemMenuRecordingBox {
+  border: 2px solid fun.smart-lighten(vars.$bg);
+  border-radius: vars.$buttonBorderRadius;
+}

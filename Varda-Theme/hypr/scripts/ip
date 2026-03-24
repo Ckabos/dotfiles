@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# 1. Intentar obtener la IP de interfaces de túnel (VPN: tun0, tun1, wg0, etc.)
+IP_VPN=$(ip -o -4 addr show | grep -E 'tun[0-9]+|wg[0-9]+' | awk '{print $4}' | cut -d/ -f1 | head -n 1)
+
+if [ -n "$IP_VPN" ]; then
+    echo "$IP_VPN"
+    exit 0
+fi
+
+# 2. Si no hay VPN, buscar la interfaz que tiene la ruta por defecto (Internet real)
+# Esto evita fallos si tu interfaz se llama wlp0s20f3, wlan0 o eth0
+INTERFACE_DEFAULT=$(ip route | grep default | awk '{print $5}' | head -n 1)
+
+if [ -n "$INTERFACE_DEFAULT" ]; then
+    IP_LOCAL=$(ip -4 addr show dev "$INTERFACE_DEFAULT" | awk '/inet / {print $2}' | cut -d/ -f1 | head -n 1)
+    if [ -n "$IP_LOCAL" ]; then
+        echo "$IP_LOCAL"
+        exit 0
+    fi
+fi
+
+# 3. Fallback: hostname -I (por si lo anterior falla en casos raros)
+IP_FALLBACK=$(hostname -I | awk '{print $1}')
+
+if [ -n "$IP_FALLBACK" ]; then
+    echo "$IP_FALLBACK"
+else
+    echo "Sin conexión"
+fi

@@ -1,0 +1,149 @@
+@use "../variables" as vars;
+
+.labelSmall {
+  color: vars.$fg;
+  font-size: 14px;
+}
+
+.labelMedium {
+  color: vars.$fg;
+  font-size: 16px;
+}
+
+.labelLarge {
+  color: vars.$fg;
+  font-size: 18px;
+}
+
+.labelXL {
+  color: vars.$fg;
+  font-size: 25px;
+}
+
+.labelSmallBold {
+  color: vars.$fg;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.labelMediumBold {
+  color: vars.$fg;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.labelLargeBold {
+  color: vars.$fg;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.labelXLBold {
+  color: vars.$fg;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.labelXXLBold {
+  color: vars.$fg;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.labelSmallWarning {
+  color: vars.$warning;
+  font-size: 14px;
+}
+
+.labelMediumWarning {
+  color: vars.$warning;
+  font-size: 16px;
+}
+
+.labelLargeWarning {
+  color: vars.$warning;
+  font-size: 18px;
+}
+
+.labelXLWarning {
+  color: vars.$warning;
+  font-size: 25px;
+}
+
+.labelSmallWarningBold {
+  color: vars.$warning;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.labelMediumWarningBold {
+  color: vars.$warning;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.labelLargeWarningBold {
+  color: vars.$warning;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.labelXLWarningBold {
+  color: vars.$warning;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.transparentLabel {
+  color: transparent;
+}
+
+.screenShotLabel {
+  color: vars.$fg;
+  font-weight: bold;
+  font-size: 34px;
+  padding-right: 6px;
+
+  &:disabled {        // or &:insensitive
+    color: rgba(vars.$fg, 0.5);
+  }
+}
+
+.iconLabel {
+  all: unset;
+  background-color: transparent;
+  color: vars.$fg;
+  padding: 4px 4px 4px 2px;
+  border: none;
+  min-height: 25px;
+  min-width: 30px;
+  border-radius: 8px;
+}
+
+.warningIconLabel {
+  all: unset;
+  background-color: transparent;
+  color: vars.$warning;
+  padding: 4px 4px 4px 2px;
+  border: none;
+  min-height: 25px;
+  min-width: 30px;
+  border-radius: 8px;
+}
+
+.largeIconLabel {
+  all: unset;
+  background-color: transparent;
+  font-size: 25px;
+  border-radius: vars.$largeButtonBorderRadius;
+  color: vars.$fg;
+  border: 0;
+}
+
+.lineHeightCompact {
+  line-height: 0.7;
+}

@@ -1,0 +1,79 @@
+icon: "󰌪"
+iconOffset: 1
+wallpaper:
+  wallpaperDir: /home/john/workspace/Varda-Theme/themes/everforest/wallpaper
+
+frame:
+  rightThickness: 0
+  bottomThickness: 0
+  leftThickness: 0
+  topThickness: 0
+
+topBar:
+  paddingTop: 4
+  paddingBottom: 4
+  leftWidgets:
+    - menu
+    - notificationHistory
+    - clipboardManager
+    - colorPicker
+    - workspaces
+  centerWidgets:
+    - shortcut1
+    - shortcut2
+    - shortcut3
+    - shortcut4
+    - clock
+    - logout
+    - lock
+    - restart
+    - shutdown
+  rightWidgets:
+    - timer
+    - recordingIndicator
+    - vpnIndicator
+    - powerProfile
+    - audioOut
+    - audioIn
+    - bluetooth
+    - network
+    - battery
+
+barWidgets:
+  workspaces:
+    inactiveIcon: ""
+    activeIcon: ""
+    borderRadius: 90
+    marginStart: 12
+    foreground: "#1E2326"
+    background: "#7A8478"
+  clock:
+    marginStart: 12
+    marginEnd: 12
+    borderRadius: 90
+    foreground: "#1E2326"
+    background: "#7A8478"
+
+systemMenu:
+  widgets:
+    - clock
+    - quickActions1
+    - network
+    - bluetooth
+    - audioOut
+    - audioIn
+    - powerProfile
+    - lookAndFeel
+    - mprisPlayers
+
+theme:
+  name: everforest
+  colors:
+    background: "#1E2326"
+    foreground: "#D3C6AA"
+    primary: "#7A8478"
+    buttonPrimary: "#384B55"
+    warning: "#E67E80"
+    barBorder: "#7A8478"
+    windowBorder: "#D3C6AA"
+    alertBorder: "#7A8478"

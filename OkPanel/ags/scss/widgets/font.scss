@@ -1,0 +1,10 @@
+@use "../variables" as vars;
+
+* {
+  font-family: vars.$font;
+}
+
+.systemMenuClockDayFont {
+  font-family: vars.$systemMenuClockDayFont;
+  letter-spacing: 0.1em;
+}

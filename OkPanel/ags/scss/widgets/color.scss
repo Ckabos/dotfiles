@@ -1,0 +1,13 @@
+@use "../variables" as vars;
+
+.colorFg {
+  color: vars.$fg;
+}
+
+.colorWarning {
+  color: vars.$warning;
+}
+
+.backgroundColorPrimary {
+  background-color: vars.$buttonPrimary;
+}

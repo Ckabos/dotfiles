@@ -1,0 +1,86 @@
+# Paleta de colores
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red)"
+
+# Formato general de prompt
+format = """
+$os\
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$rust\
+$golang\
+$python\
+$docker_context\
+$package\
+$cmd_duration\
+$line_break\
+$character"""
+
+# Mostramos el sistema operativo en el prompt
+[os]
+format = "[$symbol]($style) "
+style = "bold blue"
+disabled = false # Habilitado
+[os.symbols]
+Arch = ""  # Icono para Arch Linux
+Ubuntu = ""
+Macos = ""
+
+[directory]
+disabled = true  # Deshabilita el módulo directory
+
+[custom.pwd]
+command = "echo $PWD"  # Usa la variable del sistema para mostrar la ruta completa
+when = "true"
+format = "[ $output](bold cyan) "
+
+# Configuración de Git
+[git_branch]
+symbol = ""
+style = "bold purple"
+format = "[$symbol $branch]($style) "
+
+[git_status]
+style = "bold yellow"
+format = '([\[$all_status$ahead_behind\]]($style) )'
+
+# Configuración de lenguajes de programación
+[nodejs]
+symbol = ""
+format = "[$symbol ($version)](bold green) "
+
+[python]
+symbol = ""
+format = "[$symbol ($version)](bold yellow) "
+
+[rust]
+symbol = "🦀"
+format = "[$symbol ($version)](bold red) "
+
+[golang]
+symbol = ""
+format = "[$symbol ($version)](bold cyan) "
+
+# Indicador de Docker si está activo
+[docker_context]
+symbol = ""
+format = "[$symbol $context](bold blue) "
+
+# Muestra el tiempo de ejecución del último comando
+[cmd_duration]
+min_time = 500  # Solo mostrar si dura más de 500ms
+format = "[⏱ $duration](bold white) "
+
+# Línea en blanco antes del prompt para mayor claridad
+[line_break]
+disabled = false
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "⚡"
+discharging_symbol = "🔻"
+format = "[$symbol $percentage]($style) "
+disabled = false

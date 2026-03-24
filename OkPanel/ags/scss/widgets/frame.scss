@@ -1,0 +1,21 @@
+@use "../variables" as vars;
+
+.frameLeftGroup {
+  background-color: vars.$frameLeftGroupBackgroundColor;
+  border-radius: vars.$frameLeftGroupBorderRadius;
+  border-color: vars.$frameLeftGroupBorderColor;
+  border-width: vars.$frameLeftGroupBorderWidth;
+  border-style: solid;
+}
+
+.frameRightGroup {
+  background-color: vars.$frameRightGroupBackgroundColor;
+  border-radius: vars.$frameRightGroupBorderRadius;
+  border-color: vars.$frameRightGroupBorderColor;
+  border-width: vars.$frameRightGroupBorderWidth;
+  border-style: solid;
+}
+
+.frameScalingFix {
+  background-color: vars.$frameBackgroundColor;
+}

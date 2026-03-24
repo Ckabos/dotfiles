@@ -1,0 +1,31 @@
+@use "../variables" as vars;
+@use "sass:color";
+@use "../functions" as fun;
+
+.mediaPlayer {
+  margin-top: 20px;
+  background-color: transparent;
+  border: 2px solid fun.smart-lighten(vars.$bg);
+  border-radius: vars.$buttonBorderRadius;
+  padding: 4px 12px 4px 12px;
+
+  .seek {
+    margin: 0 8px 0 8px;
+
+    trough {
+      background: fun.smart-lighten(vars.$bg);
+      min-height: 8px;
+      border-radius: 8px;
+
+      slider {
+        color: vars.$fg;
+        background: vars.$bg;
+      }
+
+      highlight {
+        background: vars.$fg;
+        border-radius: 8px;
+      }
+    }
+  }
+}

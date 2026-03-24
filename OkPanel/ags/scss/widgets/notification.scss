@@ -1,0 +1,32 @@
+@use "../variables" as vars;
+@use "sass:color";
+@use "../functions" as fun;
+
+window.NotificationPopups {
+  all: unset;
+}
+
+.notification {
+  min-width: 340px;
+  margin: vars.$gaps;
+}
+
+.notificationCritical {
+  min-width: 340px;
+  margin: vars.$gaps;
+  border: 2px solid vars.$warning;
+}
+
+.notificationHistorical {
+  min-width: 0;
+  border-radius: vars.$windowBorderRadius;
+  background-color: transparent;
+  margin: 5px 0 5px 0;
+  border: 2px solid fun.smart-lighten(vars.$bg);
+}
+
+.notificationIndicator {
+  border-radius: 90px;
+  border: 1px solid vars.$barNotificationHistoryBackground;
+  background-color: vars.$barNotificationHistoryIndicatorForeground;
+}

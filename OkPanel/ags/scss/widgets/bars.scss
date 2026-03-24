@@ -1,0 +1,17 @@
+@use "../variables" as vars;
+
+.topBar {
+  background-color: vars.$topBarBackgroundColor;
+  border-radius: vars.$topBarBorderRadius;
+  border-color: vars.$topBarBorder;
+  border-width: vars.$topBarBorderWidth;
+  border-style: solid;
+}
+
+.bottomBar {
+  background-color: vars.$bottomBarBackgroundColor;
+  border-radius: vars.$bottomBarBorderRadius;
+  border-color: vars.$bottomBarBorder;
+  border-width: vars.$bottomBarBorderWidth;
+  border-style: solid;
+}

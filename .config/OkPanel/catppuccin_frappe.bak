@@ -1,0 +1,16 @@
+icon: "󱂟"
+iconOffset: 2
+wallpaper:
+    wallpaperDir: /home/efrain/Imágenes/Wallpapers
+
+theme:
+  name: catppuccinfrappe
+  colors:
+    background: "#303446"
+    foreground: "#C6D0F5"
+    primary: "#CA9EE6"
+    buttonPrimary: "#CA9EE6"
+    warning: "#EA999C"
+    barBorder: "#CA9EE6"
+    windowBorder: "#C6D0F5"
+    alertBorder: "#C6D0F5"

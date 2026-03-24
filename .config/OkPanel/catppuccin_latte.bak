@@ -1,0 +1,16 @@
+icon: ""
+iconOffset: 2
+wallpaper:
+    wallpaperDir: /home/efrain/Imágenes/Wallpapers
+
+theme:
+  name: catppuccinlatte
+  colors:
+    background: "#EFF1F5"
+    foreground: "#4C4F69"
+    primary: "#8839EF"
+    buttonPrimary: "#8839EF"
+    warning: "#E64553"
+    barBorder: "#8839EF"
+    windowBorder: "#4C4F69"
+    alertBorder: "#4C4F69"
