@@ -1,0 +1,9 @@
+@use "../variables" as vars;
+
+.radiusSmall {
+  border-radius: vars.$buttonBorderRadius;
+}
+
+.radiusLarge {
+  border-radius: vars.$largeButtonBorderRadius;
+}

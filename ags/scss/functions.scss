@@ -1,0 +1,16 @@
+@use "sass:color";
+
+@function smart-lighten($bg) {
+  @return if(
+    color.alpha($bg) < 0.5,
+    color.change(color.scale($bg, $lightness: 50%), $alpha: 0.5),
+    color.scale($bg, $lightness: 20%)
+  );
+}
+
+@mixin hoverLighten($bg) {
+  &:hover {
+    background-color: smart-lighten($bg);
+  }
+}
+

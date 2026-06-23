@@ -1,0 +1,40 @@
+# CREDITS
+
+This project includes or builds upon code from the following open-source projects:
+
+---
+
+## AGS (Aylur's Gtk Shell)
+
+AGS is a scaffolding CLI and runtime environment for Astal projects written in TypeScript or JavaScript. It allows you to initialize, bundle, and run fully customizable desktop shells.
+
+- Repository: https://github.com/Aylur/ags
+- License: GNU General Public License v3.0
+- Author: Aylur
+
+This project uses AGS as the foundation for its panel and widget infrastructure.
+
+---
+
+## Astal
+
+Astal is a Linux suite and framework to craft desktop shells and beautiful, functional Wayland widgets using GTK.
+
+- Repository: https://github.com/Aylur/astal
+- License: GNU General Public License v3.0
+- Author: Aylur
+
+This project uses Astal for declarative configuration and widget composition.
+
+---
+
+## Hyprshot
+
+Hyprshot is a screenshot utility for Wayland compositors using Hyprland.
+
+- Repository: https://github.com/Gustash/hyprshot
+- License: GNU General Public License v3.0
+- Author: Gustash
+
+Portions of the screenshot functionality in this project are based on or adapted from Hyprshot.
+

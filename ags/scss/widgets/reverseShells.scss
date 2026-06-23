@@ -1,0 +1,42 @@
+@use "../variables" as vars;
+
+// Caja de vista previa del código de la reverse shell seleccionada.
+.codePreviewScroll {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.codePreview {
+  background-color: transparent;
+  font-size: 0.85em;
+
+  // Nodo interno de texto del GtkTextView
+  text {
+    background-color: transparent;
+    color: vars.$fg;
+  }
+}
+
+// Lista de variantes navegable con teclado (flechas) y ratón.
+.variantList {
+  background-color: transparent;
+
+  row {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    // Fila seleccionada (la que se copiará con Enter).
+    &:selected {
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 1px solid vars.$primary;
+      box-shadow: inset 0px 0px 15px rgba(255, 255, 255, 0.05);
+    }
+  }
+}
