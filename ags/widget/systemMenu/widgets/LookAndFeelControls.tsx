@@ -118,10 +118,15 @@ function animateScroll(
 }
 
 function ThemeButton({configFile}: {configFile: ConfigFile}) {
+    // Nombre legible para el tooltip: usa theme.name; si está vacío, el archivo.
+    const tooltip = (configFile.name && configFile.name.trim().length > 0)
+        ? configFile.name
+        : configFile.fileName.replace(/\.yaml$/, "")
     return <OkButton
         size={OkButtonSize.XL}
         label={configFile.icon}
         offset={configFile.pixelOffset}
+        tooltipText={tooltip}
         selected={selectedConfig.asAccessor()((t) => t === configFile)}
         onClicked={() => {
             updateConfig(configFile)

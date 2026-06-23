@@ -108,6 +108,7 @@ export default function(
         onHoverLeave,
         onClicked,
         clickHandlers,
+        tooltipText,
     }:
     {
         labelCss?: string[]
@@ -146,6 +147,7 @@ export default function(
             onDoubleLeft?:   (ev: {self:Gtk.Widget,x:number,y:number}) => void,
             onLongPress?:    (ev: {self:Gtk.Widget,x:number,y:number}) => void,
         },
+        tooltipText?: string | Accessor<string>,
     }
 ) {
     let realWarning: Accessor<boolean>
@@ -283,6 +285,7 @@ export default function(
         return <menubutton
             focusable={false}
             focusOnClick={false}
+            tooltipText={tooltipText}
             widthRequest={widthRequest}
             heightRequest={heightRequest}
             marginTop={marginTop}
@@ -309,6 +312,7 @@ export default function(
             focusable={false}
             focusOnClick={false}
             sensitive={!onlyLabel}
+            tooltipText={tooltipText}
             widthRequest={widthRequest}
             heightRequest={heightRequest}
             marginTop={marginTop}
@@ -329,6 +333,7 @@ export default function(
         focusable={false}
         focusOnClick={false}
         sensitive={!onlyLabel}
+        tooltipText={tooltipText}
         widthRequest={widthRequest}
         heightRequest={heightRequest}
         marginTop={marginTop}

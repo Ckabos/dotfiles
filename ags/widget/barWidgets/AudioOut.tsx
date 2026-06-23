@@ -5,7 +5,7 @@ import OkButton from "../common/OkButton";
 import {getHPadding, getVPadding} from "./BarWidgets";
 import {getVolumeIcon} from "../utils/audio";
 
-export default function ({bar}: { bar: Bar }) {
+export default function ({bar, vertical}: { bar: Bar, vertical: boolean }) {
     const defaultSpeaker = Wp.get_default()!.audio.default_speaker
 
     const speakerVar = createComputed([
@@ -22,10 +22,15 @@ export default function ({bar}: { bar: Bar }) {
         label={speakerVar(() => {
             // Obtenemos el ícono de tu función de utilidades
             const icon = getVolumeIcon(defaultSpeaker);
-            
+
+            // En barras verticales mostramos solo el ícono para no ensanchar la barra
+            if (vertical) {
+                return icon;
+            }
+
             // Convertimos el valor flotante (ej. 0.45) a porcentaje entero (45)
             const percentage = Math.round(defaultSpeaker.volume * 100);
-            
+
             // Retornamos la cadena combinada
             return `${icon} ${percentage}%`;
         })}

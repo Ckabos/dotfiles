@@ -98,15 +98,15 @@ function getWidget(widget: BarWidget, isVertical: boolean, bar: Bar) {
         case BarWidget.CLOCK:
             return <Clock bar={bar} vertical={isVertical}/>
         case BarWidget.AUDIO_OUT:
-            return <AudioOut bar={bar}/>
+            return <AudioOut bar={bar} vertical={isVertical}/>
         case BarWidget.AUDIO_IN:
             return <AudioIn bar={bar}/>
         case BarWidget.BLUETOOTH:
             return <BluetoothIndicator bar={bar}/>
         case BarWidget.NETWORK:
-            return <NetworkIndicator bar={bar}/>
+            return <NetworkIndicator bar={bar} vertical={isVertical}/>
         case BarWidget.BATTERY:
-            return <BatteryIndicator bar={bar}/>
+            return <BatteryIndicator bar={bar} vertical={isVertical}/>
         case BarWidget.TRAY:
             return <Tray bar={bar} vertical={isVertical}/>
         case BarWidget.APP_LAUNCHER:

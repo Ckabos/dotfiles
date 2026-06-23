@@ -62,7 +62,8 @@ function monitorAvailableConfigs() {
                 availableConfigs.set(availableConfigs.get().concat({
                     fileName: fileName,
                     icon: newConfig.icon,
-                    pixelOffset: newConfig.iconOffset
+                    pixelOffset: newConfig.iconOffset,
+                    name: newConfig.theme.name
                 }).sort((a, b) => {
                     return String(a.fileName).localeCompare(String(b.fileName), undefined, { numeric: true, sensitivity: "base" })
                 }))
@@ -84,7 +85,8 @@ function monitorAvailableConfigs() {
                     .concat({
                         fileName: fileName,
                         icon: newC.icon,
-                        pixelOffset: newC.iconOffset
+                        pixelOffset: newC.iconOffset,
+                        name: newC.theme.name
                     })
                     .sort((a, b) => {
                         return String(a.fileName).localeCompare(String(b.fileName), undefined, { numeric: true, sensitivity: "base" })
@@ -169,6 +171,7 @@ export type ConfigFile = {
     fileName: string
     icon: string
     pixelOffset: number
+    name: string
 }
 
 function getAvailableConfigs(): ConfigFile[] {
@@ -182,7 +185,8 @@ function getAvailableConfigs(): ConfigFile[] {
         configs.push({
             fileName: file,
             icon: config.icon,
-            pixelOffset: config.iconOffset
+            pixelOffset: config.iconOffset,
+            name: config.theme.name
         })
     })
     return configs

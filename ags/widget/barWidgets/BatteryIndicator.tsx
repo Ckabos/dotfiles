@@ -15,7 +15,7 @@ import {getBatteryIcon} from "../utils/battery";
 import AstalBattery from "gi://AstalBattery"
 
 
-export default function ({bar}: { bar: Bar }) {
+export default function ({bar, vertical}: { bar: Bar, vertical: boolean }) {
 
     const battery = AstalBattery.get_default()
 
@@ -76,7 +76,9 @@ export default function ({bar}: { bar: Bar }) {
 
         })}
 
-        label={batteryVar(() => `${getBatteryIcon(battery)} ${Math.round(battery.percentage * 100)}%`)}
+        label={batteryVar(() => vertical
+            ? getBatteryIcon(battery)
+            : `${getBatteryIcon(battery)} ${Math.round(battery.percentage * 100)}%`)}
 
         visible={createBinding(battery, "isBattery")}/>
 
