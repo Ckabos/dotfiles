@@ -18,6 +18,20 @@
   }
 }
 
+// Rejilla de lenguajes: resalta claramente el que tiene el foco al navegar
+// con flechas (antes se iba "a ciegas"). SelectionMode es NONE, así que el
+// realce depende del foco.
+.langGrid flowboxchild {
+  border-radius: 8px;
+  transition: all 0.12s ease-in-out;
+}
+
+.langGrid flowboxchild:focus {
+  outline: 2px solid vars.$primary;
+  outline-offset: -2px;
+  background-color: rgba(255, 255, 255, 0.10);
+}
+
 // Lista de variantes navegable con teclado (flechas) y ratón.
 .variantList {
   background-color: transparent;

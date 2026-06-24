@@ -44,7 +44,7 @@ export default function ({bar, vertical}: { bar: Bar, vertical: boolean }) {
 
         warning={batteryVar((value) => {
 
-            if (value[0] > 0.04 || battery.state === AstalBattery.State.CHARGING) {
+            if (value[0] > 0.25 || battery.state === AstalBattery.State.CHARGING) {
 
                 if (batteryWarningInterval != null) {
 

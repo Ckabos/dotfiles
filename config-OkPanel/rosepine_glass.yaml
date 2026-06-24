@@ -1,0 +1,35 @@
+icon: "󰋕"
+iconOffset: 1
+wallpaper:
+  wallpaperDir: /home/efrain/Imágenes/Wallpapers
+# ── Estilo: CRISTAL VERTICAL ─────────────────────────────────
+# Dock vertical derecho translúcido y sin borde, widgets apilados.
+frame:
+  drawFrame: false
+  topThickness: 0
+  bottomThickness: 0
+  leftThickness: 0
+  rightThickness: 0
+rightBar:
+  expanded: true
+  marginTop: 10
+  marginBottom: 10
+  marginEnd: 8
+  paddingTop: 12
+  paddingBottom: 12
+  borderRadius: 18
+  borderWidth: 0
+  topWidgets: [menu, workspaces]
+  centerWidgets: [network, vpnIndicator, bluetooth]
+  bottomWidgets: [audioOut, battery, clock, notificationHistory, tray]
+
+theme:
+  name: rosepine glass
+  colors:
+    background: "#191724B3"   # cristal esmerilado legible (alpha ≈ 0.70 + blur)
+    foreground: "#E0DEF4"
+    primary: "#C4A7E7"
+    buttonPrimary: "#31748F"
+    warning: "#EB6F92"
+    alertBorder: "#F6C177"
+    scrimColor: "#00000080"

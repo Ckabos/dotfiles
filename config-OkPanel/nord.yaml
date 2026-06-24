@@ -1,0 +1,39 @@
+icon: "󰜗"
+iconOffset: 1
+wallpaper:
+  wallpaperDir: /home/efrain/Imágenes/Wallpapers
+# ── Estilo: DOCK VERTICAL ────────────────────────────────────
+# Barra lateral izquierda flotante con los widgets apilados.
+# Sin barra superior ni inferior: aprovecha el alto de pantalla.
+# Solo widgets icónicos (red/audio/batería se pintan sin texto en
+# vertical); los de texto puro (ip/target/port) viven en temas
+# horizontales para no ensanchar el dock.
+frame:
+  drawFrame: false
+  topThickness: 0
+  bottomThickness: 0
+  leftThickness: 0
+  rightThickness: 0
+leftBar:
+  expanded: true
+  marginTop: 10
+  marginBottom: 10
+  marginStart: 8
+  paddingTop: 12
+  paddingBottom: 12
+  borderRadius: 18
+  borderWidth: 2
+  topWidgets: [menu, workspaces]
+  centerWidgets: [network, vpnIndicator, bluetooth, audioOut]
+  bottomWidgets: [battery, clock, notificationHistory, tray]
+
+theme:
+  name: nord
+  colors:
+    background: "#2E3440CC"   # transparencia media → blur visible
+    foreground: "#D8DEE9"
+    primary: "#88C0D0"
+    buttonPrimary: "#5E81AC"
+    warning: "#BF616A"
+    alertBorder: "#BF616A"
+    scrimColor: "#00000080"

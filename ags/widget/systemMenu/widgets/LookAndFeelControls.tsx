@@ -1,6 +1,5 @@
 import {Gtk} from "ags/gtk4"
 import Pango from "gi://Pango?version=1.0";
-import {createScaledTexture} from "../../utils/images";
 import {
     availableConfigs, ConfigFile,
     selectedConfig,
@@ -9,16 +8,11 @@ import {
 } from "../../../config/config";
 import RevealerRow from "../../common/RevealerRow";
 import OkButton, {OkButtonSize} from "../../common/OkButton";
-import {listFilenamesInDir} from "../../utils/files";
-import {createComputed, createState, For, onCleanup, With} from "ags";
+import {For, onCleanup, With} from "ags";
 import GLib from "gi://GLib?version=2.0";
 import {integratedMenuRevealed} from "../IntegratedMenu";
-import {setWallpaper} from "../../wallpaper/setWallpaper";
 
-const [files, filesSetter] = createState<string[][]>([])
-const numberOfColumns = 2
 let buttonsEnabled = true
-let changingWallpaperBusy = false
 
 function updateConfig(configFile: ConfigFile) {
     if (!buttonsEnabled) {
@@ -28,35 +22,6 @@ function updateConfig(configFile: ConfigFile) {
     setNewConfig(configFile, () => {
         buttonsEnabled = true
     })
-}
-
-function chunkIntoColumns<T>(arr: T[], numCols: number): T[][] {
-    // Create numCols empty arrays
-    const columns: T[][] = Array.from({ length: numCols }, () => []);
-
-    // Distribute each item into the correct column
-    arr.forEach((item, i) => {
-        const colIndex = i % numCols;
-        columns[colIndex].push(item);
-    });
-
-    return columns;
-}
-
-function updateFiles() {
-    const dir = variableConfig.wallpaper.wallpaperDir.get()
-    if (dir === "") {
-        return
-    }
-
-    filesSetter(
-        chunkIntoColumns(
-            listFilenamesInDir(dir)
-                .filter((file) => file.includes("jpg") || file.includes("png"))
-                .map((file) => `${dir}/${file}`),
-            numberOfColumns
-        )
-    )
 }
 
 function updateFade(
@@ -241,66 +206,7 @@ function ThemeOptions() {
     </box>
 }
 
-function WallpaperColumn(
-    {
-        column
-    }: {
-        column: number,
-    }
-) {
-    const filesListInColumn = createComputed([
-        files
-    ], (filesList) => {
-        if (!filesList) {
-            return []
-        }
-        if (column < 0 || column >= filesList.length) {
-            return []
-        }
-        return filesList[column]
-    })
-
-    return <box
-        hexpand={true}
-        orientation={Gtk.Orientation.VERTICAL}>
-        <For each={filesListInColumn}>
-            {(file) => {
-                return <button
-                    $={(self) => {
-                        // 140x70 is a magic number that scales well and doesn't cause unwanted expansion of the scroll window
-                        createScaledTexture(140, 70, file).then((texture) => {
-                            const picture = Gtk.Picture.new_for_paintable(texture)
-                            picture.heightRequest = 90
-                            picture.cssClasses = ["wallpaper"]
-                            picture.contentFit = Gtk.ContentFit.COVER
-
-                            self.set_child(picture)
-                        })
-                    }}
-                    cssClasses={["wallpaperButton"]}
-                    onClicked={() => {
-                        if (changingWallpaperBusy) return
-                        changingWallpaperBusy = true
-                        setWallpaper(file)
-                            .finally(() => {
-                                changingWallpaperBusy = false
-                                console.log("wallpaper set")
-                            })
-                    }}/>
-            }}
-        </For>
-    </box>
-}
-
 export default function () {
-    const unsub = selectedConfig.asAccessor().subscribe(() => {
-        if (selectedConfig.get() != undefined) {
-            updateFiles()
-        }
-    })
-    onCleanup(unsub)
-    updateFiles()
-
     return <RevealerRow
         setup={(revealed) => {
             const unsub = integratedMenuRevealed.subscribe(() => {
@@ -318,7 +224,13 @@ export default function () {
                 halign={Gtk.Align.START}
                 hexpand={true}
                 ellipsize={Pango.EllipsizeMode.END}
-                label="Apariencia"/>
+                label={selectedConfig.asAccessor()((c) => {
+                    if (!c) return "Apariencia"
+                    const name = (c.name && c.name.trim().length > 0)
+                        ? c.name
+                        : c.fileName.replace(/\.yaml$/, "")
+                    return `Apariencia: ${name}`
+                })}/>
         }
         revealedContent={
             <box
@@ -334,13 +246,6 @@ export default function () {
                             }
                         }}
                     </With>
-                </box>
-                <box marginTop={20}/>
-                <box
-                    orientation={Gtk.Orientation.HORIZONTAL}>
-                    {Array.from({length: numberOfColumns}).map((_, index) => {
-                        return <WallpaperColumn column={index}/>
-                    })}
                 </box>
             </box>
         }

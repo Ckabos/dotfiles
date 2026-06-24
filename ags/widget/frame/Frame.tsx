@@ -17,6 +17,7 @@ import IntegratedScreenshot from "../screenshot/IntegratedScreenshot";
 import IntegratedAppLauncher from "../appLauncher/IntegratedAppLauncher";
 import IntegratedScreenshare from "../screenshare/IntegratedScreenshare";
 import IntegratedReverseShells, { integratedReverseShellsRevealed } from "../reverseShells/IntegratedReverseShells";
+import IntegratedWallpapers, { integratedWallpapersRevealed } from "../wallpaper/IntegratedWallpapers";
 import FrameDrawing from "./FrameDrawing";
 import {BoxWithResize} from "../common/BoxWithResize";
 
@@ -37,6 +38,7 @@ let integratedScreenshotTool: Gtk.Widget
 let integratedAppLauncher: Gtk.Widget
 let integratedScreenshare: Gtk.Widget
 let integratedReverseShells: Gtk.Widget
+let integratedWallpapers: Gtk.Widget
 
 export const [leftGroupWidth, leftGroupWidthSetter] = createState(0)
 export const [rightGroupWidth, rightGroupWidthSetter] = createState(0)
@@ -107,6 +109,9 @@ function getLeftAndRightSides() {
 
     // Reverse Shells: lanzador propio (Mod+R). Posición fija a la derecha.
     rightSide.push(integratedReverseShells)
+
+    // Wallpapers: lanzador propio (Mod+W). Posición fija a la derecha.
+    rightSide.push(integratedWallpapers)
 
     rightSide.reverse()
 
@@ -267,11 +272,13 @@ export default function (): Astal.Window {
     const modalUnsub = createComputed([
         integratedClipboardManagerRevealed,
         integratedEmojiMenuRevealed,
-        integratedReverseShellsRevealed
+        integratedReverseShellsRevealed,
+        integratedWallpapersRevealed
     ]).subscribe(() => {
         const isAnyModalOpen = integratedClipboardManagerRevealed.get()
             || integratedEmojiMenuRevealed.get()
-            || integratedReverseShellsRevealed.get();
+            || integratedReverseShellsRevealed.get()
+            || integratedWallpapersRevealed.get();
         setCurrentKeymode(isAnyModalOpen ? Astal.Keymode.EXCLUSIVE : Astal.Keymode.ON_DEMAND);
     });
 
@@ -308,6 +315,7 @@ export default function (): Astal.Window {
     integratedAppLauncher = <IntegratedAppLauncher/> as Gtk.Widget
     integratedScreenshare = <IntegratedScreenshare/> as Gtk.Widget
     integratedReverseShells = <IntegratedReverseShells/> as Gtk.Widget
+    integratedWallpapers = <IntegratedWallpapers/> as Gtk.Widget
     leftBar = <LeftBar/> as Gtk.Widget
     rightBar = <RightBar/> as Gtk.Widget
 

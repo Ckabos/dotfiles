@@ -1,0 +1,51 @@
+icon: "󰓎"
+iconOffset: 1
+wallpaper:
+  wallpaperDir: /home/efrain/Imágenes/Wallpapers
+
+# ── Estilo: SUPERIOR + RIEL DERECHO ──────────────────────────
+# Barra superior flotante para info + riel vertical derecho con
+# los controles de hardware. Mezcla horizontal y vertical.
+frame:
+  drawFrame: false
+  topThickness: 0
+  bottomThickness: 0
+  leftThickness: 0
+  rightThickness: 0
+topBar:
+  expanded: true
+  marginTop: 8
+  marginStart: 10
+  marginEnd: 10
+  borderRadius: 14
+  borderWidth: 2
+  leftWidgets: [menu, workspaces, swapWorkspace]
+  centerWidgets: [clock]
+  rightWidgets: [network, vpnIndicator, ipIndicator, targetTracker, notificationHistory, tray]
+rightBar:
+  expanded: false
+  marginTop: 70
+  marginBottom: 12
+  marginEnd: 8
+  paddingTop: 10
+  paddingBottom: 10
+  borderRadius: 14
+  borderWidth: 2
+  centerWidgets: [cavaWaveform, audioOut, audioIn, bluetooth, battery]
+
+# Espectro vertical en el riel derecho: en vertical "length" es la
+# altura. 360px da un ecualizador alto sin saturar el riel.
+barWidgets:
+  cavaWaveform:
+    length: 360
+
+theme:
+  name: varda
+  colors:
+    background: "#0C0E11CC"   # transparencia media → blur visible
+    foreground: "#D0EBEE"
+    primary: "#7FB4C4"
+    buttonPrimary: "#52677C"
+    warning: "#C45B79"
+    alertBorder: "#7FB4C4"
+    scrimColor: "#00000080"

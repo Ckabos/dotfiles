@@ -1,0 +1,44 @@
+icon: "󰆧"
+iconOffset: 1
+wallpaper:
+  wallpaperDir: /home/efrain/Imágenes/Wallpapers
+# ── Estilo: RETRO DUAL ───────────────────────────────────────
+# Barras superior e inferior con borde grueso y esquinas suaves,
+# tipo "cajas" separadas de los bordes. Aire retro de terminal.
+frame:
+  drawFrame: false
+  topThickness: 0
+  bottomThickness: 0
+  leftThickness: 0
+  rightThickness: 0
+topBar:
+  expanded: true
+  marginTop: 6
+  marginStart: 6
+  marginEnd: 6
+  borderRadius: 8
+  borderWidth: 3
+  leftWidgets: [menu, workspaces, swapWorkspace]
+  centerWidgets: [clock]
+  rightWidgets: [network, vpnIndicator, ipIndicator, targetTracker, audioOut, bluetooth, battery, notificationHistory, tray]
+bottomBar:
+  expanded: true
+  marginBottom: 6
+  marginStart: 6
+  marginEnd: 6
+  borderRadius: 8
+  borderWidth: 3
+  leftWidgets: [cavaWaveform]
+  centerWidgets: [mprisTrackInfo, mprisControls]
+  rightWidgets: [portMonitor]
+
+theme:
+  name: gruvbox
+  colors:
+    background: "#282828CC"   # transparencia media → blur visible
+    foreground: "#EBDBB2"
+    primary: "#FABD2F"
+    buttonPrimary: "#689D6A"
+    warning: "#FB4934"
+    alertBorder: "#FE8019"
+    scrimColor: "#00000080"

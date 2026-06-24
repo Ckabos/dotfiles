@@ -1,0 +1,42 @@
+icon: "󰖔"
+iconOffset: 1
+wallpaper:
+  wallpaperDir: /home/efrain/Imágenes/Wallpapers
+
+# ── Estilo: CÁPSULA CENTRADA ─────────────────────────────────
+# Barra superior que NO se expande a todo el ancho: queda como
+# una cápsula flotante centrada, dejando ver el fondo a los lados.
+frame:
+  drawFrame: false
+  topThickness: 0
+  bottomThickness: 0
+  leftThickness: 0
+  rightThickness: 0
+topBar:
+  expanded: false
+  minimumWidth: 1000
+  marginTop: 8
+  borderRadius: 20
+  borderWidth: 2
+  paddingStart: 16
+  paddingEnd: 16
+  leftWidgets: [menu, workspaces, swapWorkspace, cavaWaveform]
+  centerWidgets: [clock]
+  rightWidgets: [network, vpnIndicator, ipIndicator, audioOut, battery, notificationHistory, tray]
+
+# Visualizador corto: la cápsula ya va cargada de widgets, los 700px
+# globales la harían crecer fuera de pantalla.
+barWidgets:
+  cavaWaveform:
+    length: 200
+
+theme:
+  name: tokyonight
+  colors:
+    background: "#1A1B26CC"   # transparencia media → blur visible
+    foreground: "#C0CAF5"
+    primary: "#7AA2F7"
+    buttonPrimary: "#3D59A1"
+    warning: "#F7768E"
+    alertBorder: "#E0AF68"
+    scrimColor: "#00000080"

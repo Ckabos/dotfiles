@@ -12,5 +12,6 @@ ags/.jython_cache/
 ags/widget/utils/.w
 ags/scss/widgets/test.json
 *.original
-# Contiene URL privada de Google Photos: nunca subir a repo publico
-ags/shellScripts/syncGooglePhotos.sh
+# Secreto: URL privada del álbum de Google Photos. Nunca subir a repo público.
+# (syncGooglePhotos.sh y remoteWallpapers.sh ya no contienen el secreto.)
+ags/shellScripts/*.secret.env

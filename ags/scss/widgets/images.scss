@@ -10,6 +10,19 @@
   border: 2px solid vars.$primary;
 }
 
+// Resalta el wallpaper enfocado/seleccionado dentro del FlowBox del launcher
+// Mod+W (clase .wallpaperGrid). Escopado para no afectar otros FlowBox (p. ej.
+// el de lenguajes de reverse shells, que usa el anillo de foco por defecto).
+.wallpaperGrid flowboxchild {
+  outline: none;
+  border-radius: vars.$buttonBorderRadius;
+}
+
+.wallpaperGrid flowboxchild:focus .wallpaper,
+.wallpaperGrid flowboxchild:selected .wallpaper {
+  border: 2px solid vars.$primary;
+}
+
 .wallpaperButton {
   color: transparent;
   background: transparent;

@@ -30,6 +30,10 @@ import {
     closeIntegratedReverseShells,
     toggleIntegratedReverseShells
 } from "./widget/reverseShells/IntegratedReverseShells";
+import {
+    closeIntegratedWallpapers,
+    toggleIntegratedWallpapers
+} from "./widget/wallpaper/IntegratedWallpapers";
 import {customWidgetLabelSetters} from "./widget/barWidgets/CustomWidget";
 import {setWallpaper} from "./widget/wallpaper/setWallpaper";
 import {killOldMonitorWindows, spawnMonitorWindows} from "./widget/utils/windows";
@@ -127,6 +131,9 @@ App.start({
         } else if (command === "reverseShells") {
             toggleIntegratedReverseShells()
             res("reverse shells toggled")
+        } else if (command === "wallpapers") {
+            toggleIntegratedWallpapers()
+            res("wallpapers toggled")
         } else if (command === "emojis") {
             toggleIntegratedEmojiMenu()
             res("emojis toggled")
@@ -148,6 +155,7 @@ App.start({
             closeIntegratedNotificationsHistory()
             closeIntegratedScreenshot()
             closeIntegratedReverseShells()
+            closeIntegratedWallpapers()
             res("closed all")
         } else if (command.startsWith("wallpaper")) {
             const path = request.slice(1).join(" ")

@@ -71,6 +71,30 @@ Gestor de portapapeles (sobre `cliphist`) con extras ofensivos:
   `Ctrl+J/K` navega (con desplazamiento automático de la lista), `Enter` copia,
   `Delete` elimina.
 
+### 🖼️ Wallpapers (`Mod+W`)
+Launcher propio para cambiar el fondo, en dos secciones navegables con teclado:
+
+- **Locales**: los wallpapers del directorio del tema.
+- **Álbum remoto** (Google Photos): muestra **miniaturas livianas** del álbum
+  compartido **sin descargar** los originales; el **full-res se baja solo al
+  elegir** un fondo y se cachea en `Remote/`. Sin conexión, cae a los ya
+  descargados.
+- Navegación: **flechas** para moverte en la rejilla, **`Tab`** para cambiar
+  entre Locales y Remoto, **`Enter`** o **clic** para aplicar. Estrategia
+  *"el último gana"*: cambiar de fondo a media descarga no se traba.
+- La URL del álbum es secreta y vive en `album.secret.env` (gitignored);
+  `syncGooglePhotos.sh` y `remoteWallpapers.sh` la leen de ahí.
+
+### 🎨 Temas y apariencia (`Mod+A` → Apariencia)
+- **9 temas** con **estilos de barra distintos** (islas flotantes, docks
+  verticales, cápsulas centradas, barras dobles, cristal con *blur*) además de
+  su paleta de color.
+- Cada tema con **icono y *tooltip*** propios en el selector; el título muestra
+  `Apariencia: <tema actual>`.
+- Varios con **visualizador de audio** (cava) y temas *glass* esmerilados vía
+  *blur* de Hyprland. Las barras verticales pintan los widgets en modo solo
+  icono para no ensancharse.
+
 ---
 
 ## ⌨️ Comandos añadidos
@@ -81,6 +105,7 @@ Disponibles vía `okpanel <comando>` o `ags request -i OkPanel <comando>`:
 | --- | --- |
 | `calc` | Abre/cierra el launcher en modo calculadora (`=`). |
 | `reverseShells` | Abre/cierra el generador de reverse shells (`Mod+R`). |
+| `wallpapers` | Abre/cierra el launcher de wallpapers (`Mod+W`). |
 | `dnd` | Alterna *No molestar*. |
 
 ---

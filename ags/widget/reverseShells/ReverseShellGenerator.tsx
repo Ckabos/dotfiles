@@ -260,6 +260,7 @@ export function ReverseShellGenerator({ onClose, revealed }: { onClose: () => vo
         <Gtk.FlowBox
             $={(fb) => {
                 langFlowBox = fb;
+                fb.add_css_class("langGrid");
                 fb.set_selection_mode(Gtk.SelectionMode.NONE);
                 fb.set_max_children_per_line(5);
                 fb.set_min_children_per_line(3);

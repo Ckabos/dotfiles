@@ -1,0 +1,44 @@
+icon: "󰓏"
+iconOffset: 1
+wallpaper:
+  wallpaperDir: /home/efrain/Imágenes/Wallpapers
+
+# ── Estilo: CRISTAL FLOTANTE ─────────────────────────────────
+# Barras translúcidas despegadas (sin borde): superior aireada +
+# cápsula multimedia inferior centrada. El fondo se transparenta.
+frame:
+  drawFrame: false
+  topThickness: 0
+  bottomThickness: 0
+  leftThickness: 0
+  rightThickness: 0
+topBar:
+  expanded: true
+  marginTop: 10
+  marginStart: 14
+  marginEnd: 14
+  borderRadius: 18
+  borderWidth: 0
+  leftWidgets: [menu, workspaces]
+  centerWidgets: [clock]
+  rightWidgets: [network, vpnIndicator, ipIndicator, audioOut, bluetooth, battery, notificationHistory, tray]
+bottomBar:
+  expanded: false
+  minimumWidth: 700
+  marginBottom: 10
+  borderRadius: 18
+  borderWidth: 0
+  compact: true
+  leftWidgets: [cavaWaveform]
+  centerWidgets: [mprisTrackInfo, mprisControls]
+
+theme:
+  name: varda glass
+  colors:
+    background: "#0C0E11B3"   # cristal esmerilado legible (alpha ≈ 0.70 + blur)
+    foreground: "#D0EBEE"
+    primary: "#7FB4C4"
+    buttonPrimary: "#52677C80"
+    warning: "#C45B79"
+    alertBorder: "#7FB4C4"
+    scrimColor: "#00000080"

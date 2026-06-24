@@ -1,0 +1,43 @@
+icon: "󰌪"
+iconOffset: 1
+wallpaper:
+  wallpaperDir: /home/efrain/Imágenes/Wallpapers
+
+# ── Estilo: ISLA FLOTANTE ────────────────────────────────────
+# Una sola barra superior, redondeada y despegada de los bordes.
+# Sin marco ni barra inferior: limpia y aireada.
+frame:
+  drawFrame: false
+  topThickness: 0
+  bottomThickness: 0
+  leftThickness: 0
+  rightThickness: 0
+topBar:
+  expanded: true
+  marginTop: 10
+  marginStart: 14
+  marginEnd: 14
+  paddingStart: 10
+  paddingEnd: 10
+  borderRadius: 18
+  borderWidth: 2
+  leftWidgets: [menu, workspaces, cavaWaveform]
+  centerWidgets: [clock]
+  rightWidgets: [network, vpnIndicator, ipIndicator, targetTracker, audioOut, bluetooth, battery, notificationHistory, tray]
+
+# Visualizador corto: en una barra superior compartida los 700px
+# globales empujan el tray fuera de pantalla.
+barWidgets:
+  cavaWaveform:
+    length: 220
+
+theme:
+  name: everforest
+  colors:
+    background: "#2D353BCC"   # transparencia media → blur visible
+    foreground: "#D3C6AA"
+    primary: "#A7C080"
+    buttonPrimary: "#83C092"
+    warning: "#E67E80"
+    alertBorder: "#DBBC7F"
+    scrimColor: "#00000080"

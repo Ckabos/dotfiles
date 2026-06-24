@@ -1,7 +1,13 @@
 @use "../variables" as vars;
+@use "sass:color";
 
+// Los launchers (clipboard, reverse shells, wallpapers, menú, etc.) se dibujan
+// sobre el fondo de estos grupos. Les restamos ~25% de opacidad para un look
+// más esmerilado (el blur de Hyprland se nota más) sin perder legibilidad.
+// En temas de barra superior esto solo afecta a los launchers; en temas con
+// barra vertical también la vuelve un poco más translúcida.
 .frameLeftGroup {
-  background-color: vars.$frameLeftGroupBackgroundColor;
+  background-color: color.scale(vars.$frameLeftGroupBackgroundColor, $alpha: -75%);
   border-radius: vars.$frameLeftGroupBorderRadius;
   border-color: vars.$frameLeftGroupBorderColor;
   border-width: vars.$frameLeftGroupBorderWidth;
@@ -9,7 +15,7 @@
 }
 
 .frameRightGroup {
-  background-color: vars.$frameRightGroupBackgroundColor;
+  background-color: color.scale(vars.$frameRightGroupBackgroundColor, $alpha: -75%);
   border-radius: vars.$frameRightGroupBorderRadius;
   border-color: vars.$frameRightGroupBorderColor;
   border-width: vars.$frameRightGroupBorderWidth;
