@@ -15,3 +15,7 @@ ags/scss/widgets/test.json
 # Secreto: URL privada del álbum de Google Photos. Nunca subir a repo público.
 # (syncGooglePhotos.sh y remoteWallpapers.sh ya no contienen el secreto.)
 ags/shellScripts/*.secret.env
+
+# Extras locales (no se publican): temas desactivados y CLI
+config-OkPanel/*.bak
+config-OkPanel/bin/

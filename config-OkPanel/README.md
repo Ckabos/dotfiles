@@ -1,8 +1,11 @@
-# Respaldo de ~/.config/OkPanel
+# Configuración de OkPanel (fuente única)
 
-Copias de los `.yaml` de configuración y temas (estilos de barra, paletas,
-blur, cava, iconos). NO los carga OkPanel desde aquí: la fuente real sigue
-siendo `~/.config/OkPanel`. Esto es solo respaldo versionado (instantánea).
+`~/.config/OkPanel` es un **symlink** a esta carpeta. Es decir, estos son los
+archivos que OkPanel carga de verdad **y**, a la vez, los que quedan
+versionados. Editas un tema una sola vez y queda respaldado automáticamente.
 
-El secreto del álbum de Google Photos NO está aquí (vive en
-`ags/shellScripts/album.secret.env`, gitignored).
+Solo se publican los `.yaml` (temas y `okpanel.yaml`). Los `*.bak` (temas
+desactivados) y `bin/` quedan locales (gitignored).
+
+El secreto del álbum de Google Photos NO está aquí: vive en
+`ags/shellScripts/album.secret.env`, gitignored.
