@@ -1,0 +1,35 @@
+From: parche local - tolerar títulos de ventana mal codificados
+Subject: [PATCH] hyprland: sanear UTF-8 de las respuestas del socket IPC
+
+Hyprland reenvía en su socket de comandos el JSON con los títulos de
+ventana tal cual los expone cada app. Algunas (p.ej. WPS Office) usan
+Latin-1, metiendo bytes no-UTF8. json-glib entonces rechaza el JSON
+completo (`Json.from_string`), abortando la sincronización de
+clients/workspaces/monitors y dejando los widgets de la barra congelados.
+
+Saneando el texto del socket con `make_valid()` (los bytes inválidos se
+sustituyen por U+FFFD) el JSON vuelve a ser parseable y la barra sigue
+actualizándose normalmente.
+
+--- a/lib/hyprland/src/hyprland.vala
++++ b/lib/hyprland/src/hyprland.vala
+@@ -173,7 +173,7 @@ public class AstalHyprland.Hyprland : Object {
+             write_socket(message, out conn, out stream);
+             if ((stream != null) && (conn != null)) {
+                 var res = stream.read_upto("\x04", -1, null, null);
+                 conn.close(null);
+-                return res;
++                return res.make_valid();
+             }
+         } catch (Error err) {
+             critical(err.message);
+@@ -189,7 +189,7 @@ public class AstalHyprland.Hyprland : Object {
+             write_socket(message, out conn, out stream);
+             if ((stream != null) && (conn != null)) {
+                 var res = yield stream.read_upto_async("\x04", -1, Priority.DEFAULT, null, null);
+                 conn.close(null);
+-                return res;
++                return res.make_valid();
+             }
+         } catch (Error err) {
+             critical(err.message);

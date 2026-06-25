@@ -1,0 +1,62 @@
+# Maintainer: kotontrion <kotontrion@tutanota.de>
+# Build local PARCHEADO por efrain: tolerar títulos de ventana no-UTF8.
+#   Ver utf8-make-valid.patch para el porqué. pkgrel=99 marca este build local.
+#   Mantener FIJADO en /etc/pacman.conf -> IgnorePkg = libastal-hyprland-git
+#   para que un 'yay -Syu' no lo revierta a la versión rota de upstream.
+
+pkgname=libastal-hyprland-git
+_pkgname=hyprland
+pkgver=r861.d3fa211
+pkgrel=99
+provides=(astal-hyprland libastal-hyprland libastal-hyprland.so=0-64)
+pkgdesc="Library and cli tool for Hyprland IPC sockets (parche local: tolera títulos no-UTF8)"
+arch=(x86_64)
+license=(LGPL-2.1-only)
+url="https://github.com/Aylur/astal"
+depends=(
+  glib2
+  glibc
+  json-glib
+)
+makedepends=(
+  meson
+  git
+  gobject-introspection
+  vala
+)
+groups=("libastal")
+# Fuente: el repo ya clonado en la caché de yay (sin depender de red).
+source=("git+file:///home/efrain/.cache/yay/libastal-hyprland-git/astal")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd astal
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+prepare() {
+  cd astal
+  # Sanear UTF-8 de las respuestas del socket IPC de Hyprland.
+  # message()/message_async() devuelven el texto crudo del socket; si un
+  # título trae bytes Latin-1 (WPS, etc.) json-glib rechaza TODO el JSON y
+  # la barra se congela. make_valid() sustituye los bytes inválidos por U+FFFD.
+  sed -i 's/return res;/return res.make_valid();/' lib/hyprland/src/hyprland.vala
+  # Verificar que el parche quedó aplicado (2 ocurrencias esperadas).
+  local n
+  n=$(grep -c 'return res.make_valid();' lib/hyprland/src/hyprland.vala)
+  if [ "$n" -ne 2 ]; then
+    echo "ERROR: el parche UTF-8 no se aplicó como se esperaba (encontradas $n/2)." >&2
+    return 1
+  fi
+}
+
+build() {
+  cd astal/lib/$_pkgname
+  arch-meson build
+  meson compile -C build
+}
+
+package() {
+  cd astal/lib/$_pkgname
+  meson install -C build --destdir "$pkgdir"
+}
