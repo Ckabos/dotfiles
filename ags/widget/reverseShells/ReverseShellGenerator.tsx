@@ -131,14 +131,20 @@ function copyText(text: string) {
     } catch (e) { console.error("Error copiando reverse shell:", e); }
 }
 
-// LHOST: prioriza VPN (tun/wg); si no, la IP de la interfaz con ruta por defecto.
+// IP -4 de la primera interfaz cuyo nombre casa con el regex (o "" si ninguna).
+async function ipOnIface(ifaceRegex: string): Promise<string> {
+    const cmd = `ip -o -4 addr show | awk '$2 ~ /${ifaceRegex}/ {print $4}' | cut -d/ -f1 | head -n1`;
+    return (await execAsync(["bash", "-c", cmd])).trim();
+}
+
+// LHOST por prioridad: VPN de engagement (tun/wg) primero; tailscale y otras
+// mesh como respaldo; si no hay túnel, la IP de la interfaz con ruta por defecto.
 async function detectLhost(): Promise<string> {
     try {
-        const vpn = "ip -o -4 addr show | grep -E 'tun[0-9]+|wg[0-9]+' | awk '{print $4}' | cut -d/ -f1 | head -n1";
-        const ip = (await execAsync(["bash", "-c", vpn])).trim();
-        if (ip) return ip;
-        const def = "ip -4 -o addr show dev \"$(ip route | awk '/default/{print $5; exit}')\" 2>/dev/null | awk '{print $4}' | cut -d/ -f1 | head -n1";
-        return (await execAsync(["bash", "-c", def])).trim();
+        return (await ipOnIface("^(tun|wg)[0-9]+$"))
+            || (await ipOnIface("^(tailscale|nordlynx|proton)"))
+            || (await execAsync(["bash", "-c",
+                "ip -4 -o addr show dev \"$(ip route | awk '/default/{print $5; exit}')\" 2>/dev/null | awk '{print $4}' | cut -d/ -f1 | head -n1"])).trim();
     } catch { return ""; }
 }
 
