@@ -4,7 +4,6 @@ import {variableConfig} from "../../../config/config";
 import {createState, With} from "ags";
 import {Bar} from "../../../config/bar";
 import {BoxWithResize} from "../../common/BoxWithResize";
-import SwapWorkspaceButton from "../../barWidgets/SwapWorkspaceButton";
 
 export const [topBarHeight, topBarHeightSetter] = createState(0)
 
@@ -68,7 +67,6 @@ export default function TopBar({ monitor }: { monitor: number } = { monitor: 0 }
                             orientation={Gtk.Orientation.HORIZONTAL}
                             spacing={variableConfig.topBar.widgetSpacing.asAccessor()}>
                             {addWidgets(widgets, Bar.TOP)}
-                            <SwapWorkspaceButton />
                         </box>}
                     </With>
                 </box> as Gtk.Widget
