@@ -20,14 +20,34 @@ export function getNetworkIndicatorBinding() {
     }
 }
 
+// Último SSID válido visto. En redes densas el ssid se vacía por un instante
+// durante el roaming/scan; conservarlo evita el parpadeo a "Desconectado".
+let lastSsid = "";
+
 // 2. Extrae el texto de la red actual
 export function getNetworkName(network: AstalNetwork.Network) {
-    if (network.primary === AstalNetwork.Primary.WIRED && network.wired !== null) {
+    const { wired, wifi } = network;
+
+    // Ethernet realmente conectado gana, sin depender de 'primary' (que parpadea
+    // entre WIRED y WIFI cuando ambas están arriba a la vez).
+    if (wired !== null && wired.internet === AstalNetwork.Internet.CONNECTED) {
         return "Ethernet";
     }
 
-    if (network.primary === AstalNetwork.Primary.WIFI && network.wifi !== null) {
-        return network.wifi.ssid || "Desconectado";
+    if (wifi !== null) {
+        if (wifi.ssid) {
+            lastSsid = wifi.ssid;
+            return wifi.ssid;
+        }
+        // SSID vacío de forma transitoria: si el wifi sigue asociado, mantener el
+        // último nombre en vez de decir "Desconectado" y parpadear.
+        if (wifi.internet !== AstalNetwork.Internet.DISCONNECTED && lastSsid) {
+            return lastSsid;
+        }
+        if (network.connectivity === AstalNetwork.Connectivity.NONE) {
+            return "Desconectado";
+        }
+        return lastSsid || "Wi-Fi";
     }
 
     return "Sin Red";
