@@ -20,7 +20,7 @@ orientados a eventos (sin *polling* agresivo) para no consumir recursos:
 | Widget | Qué hace |
 | --- | --- |
 | `targetTracker` | Muestra el **RHOST** actual (lee `/tmp/target_ip`); clic para copiar/limpiar. |
-| `ipIndicator` | Muestra tu **IP de ataque / LHOST**, priorizando la VPN (`tun`/`wg`). |
+| `ipIndicator` | Muestra **todas** tus IPs a la vez: un badge por interfaz con ruta por defecto (󰈀 ethernet, 󰖩 wifi) más cada VPN activa (󰆧 `tun`/`wg`/`tailscale`, resaltada en verde). Clic en un badge copia esa IP; el *tooltip* muestra el nombre de la interfaz (`enp0s31f6`, `wlan0`…). |
 | `vpnIndicator` | Indica si hay una VPN de pentest activa. |
 | `portMonitor` | Vigila los puertos en escucha de la máquina. |
 | `swapWorkspace` | Mueve el workspace actual al otro monitor de un clic. |

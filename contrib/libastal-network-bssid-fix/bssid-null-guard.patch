@@ -1,0 +1,44 @@
+--- a/lib/network/src/wifi.vala
++++ b/lib/network/src/wifi.vala
+@@ -48,6 +48,7 @@
+         this.device = device;
+ 
+         foreach (var ap in device.access_points) {
++            if (ap.bssid == null) continue;
+             var new_ap = new AccessPoint(this, ap);
+             _access_points.set(ap.bssid, new_ap);
+             access_point_added(new_ap);
+@@ -55,6 +56,7 @@
+ 
+         device.access_point_added.connect((access_point) => {
+             var ap = (NM.AccessPoint)access_point;
++            if (ap.bssid == null) return;
+             var new_ap = new AccessPoint(this, ap);
+             _access_points.set(ap.bssid, new_ap);
+             access_point_added(new_ap);
+@@ -63,7 +65,9 @@
+ 
+         device.access_point_removed.connect((access_point) => {
+             var ap = (NM.AccessPoint)access_point;
++            if (ap.bssid == null) return;
+             var rem_ap = _access_points.get(ap.bssid);
++            if (rem_ap == null) return;
+             _access_points.remove(ap.bssid);
+             access_point_removed(rem_ap);
+             notify_property("access-points");
+@@ -150,10 +154,12 @@
+         }
+ 
+         var ap = device.active_access_point;
+-        if (ap != null) {
++        if (ap != null && ap.bssid != null) {
+             active_access_point = _access_points.get(ap.bssid);
+-            on_active_access_point_notify();
+-            ap_handler = active_access_point.notify.connect(on_active_access_point_notify);
++            if (active_access_point != null) {
++                on_active_access_point_notify();
++                ap_handler = active_access_point.notify.connect(on_active_access_point_notify);
++            }
+         }
+     }
+ 

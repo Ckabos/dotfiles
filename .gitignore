@@ -19,3 +19,7 @@ ags/shellScripts/*.secret.env
 # Extras locales (no se publican): temas desactivados y CLI
 config-OkPanel/*.bak
 config-OkPanel/bin/
+
+# Artefactos de makepkg en contrib/ (clon de fuentes y paquetes compilados)
+contrib/*/astal/
+*.pkg.tar.zst
