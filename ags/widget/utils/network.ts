@@ -14,7 +14,9 @@ function networkDeps(network: AstalNetwork.Network) {
         deps.push(createBinding(network.wifi, "ssid"))
     }
     if (network.wired !== null) {
-        deps.push(createBinding(network.wired, "internet"))
+        // 'state' distingue cable puesto (ACTIVATED) de UNAVAILABLE; 'internet'
+        // no sirve: reporta CONNECTED (0) aun con el dispositivo caído.
+        deps.push(createBinding(network.wired, "state"))
     }
     return deps
 }
@@ -34,9 +36,10 @@ let lastSsid = "";
 export function getNetworkName(network: AstalNetwork.Network) {
     const { wired, wifi } = network;
 
-    // Ethernet realmente conectado gana, sin depender de 'primary' (que parpadea
-    // entre WIRED y WIFI cuando ambas están arriba a la vez).
-    if (wired !== null && wired.internet === AstalNetwork.Internet.CONNECTED) {
+    // Ethernet solo cuando el cable está realmente activo. Se usa wired.state
+    // (ACTIVATED) y no wired.internet, que reporta CONNECTED (0) hasta con el
+    // dispositivo en UNAVAILABLE (sin cable).
+    if (wired !== null && wired.state === AstalNetwork.DeviceState.ACTIVATED) {
         return "Ethernet";
     }
 
@@ -69,9 +72,9 @@ export function getNetworkIconBinding() {
 export function getNetworkIcon(network: AstalNetwork.Network) {
     const { connectivity, wifi, wired } = network;
 
-    // Solo el ícono de ethernet cuando el cable está realmente conectado; si no,
-    // caer al wifi (la NIC cableada siempre existe, así que no basta wired != null).
-    if (wired !== null && wired.internet === AstalNetwork.Internet.CONNECTED) {
+    // Solo el ícono de ethernet cuando el cable está realmente activo. wired.state
+    // (ACTIVATED) es fiable; wired.internet no: da CONNECTED aun sin cable.
+    if (wired !== null && wired.state === AstalNetwork.DeviceState.ACTIVATED) {
         return '󰈀';
     }
 
