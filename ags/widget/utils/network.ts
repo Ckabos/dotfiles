@@ -36,27 +36,33 @@ let lastSsid = "";
 export function getNetworkName(network: AstalNetwork.Network) {
     const { wired, wifi } = network;
 
-    // Ethernet solo cuando el cable está realmente activo. Se usa wired.state
-    // (ACTIVATED) y no wired.internet, que reporta CONNECTED (0) hasta con el
-    // dispositivo en UNAVAILABLE (sin cable).
-    if (wired !== null && wired.state === AstalNetwork.DeviceState.ACTIVATED) {
-        return "Ethernet";
-    }
+    // Cable realmente activo: wired.state (ACTIVATED), no wired.internet, que
+    // reporta CONNECTED (0) hasta con el dispositivo en UNAVAILABLE (sin cable).
+    const wiredUp = wired !== null && wired.state === AstalNetwork.DeviceState.ACTIVATED;
 
+    // Nombre del wifi si está asociado, cacheando el último SSID válido para
+    // cubrir los vaciados transitorios (roaming/scan en redes densas).
+    let wifiName = "";
     if (wifi !== null) {
         if (wifi.ssid) {
             lastSsid = wifi.ssid;
-            return wifi.ssid;
+            wifiName = wifi.ssid;
+        } else if (wifi.internet !== AstalNetwork.Internet.DISCONNECTED && lastSsid) {
+            wifiName = lastSsid;
         }
-        // SSID vacío de forma transitoria: si el wifi sigue asociado, mantener el
-        // último nombre en vez de decir "Desconectado" y parpadear.
-        if (wifi.internet !== AstalNetwork.Internet.DISCONNECTED && lastSsid) {
-            return lastSsid;
-        }
+    }
+
+    // Cable + wifi a la vez: mostrar ambos.
+    if (wiredUp) {
+        return wifiName ? `Ethernet · ${wifiName}` : "Ethernet";
+    }
+
+    if (wifi !== null) {
+        if (wifiName) return wifiName;
         if (network.connectivity === AstalNetwork.Connectivity.NONE) {
             return "Desconectado";
         }
-        return lastSsid || "Wi-Fi";
+        return "Wi-Fi";
     }
 
     return "Sin Red";
