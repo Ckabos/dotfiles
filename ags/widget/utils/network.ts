@@ -1,23 +1,29 @@
 import AstalNetwork from "gi://AstalNetwork"
 import {createBinding, createComputed} from "ags";
 
+// Dependencias comunes de los bindings: conectividad, ruta primaria, señal/SSID
+// del wifi (si existe) y estado del cableado (si existe). Escuchar wired.internet
+// es lo que hace que el widget reaccione al conectar/desconectar el cable.
+function networkDeps(network: AstalNetwork.Network) {
+    const deps = [
+        createBinding(network, "connectivity"),
+        createBinding(network, "primary"),
+    ]
+    if (network.wifi !== null) {
+        deps.push(createBinding(network.wifi, "strength"))
+        deps.push(createBinding(network.wifi, "ssid"))
+    }
+    if (network.wired !== null) {
+        deps.push(createBinding(network.wired, "internet"))
+    }
+    return deps
+}
+
 // 1. Binding combinado (Ícono + Nombre) - ESTE ES EL QUE USAREMOS
 export function getNetworkIndicatorBinding() {
     const network = AstalNetwork.get_default()
-
-    if (network.wifi !== null) {
-        return createComputed([
-            createBinding(network, "connectivity"),
-            createBinding(network.wifi, "strength"),
-            createBinding(network, "primary"),
-            createBinding(network.wifi, "ssid") // Añadimos la escucha al SSID
-        ])(() => `${getNetworkIcon(network)} ${getNetworkName(network)}`)
-    } else {
-        return createComputed([
-            createBinding(network, "connectivity"),
-            createBinding(network, "primary")
-        ])(() => `${getNetworkIcon(network)} ${getNetworkName(network)}`)
-    }
+    return createComputed(networkDeps(network))(
+        () => `${getNetworkIcon(network)} ${getNetworkName(network)}`)
 }
 
 // Último SSID válido visto. En redes densas el ssid se vacía por un instante
@@ -53,34 +59,20 @@ export function getNetworkName(network: AstalNetwork.Network) {
     return "Sin Red";
 }
 
-// 3. Tu función original intacta (por si la usas en otro widget)
+// 3. Solo el ícono (modo vertical de la barra)
 export function getNetworkIconBinding() {
     const network = AstalNetwork.get_default()
-
-    if (network.wifi !== null) {
-        return createComputed([
-            createBinding(network, "connectivity"),
-            createBinding(network.wifi, "strength"),
-            createBinding(network, "primary")
-        ])(() => getNetworkIcon(network))
-    } else {
-        return createComputed([
-            createBinding(network, "connectivity"),
-            createBinding(network, "primary")
-        ])(() => getNetworkIcon(network))
-    }
+    return createComputed(networkDeps(network))(() => getNetworkIcon(network))
 }
 
 // 4. Tu lógica de íconos original intacta
 export function getNetworkIcon(network: AstalNetwork.Network) {
     const { connectivity, wifi, wired } = network;
 
-    if (wired !== null) {
-        if (wired.internet === AstalNetwork.Internet.CONNECTED) {
-            return '󰈀';
-        } else {
-            return '󰈀'; 
-        }
+    // Solo el ícono de ethernet cuando el cable está realmente conectado; si no,
+    // caer al wifi (la NIC cableada siempre existe, así que no basta wired != null).
+    if (wired !== null && wired.internet === AstalNetwork.Internet.CONNECTED) {
+        return '󰈀';
     }
 
     if (wifi !== null) {
