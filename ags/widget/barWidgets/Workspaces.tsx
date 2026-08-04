@@ -78,7 +78,7 @@ export default function ({vertical, bar}: { vertical: boolean, bar: Bar }) {
                                     vpadding={getVPadding(bar)}
                                     label={myLabel}
                                     size={mySize}
-                                    onClicked={() => hypr.dispatch("workspace", `${id}`)}
+                                    onClicked={() => hypr.dispatch(`hl.dsp.focus({ workspace = ${id} })`, "")}
                                 />
                             }}
                         </With>

@@ -2,16 +2,20 @@ import { Bar } from "../../config/bar";
 import AstalBluetooth from "gi://AstalBluetooth?version=0.1";
 import OkButton from "../common/OkButton";
 import { getHPadding, getVPadding } from "./BarWidgets";
-import { createBinding } from "ags";
+import { createBinding, createComputed } from "ags";
 import { execAsync } from "ags/process";
 
 export default function ({ bar }: { bar: Bar }) {
     const bluetooth = AstalBluetooth.get_default();
 
-    // Ahora el binding reacciona a los cambios de conexión
-    const labelIcon = createBinding(bluetooth, "isConnected").as(connected => {
+    // El binding reacciona tanto al encendido como a la conexión, para que el
+    // ícono refresque al prender/apagar (antes solo escuchaba isConnected).
+    const labelIcon = createComputed([
+        createBinding(bluetooth, "isPowered"),
+        createBinding(bluetooth, "isConnected"),
+    ])((powered, connected) => {
         // 1. Si está apagado
-        if (!bluetooth.is_powered && !bluetooth.isPowered) return "󰂲"; 
+        if (!powered) return "󰂲";
         
         // 2. Si hay algo conectado
         if (connected) {

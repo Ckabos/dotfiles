@@ -15,7 +15,9 @@ export default function SwapWorkspaceButton() {
             const otherMonitor = hypr.monitors.find(m => m.id !== currentMonitor.id);
 
             if (otherMonitor) {
-                hypr.dispatch("moveworkspacetomonitor", `${currentWorkspace.id} ${otherMonitor.name}`);
+                // Config Lua (Hyprland 0.55+): dispatch interpreta la entrada como Lua.
+                // moveworkspacetomonitor -> hl.dsp.workspace.move{ monitor = ... }.
+                hypr.dispatch(`hl.dsp.workspace.move({ monitor = "${otherMonitor.name}" })`, "");
             } else {
                 console.log("No se encontró otro monitor.");
             }
