@@ -31,7 +31,10 @@ export default function() {
             <OkButton
                 label="Clear all"
                 onClicked={() => {
-                    notifications.notifications.forEach((notification) => {
+                    // Copia estable: dismiss() muta notifications.notifications (y
+                    // dispara el AnimatedFor), así que iterar el array vivo lo
+                    // corrompía y colgaba el main loop. Snapshot con [...].
+                    [...notifications.notifications].forEach((notification) => {
                         notification.dismiss()
                     })
                     integratedNotificationHistoryRevealedSetting(false)
