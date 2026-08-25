@@ -13,7 +13,7 @@ export default function ({ bar }: { bar: Bar }) {
     const labelIcon = createComputed([
         createBinding(bluetooth, "isPowered"),
         createBinding(bluetooth, "isConnected"),
-    ])((powered, connected) => {
+    ])(([powered, connected]) => {
         // 1. Si está apagado
         if (!powered) return "󰂲";
         
