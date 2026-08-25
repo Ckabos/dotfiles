@@ -4,6 +4,7 @@ import Bluetooth from "gi://AstalBluetooth";
 import RevealerRow from "../../common/RevealerRow";
 import OkButton from "../../common/OkButton";
 import {createBinding, createComputed, createState, For, onCleanup, With} from "ags";
+import {execAsync} from "ags/process";
 import {integratedMenuRevealed} from "../IntegratedMenu";
 
 function BluetoothDevices() {
@@ -108,7 +109,19 @@ function BluetoothDevices() {
                                     if (device.paired) {
                                         bluetooth.adapter.remove_device(device)
                                     } else {
-                                        device.pair()
+                                        // device.pair() falla sin un agente de bluetooth
+                                        // registrado (no hay blueman/bt-agent corriendo).
+                                        // bluetoothctl trae su propio agente: emparejar,
+                                        // confiar y conectar de un solo clic.
+                                        const mac = device.address
+                                        execAsync(["bash", "-c",
+                                            `bluetoothctl --timeout 25 pair ${mac} && ` +
+                                            `bluetoothctl trust ${mac} && ` +
+                                            `bluetoothctl --timeout 25 connect ${mac}`
+                                        ]).catch(() => {
+                                            execAsync(["notify-send", "-a", "OkPanel", "Bluetooth",
+                                                `No se pudo emparejar ${device.name}. ¿Está en modo de emparejamiento?`]).catch(() => {})
+                                        })
                                     }
                                 }}/>
                         </box>
