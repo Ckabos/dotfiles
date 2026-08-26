@@ -1,0 +1,42 @@
+@use "../variables" as vars;
+@use "sass:color";
+
+.transparentBackground {
+  background-color: transparent;
+}
+
+.windowBackground {
+  background-color: vars.$windowBackgroundColor;
+}
+
+.scrimBackground {
+  background-color: vars.$scrimColor;
+}
+
+.mostlyTransparentBackground {
+  background-color: #00000001;
+}
+
+.testBackground {
+  background-color: red;
+}
+
+.fadeLeft {
+  background-image: linear-gradient(
+                  to right,
+                  #{if(color.alpha(vars.$bg) < 0.5, transparent, vars.$bg)} 0%,
+                  #{if(color.alpha(vars.$bg) < 0.5, transparent, color.scale(vars.$bg, $alpha: -0.05%))} 25%,
+                  #{if(color.alpha(vars.$bg) < 0.5, transparent, color.scale(vars.$bg, $alpha: -0.3%))} 50%,
+                  transparent 100%
+  );
+}
+
+.fadeRight {
+  background-image: linear-gradient(
+                  to left,
+                  #{if(color.alpha(vars.$bg) < 0.5, transparent, vars.$bg)} 0%,
+                  #{if(color.alpha(vars.$bg) < 0.5, transparent, color.scale(vars.$bg, $alpha: -0.05%))} 25%,
+                  #{if(color.alpha(vars.$bg) < 0.5, transparent, color.scale(vars.$bg, $alpha: -0.3%))} 50%,
+                  transparent 100%
+  );
+}

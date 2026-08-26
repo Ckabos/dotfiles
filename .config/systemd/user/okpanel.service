@@ -1,0 +1,27 @@
+[Unit]
+Description=OkPanel Persistence Service
+# Asegura que el panel solo intente iniciar cuando Wayland esté listo
+After=graphical-session.target
+
+[Service]
+Type=simple
+# Usamos el binario global que ya reparamos
+ExecStart=/usr/bin/okpanel run
+# Esta es la clave: siempre reiniciar
+Restart=always
+# Espera 2 segundos antes de revivir para evitar bucles infinitos si hay un error grave
+RestartSec=2s
+# Contencion de memoria. Medido 2026-07-15: el working set real del panel es
+# ~1.3G (gjs no devuelve el heap si no hay presion), no los ~430M que se creia.
+# Con MemoryHigh=900M el cap quedaba MUY por debajo del working set y el kernel
+# estrangulaba el arranque: 1156 eventos 'high' en un solo arranque y ~400M a swap,
+# de ahi que la barra tardara una eternidad en aparecer al iniciar sesion. (El
+# "se asienta en 256M" que se medía antes era el efecto del propio estrangulamiento.)
+# Con 1800M: 0 eventos de throttling, 0 swap, barra visible ~1s tras el start.
+# MemoryHigh da margen al working set; MemoryMax es la red de seguridad final
+# (OOM+restart) por si algun dia hay una fuga real.
+MemoryHigh=1800M
+MemoryMax=2500M
+
+[Install]
+WantedBy=graphical-session.target

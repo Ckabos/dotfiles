@@ -1,0 +1,34 @@
+icon: "󰋑"
+iconOffset: 1
+wallpaper:
+  wallpaperDir: /home/efrain/Imágenes/Wallpapers
+
+# ── Estilo: MINIMALISTA ──────────────────────────────────────
+# Una barra superior fina pegada al borde, sin bordes ni adornos.
+# Lo más discreto posible.
+frame:
+  drawFrame: false
+  topThickness: 0
+  bottomThickness: 0
+  leftThickness: 0
+  rightThickness: 0
+topBar:
+  expanded: true
+  borderWidth: 0
+  borderRadius: 0
+  paddingStart: 8
+  paddingEnd: 8
+  leftWidgets: [menu, workspaces]
+  centerWidgets: [clock]
+  rightWidgets: [network, vpnIndicator, audioOut, battery, notificationHistory, tray]
+
+theme:
+  name: rosepine
+  colors:
+    background: "#191724CC"   # transparencia media → blur visible
+    foreground: "#E0DEF4"
+    primary: "#C4A7E7"
+    buttonPrimary: "#31748F"
+    warning: "#EB6F92"
+    alertBorder: "#F6C177"
+    scrimColor: "#00000080"

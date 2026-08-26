@@ -1,0 +1,2 @@
+ags/@girs/ export-ignore
+ags/node_modules/ export-ignore

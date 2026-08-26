@@ -1,0 +1,25 @@
+.idea
+src
+pkg
+OkPanel
+docs/build
+docs/node_modules
+docs/package-lock.json
+docs/config.md
+
+# Caches, temporales y respaldos locales (no son parte del proyecto)
+ags/.jython_cache/
+ags/widget/utils/.w
+ags/scss/widgets/test.json
+*.original
+# Secreto: URL privada del álbum de Google Photos. Nunca subir a repo público.
+# (syncGooglePhotos.sh y remoteWallpapers.sh ya no contienen el secreto.)
+ags/shellScripts/*.secret.env
+
+# Extras locales (no se publican): temas desactivados y CLI
+config-OkPanel/*.bak
+config-OkPanel/bin/
+
+# Artefactos de makepkg en contrib/ (clon de fuentes y paquetes compilados)
+contrib/*/astal/
+*.pkg.tar.zst

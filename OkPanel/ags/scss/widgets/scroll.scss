@@ -1,0 +1,21 @@
+@use "../variables" as vars;
+
+.scrollWindow {
+  .frame {
+    border-style: none;
+  }
+  .trough {
+    border-style: none;
+  }
+}
+
+.scrollWindow trough slider {
+  all: unset;
+}
+
+.scrollWindow overshoot.top,
+.scrollWindow overshoot.bottom,
+.scrollWindow overshoot.left,
+.scrollWindow overshoot.right {
+  background: none;
+}

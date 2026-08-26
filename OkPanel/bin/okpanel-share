@@ -1,0 +1,3 @@
+#/bin/bash
+
+ags request -i "OkPanel" "screenshare$XDPH_WINDOW_SHARING_LIST}"

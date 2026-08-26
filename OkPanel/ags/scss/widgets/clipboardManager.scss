@@ -1,0 +1,43 @@
+@use "../variables" as vars;
+
+.clipboardBox {
+  padding: 20px;
+
+  // Estilo para el divisor estándar
+  .standard-divider {
+    background-color: rgba(255, 255, 255, 0.15); // Ligeramente más visible
+    min-height: 1px;
+  }
+
+  // Estilo para el divisor de elementos fijados (Pinned)
+  .pinned-divider {
+    background-color: vars.$primary; // Usa tu color primario dinámico
+    min-height: 2px;
+    box-shadow: 0px 0px 6px vars.$primary; // Resplandor del mismo color
+  }
+
+  // Estilos base para los elementos de la lista
+  .clipboard-item {
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent; // Borde invisible por defecto para evitar saltos de tamaño
+
+    // Efecto al pasar el ratón por encima (Hover) o navegar con teclado (Focus)
+    &:hover, &:focus {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    // Efecto cuando el elemento está activamente seleccionado
+    &.selected {
+      // Usamos blanco con 15% de opacidad para el fondo
+      background-color: rgba(255, 255, 255, 0.15); 
+      
+      // Enmarcamos la selección con el color vibrante de Pywal
+      border: 1px solid vars.$primary; 
+      
+      // Sutil resplandor interno para darle profundidad en el cristal
+      box-shadow: inset 0px 0px 15px rgba(255, 255, 255, 0.05);
+    }
+  }
+}

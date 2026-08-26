@@ -1,0 +1,34 @@
+site_name: OkPanel
+site_url: https://johnoberhauser.github.io/OkPanel/
+theme:
+  name: material
+  palette:
+      primary: custom
+  icon:
+    repo: fontawesome/brands/github
+  logo:
+    assets/logo.png
+  favicon:
+    assets/favicon.ico
+  features:
+    - navigation.footer
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+
+extra_css:
+  - styles/custom.css
+
+repo_url: https://github.com/JohnOberhauser/OkPanel
+repo_name: OkPanel
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - Features: features.md
+  - Configuration System: configurationSystem.md
+  - Configuration Schema: config.md
+  - Configuration Example: example.md
+  - Custom Bar Widgets: customBarWidgets.md
+  - Animations and Blur: windowAnimations.md

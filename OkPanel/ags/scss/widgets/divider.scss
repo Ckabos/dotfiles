@@ -1,0 +1,13 @@
+@use "../variables" as vars;
+@use "sass:color";
+@use "../functions" as fun;
+
+.divider {
+  border: 2px solid fun.smart-lighten(vars.$bg);
+  border-radius: 8px;
+}
+
+.dividerThin {
+  border: 1px solid fun.smart-lighten(vars.$bg);
+  border-radius: 8px;
+}

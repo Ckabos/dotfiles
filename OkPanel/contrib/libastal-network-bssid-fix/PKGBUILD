@@ -1,0 +1,70 @@
+# Maintainer: kotontrion <kotontrion@tutanota.de>
+# Build local PARCHEADO por efrain: no petar con APs sin BSSID.
+#   Ver bssid-null-guard.patch para el porqué. pkgrel=99 marca este build local.
+#   Mantener FIJADO en /etc/pacman.conf -> IgnorePkg = libastal-network-git
+#   para que un 'yay -Syu' no lo revierta a la versión rota de upstream.
+
+pkgname=libastal-network-git
+_pkgname=network
+pkgver=r861.d3fa211
+pkgrel=99
+provides=(astal-network libastal-network libastal-network.so=0-64)
+pkgdesc="NetworkManager wrapper library (parche local: tolera APs sin BSSID)"
+arch=(x86_64)
+license=(LGPL-2.1-only)
+url="https://github.com/Aylur/astal"
+depends=(
+  glib2
+  glibc
+  libnm
+)
+makedepends=(
+  meson
+  git
+  gobject-introspection
+  vala
+)
+groups=("libastal")
+# Fuente: el repo ya clonado en la caché de yay (sin depender de red).
+# FIJADO al commit d3fa211: es el que ya estaba instalado y probado. Así la
+# ÚNICA diferencia con el paquete original es este parche, y no ~48 commits de
+# upstream que se colarían al seguir el HEAD movedizo de main.
+source=("git+file:///home/efrain/.cache/yay/libastal-network-git/astal#commit=d3fa211"
+        "bssid-null-guard.patch")
+sha256sums=('SKIP'
+            'SKIP')
+
+pkgver() {
+  cd astal
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+prepare() {
+  cd astal
+  # Astal indexa los access points en una HashTable<string, AccessPoint> con
+  # str_hash, usando ap.bssid como clave. nm_access_point_get_bssid() devuelve
+  # NULL cuando el BSSID aún no está poblado, y Astal no lo comprueba: la clave
+  # NULL llega a str_hash(), que la deref -> SIGSEGV del panel entero.
+  # En redes densas (p.ej. corporativa con ~96 APs) el churn de APs lo dispara
+  # sin parar. El parche descarta los APs sin BSSID (no son indexables de todos
+  # modos) y además protege el lookup fallido en on_active_access_point().
+  patch -p1 -i "$srcdir/bssid-null-guard.patch"
+  # Verificar que quedaron las 4 guardas esperadas.
+  local n
+  n=$(grep -c 'bssid == null\|rem_ap == null\|active_access_point != null' lib/network/src/wifi.vala)
+  if [ "$n" -ne 6 ]; then
+    echo "ERROR: el parche BSSID no se aplicó como se esperaba (encontradas $n/6)." >&2
+    return 1
+  fi
+}
+
+build() {
+  cd astal/lib/$_pkgname
+  arch-meson build
+  meson compile -C build
+}
+
+package() {
+  cd astal/lib/$_pkgname
+  meson install -C build --destdir "$pkgdir"
+}

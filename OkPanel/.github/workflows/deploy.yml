@@ -1,0 +1,52 @@
+name: Deploy MkDocs site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'ags/config/**'
+      - '.github/workflows/deploy.yml'
+      - 'docs/**'
+      - 'mkdocs.yml'
+
+permissions:
+  contents: write  # required to push to gh-pages
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install TypeScript
+        working-directory: docs
+        run: npm install
+
+      - name: Compile TypeScript
+        working-directory: docs
+        run: npx tsc
+
+      - name: Generate config documentation
+        working-directory: docs
+        run: node build/docs/scripts/generateConfigDocs.js
+
+      - name: Install dependencies
+        run: |
+          pip install mkdocs-material
+
+      - name: Deploy to GitHub Pages
+        run: |
+          mkdocs gh-deploy --force
