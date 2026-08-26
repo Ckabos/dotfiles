@@ -1,0 +1,131 @@
+#!/usr/bin/env bash
+
+print_help() {
+	cat <<EOF
+Usage: $(basename "$0") <command> [options]
+
+Commands:
+	run           Run the main application.
+	quit          Exit or stop the application.
+	launcher      Toggle the app launcher.
+	screenshot    Toggle the screenshot tool.
+	calendar	  Toggle the calendar.
+	menu		  Toggle the menu.
+	notification  Toggle notification history.
+	clipboard	  Toggle the clipboard manager.
+	volume-up     Increase system volume.
+	volume-down   Decrease system volume.
+	mute          Mute system sound.
+	closeAll	  Closes all expanded menus.
+	custom <n> <string>
+			      Update a custom bar widget's label. <n> is a slot number of the custom widget
+			      (1–20). <string> is the new label.
+	wallpaper <path>
+				  Set the wallpaper to the file at the path.
+	help          Show this help message.
+
+Global Options:
+	-h,  --help         Show help for a specific command
+EOF
+}
+
+custom_command() {
+	if [[ $# -lt 2 ]]; then
+		echo "Usage: $0 custom <number> <string>"
+		exit 1
+	fi
+
+	local number=$1
+	shift
+	local string="$*"
+
+	ags request -i "OkPanel" "custom" "$number" "$string"
+}
+
+wallpaper() {
+	if [[ $# -lt 1 ]]; then
+		echo "Usage: $0 wallpaper <path>"
+		exit 1
+	fi
+
+	ags request -i "OkPanel" "wallpaper" "$1"
+}
+
+run_run_command() {
+	# Force dev directory first
+	dev_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../ags
+	if [ -d "$dev_dir" ]; then
+		dir="$dev_dir"
+	elif [ -d "/usr/share/okpanel" ]; then
+		dir="/usr/share/okpanel"
+	elif [ -d "$HOME/.local/share/okpanel" ]; then
+		dir="$HOME/.local/share/okpanel"
+	else
+		dir="$dev_dir"
+	fi
+
+	# make the config file if it doesn't exist so that we can monitor for config changes
+	mkdir -p $HOME/.config/OkPanel
+
+	# Start astal-tray if not already running
+	if ! pgrep -x "astal-tray" > /dev/null; then
+		echo "Starting astal-tray..."
+		nohup astal-tray -d >/dev/null 2>&1 &
+	fi
+
+	# Start hyprsunset if not already running
+	if ! pgrep -x "hyprsunset" > /dev/null; then
+		echo "Starting hyprsunset..."
+		nohup hyprsunset -i >/dev/null 2>&1 &
+	fi
+
+
+	if [ ! -f ~/.config/cliphist/config ]; then
+		echo "Setting cliphist defaults in ~/.config/cliphist/config"
+		mkdir -p ~/.config/cliphist
+        echo -e "max-items 25\npreview-width 500" > ~/.config/cliphist/config
+    fi
+
+	# listen for interruptions so we can cleanup properly
+	trap cleanup SIGINT SIGTERM
+
+	echo "Starting ags..."
+	ags run -g 4 -d $dir $dir/app.ts $dir
+}
+
+cleanup() {
+	pkill -9 -f hyprsunset
+}
+
+quit() {
+	cleanup
+	ags quit -i "OkPanel"
+}
+
+main() {
+	if [[ $# -lt 1 ]]; then
+		print_help
+		exit 1
+	fi
+
+	case $1 in
+		run)          run_run_command;;
+		quit)         quit;;
+		launcher)     ags request -i "OkPanel" "appLauncher";;
+		screenshot)   ags request -i "OkPanel" "screenshot";;
+		calendar)	  ags request -i "OkPanel" "calendar";;
+		menu)		  ags request -i "OkPanel" "menu";;
+		clipboard)	  ags request -i "OkPanel" "clipboard";;
+		notification) ags request -i "OkPanel" "notification";;
+		volume-up)    ags request -i "OkPanel" "volume-up";;
+		volume-down)  ags request -i "OkPanel" "volume-down";;
+		mute)         ags request -i "OkPanel" "mute";;
+		closeAll)	  ags request -i "OkPanel" "closeAll";;
+		custom)       shift; custom_command "$@";;
+		wallpaper)	  shift; wallpaper "$@";;
+		help|-h|--help) print_help;;
+		*) echo "Unknown command: $1"; print_help; exit 1 ;;
+	esac
+}
+
+main "$@"

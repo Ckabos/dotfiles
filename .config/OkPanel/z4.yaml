@@ -1,0 +1,35 @@
+icon: "󰚌"
+iconOffset: 2
+
+# ── Estilo: CENTRO DE MANDO ──────────────────────────────────
+# Barra superior completa + barra inferior multimedia, con borde
+# de marco a la izquierda y abajo. El layout más cargado.
+frame:
+  drawFrame: true
+  leftThickness: 2
+  bottomThickness: 2
+  rightThickness: 0
+  topThickness: 0
+  borderRadius: 12
+  borderWidth: 2
+topBar:
+  expanded: true
+  leftWidgets: [menu, workspaces, swapWorkspace]
+  centerWidgets: [clock]
+  rightWidgets: [clipboardManager, audioIn, bluetooth, vpnIndicator, network, audioOut, battery, targetTracker, ipIndicator, notificationHistory, tray]
+bottomBar:
+  compact: true
+  leftWidgets: [cavaWaveform]
+  centerWidgets: [mprisTrackInfo, mprisControls]
+  rightWidgets: [portMonitor]
+
+theme:
+  name: bloodrust
+  colors:
+    background: "#27242780"   # base translúcida (alpha 80 ≈ 50%)
+    foreground: "#DCDDDC"
+    primary: "#5089FA"        # verde neón
+    buttonPrimary: "#50BAFA"
+    warning: "#8669FB"
+    alertBorder: "#64FBFB"
+    scrimColor: "#00000080"

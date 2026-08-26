@@ -1,0 +1,67 @@
+configUpdateScript: /home/efrain/Varda-Theme/themes/setTheme.sh
+
+# ─────────────────────────────────────────────────────────────
+#  Config compartida por TODOS los temas (NO la geometría de las
+#  barras: eso lo define cada tema en su .yaml para que cada uno
+#  tenga su propio estilo). Aquí solo va lo común: fondo, sonidos,
+#  menú de sistema, clima, notificaciones, etc.
+# ─────────────────────────────────────────────────────────────
+wallpaper:
+  wallpaperUpdateScript: /home/efrain/Varda-Theme/themes/wallpaperUpdate.sh
+  wallpaperDir: /home/efrain/Imágenes/Wallpapers
+
+barWidgets:
+  cavaWaveform:
+    length: 700
+  tray:
+    collapsable: false
+
+systemMenu:
+  widgets:
+    - clock
+    - network
+    - bluetooth
+    - audioOut
+    - audioIn
+    - powerProfile
+    - lookAndFeel
+    - mprisPlayers
+    - quickActions1
+    - quickActions2
+    - notificationHistory
+  clock:
+    dayFont: "Anurati"
+    dayAllCaps: true
+appLauncher:
+  showAppIcons: true
+weather:
+  latitude: "19.2869"
+  longitude: "-99.0009"
+  temperatureUnit: celsius
+  speedUnit: kph
+notifications:
+  position: right
+  # Cuánto dura el pop-up en pantalla antes de irse (ms). El hover lo pausa.
+  timeoutMs: 8000
+sounds:
+  playNotificationSound: true
+  notificationSoundPath: "/home/efrain/OkPanel/ags/sounds/zelda-item-get.mp3"
+  # Sonido para notificaciones CRÍTICAS (Navi: "¡Hey! Listen!"). Si lo dejas
+  # vacío, se usa el normal de arriba.
+  criticalNotificationSoundPath: "/home/efrain/OkPanel/ags/sounds/zelda-navi-hey.mp3"
+  # Apps a silenciar (sin sonido), separadas por comas. Ej: "Spotify, Discord"
+  mutedNotificationApps: ""
+  playChargingSound: true
+  chargingPlugInSoundPath: "/home/efrain/OkPanel/ags/sounds/zelda-botw.mp3"
+  chargingUnplugSoundPath: "/home/efrain/OkPanel/ags/sounds/zelda-botw.mp3"
+  playLowBatteryWarningSound: true
+  lowBatteryWarningSoundPath: "/home/efrain/OkPanel/ags/sounds/zelda-navi-hey.mp3"
+
+workspaces:
+  1: ""
+  2: ""
+  3: ""
+  4: ""
+  5: ""
+  6: ""
+  7: ""

@@ -1,0 +1,20 @@
+# ── Secretos: NUNCA versionar ──────────────────────────────────
+**/secrets.zsh
+**/*.secret.*
+**/*.env
+**/id_rsa*
+**/id_ed25519*
+**/*.key
+**/*.pem
+**/*token*
+**/*credential*
+**/*.gpg
+
+# ── Historiales, backups, caches, generados ────────────────────
+**/*history*
+**/*.bak
+**/*.bak-*
+**/*.bak-[0-9]*
+**/*.orig
+**/@girs/
+**/.cache/

@@ -1,0 +1,14 @@
+[user]
+	email = efra.chivas.evf@gmail.com
+	name = Ckabos
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[http]
+	postBuffer = 524288000
+	version = HTTP/1.1
+[github]
+	force-ipv4 = true
