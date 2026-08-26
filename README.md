@@ -32,6 +32,10 @@ Mi escritorio completo — barra propia sobre AGS/Astal, tema dinámico *Materia
 
 ![Terminales](screenshots/terminal.png)
 
+*Navegación por teclado — el focus salta entre ventanas (Mod + hjkl / flechas):*
+
+![Movimiento del focus](screenshots/focus.gif)
+
 | App Launcher | Menú de sistema |
 |:---:|:---:|
 | ![Launcher](screenshots/launcher.png) | ![Menú](screenshots/menu.png) |
