@@ -38,6 +38,15 @@ Mi escritorio completo — barra propia sobre AGS/Astal, tema dinámico *Materia
 
 ![Reverse Shell Generator](screenshots/reverseshells.png)
 
+### 🌈 Tema dinámico
+
+Cambias el wallpaper y **todo el entorno se recolorea solo** (barra, bordes, menús, apps) con
+pywal — sin tocar un solo archivo. El mismo escritorio, tres wallpapers:
+
+| 🍣 Rosa/teal | 🌌 Teal/azul | 🔭 Naranja |
+|:---:|:---:|:---:|
+| ![Tema rosa](screenshots/desktop.png) | ![Tema teal](screenshots/theme_a.png) | ![Tema naranja](screenshots/theme_b.png) |
+
 </div>
 
 > Esta rama (`dotfiles`) reúne **todo en un solo lugar**. Otras ramas del repo:
