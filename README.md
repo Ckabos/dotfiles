@@ -24,6 +24,17 @@ Mi escritorio completo — barra propia sobre AGS/Astal, tema dinámico *Materia
 - 🐚 **Widgets de pentest** — generador de reverse shells, tracker de target, monitor de puertos.
 - ⚡ **Config de Hyprland en Lua** (0.55+), lista para la deprecación de hyprlang en 0.57.
 
+## 🎥 Demo en video
+
+<!--
+  ▸ Para que el video se REPRODUZCA aquí: edita este README en GitHub (rama
+    dotfiles), arrastra el archivo ~/dotfiles-demo.mp4 justo debajo de esta
+    línea, y haz commit. GitHub lo sube como user-attachment y lo vuelve un
+    reproductor inline. (Un .mp4 commiteado al repo NO se reproduce inline.)
+-->
+
+*Recorrido completo por el escritorio, con música — súbelo arrastrándolo al editor del README en GitHub.*
+
 ## 📸 Galería
 
 <div align="center">
