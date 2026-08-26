@@ -25,12 +25,7 @@ Mi escritorio completo — barra propia sobre AGS/Astal, tema dinámico *Materia
 - ⚡ **Config de Hyprland en Lua** (0.55+), lista para la deprecación de hyprlang en 0.57.
 
 ## 🎥 Demo en video
-
-Recorrido completo por el escritorio, con música.
-
-▸ **[Descargar / ver el video](https://github.com/Ckabos/dotfiles/blob/dotfiles/demo.mp4)** (GitHub lo abre para descargar; los `.mp4` del repo no se reproducen en la página).
-
-<sub>Para que se REPRODUZCA dentro del README: edita este archivo en GitHub y **arrastra** <code>dotfiles-demo.mp4</code> a esta sección — es la única forma en que GitHub embebe un reproductor de video.</sub>
+https://github.com/user-attachments/assets/96b83ee1-bb40-4f9f-b77a-82e56bce17bb
 
 ## 📸 Galería
 
