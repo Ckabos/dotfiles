@@ -5,25 +5,25 @@
 hl.config({
     general = {
         col = {
-            active_border = { colors = { "rgba(FF19C2ff)", "rgba(1E2139ff)", "rgba(19BDFFff)", "rgba(1E2139ff)", "rgba(194EFFff)", "rgba(1E2139ff)", "rgba(FF19C2ff)" }, angle = 45 },
-            inactive_border = "rgba(1E2139ff)",
+            active_border = { colors = { "rgba(FF2719ff)", "rgba(0B0B0Eff)", "rgba(19DEFFff)", "rgba(0B0B0Eff)", "rgba(FF19D1ff)", "rgba(0B0B0Eff)", "rgba(FF2719ff)" }, angle = 45 },
+            inactive_border = "rgba(0B0B0Eff)",
         },
     },
     group = {
         col = {
-            border_active = { colors = { "rgba(FF19C2ff)", "rgba(1E2139ff)", "rgba(19BDFFff)", "rgba(1E2139ff)", "rgba(194EFFff)", "rgba(1E2139ff)", "rgba(FF19C2ff)" }, angle = 45 },
-            border_inactive = "rgba(1E2139ff)",
-            border_locked_active = { colors = { "rgba(FF19C2ff)", "rgba(1E2139ff)", "rgba(19BDFFff)", "rgba(1E2139ff)", "rgba(194EFFff)", "rgba(1E2139ff)", "rgba(FF19C2ff)" }, angle = 45 },
-            border_locked_inactive = "rgba(1E2139ff)",
+            border_active = { colors = { "rgba(FF2719ff)", "rgba(0B0B0Eff)", "rgba(19DEFFff)", "rgba(0B0B0Eff)", "rgba(FF19D1ff)", "rgba(0B0B0Eff)", "rgba(FF2719ff)" }, angle = 45 },
+            border_inactive = "rgba(0B0B0Eff)",
+            border_locked_active = { colors = { "rgba(FF2719ff)", "rgba(0B0B0Eff)", "rgba(19DEFFff)", "rgba(0B0B0Eff)", "rgba(FF19D1ff)", "rgba(0B0B0Eff)", "rgba(FF2719ff)" }, angle = 45 },
+            border_locked_inactive = "rgba(0B0B0Eff)",
         },
         groupbar = {
             col = {
-                active = "rgba(FF19C2ff)",
-                inactive = "rgba(1E213980)",
-                locked_active = "rgba(FF19C2ff)",
-                locked_inactive = "rgba(1E213980)",
+                active = "rgba(19A5FFff)",
+                inactive = "rgba(21212B80)",
+                locked_active = "rgba(19A5FFff)",
+                locked_inactive = "rgba(21212B80)",
             },
-            text_color = "rgba(BEE4F3ff)",
+            text_color = "rgba(C4EAEEff)",
         },
     },
 })

@@ -30,10 +30,10 @@ greetd \
 greetd-tuigreet \
 grim \
 gvfs \
-hypridle \
-hyprland \
-hyprlock \
-hyprpicker \
+hypridle-git \
+hyprland-git \
+hyprlock-git \
+hyprpicker-git \
 hyprsunset \
 imagemagick \
 jq \

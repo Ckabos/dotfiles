@@ -1,4 +1,4 @@
-configUpdateScript: /home/john/workspace/Varda-Theme/themes/setTheme.sh
+configUpdateScript: /home/efrain/workspace/Varda-Theme/themes/setTheme.sh
 
 leftBar:
   topWidgets:
@@ -33,17 +33,17 @@ barWidgets:
   shortcut2:
     icon: "󰈹"
     iconOffset: 2
-    launch: "/home/john/.local/share/firefox-nightly/firefox"
-    newWindow: "/home/john/.local/share/firefox-nightly/firefox"
+    launch: "/home/efrain/.local/share/firefox-nightly/firefox"
+    newWindow: "/home/efrain/.local/share/firefox-nightly/firefox"
     class: "firefox-nightly"
   shortcut3:
     icon: ""
     iconOffset: 3
-    launch: "/home/john/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea"
+    launch: "/home/efrain/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea"
     class: "jetbrains-idea"
   shortcut4:
     icon: "󰀴"
-    launch: "/home/john/.local/share/JetBrains/Toolbox/apps/android-studio/bin/studio.sh"
+    launch: "/home/efrain/.local/share/JetBrains/Toolbox/apps/android-studio/bin/studio.sh"
     class: "jetbrains-studio"
   shortcut5:
     icon: "󰭹"

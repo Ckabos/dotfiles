@@ -8,12 +8,10 @@
 ./scripts/setupFoldersAndSymLinks.sh
 ./scripts/setupZsh.sh
 ./scripts/startServices.sh
-./scripts/setupUfw.sh
 ./scripts/setupCursor.sh
-./scripts/setupYazi.sh
+#./scripts/setupYazi.sh
 ./scripts/setupXdgOpen.sh
-../themes/setTheme.sh varda
-./scripts/setupTuigreet.sh
+../themes/setTheme.sh rosepine
 
 # things left to do
 #

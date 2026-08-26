@@ -1,4 +1,4 @@
 [Desktop Entry]
 Name=Firefox Nightly
-Exec=/home/john/.local/share/firefox-nightly/firefox --new-window %u
+Exec=/home/efrain/.local/share/firefox-nightly/firefox --new-window %u
 Type=Application

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-size=24
+size=50
 
 dummyTheme=dummyCursor
 hyprctl setcursor $dummyTheme $size
@@ -10,7 +10,7 @@ gsettings set org.gnome.desktop.interface cursor-size $size
 xrdb -merge <<< "Xcursor.theme: $dummyTheme"
 xrdb -merge <<< "Xcursor.size: $size"
 
-theme=systemCursor
+theme=miku-cursor-linux
 
 hyprctl setcursor $theme $size
 gsettings set org.gnome.desktop.interface cursor-theme $theme

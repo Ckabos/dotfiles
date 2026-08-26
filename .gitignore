@@ -1,3 +1,13 @@
 .fleet
 .idea
 hypr/conf/workspaces.conf
+
+# ── Secretos reales: NUNCA versionar (repo público) ───────────
+**/*.secret.*
+**/*.env
+**/secrets.zsh
+**/album.secret.env
+**/id_rsa*
+**/id_ed25519*
+**/*.key
+**/*.pem
