@@ -28,6 +28,10 @@ Mi escritorio completo — barra propia sobre AGS/Astal, tema dinámico *Materia
 
 <div align="center">
 
+*fastfetch · cmatrix · cava* — el clásico
+
+![Terminales](screenshots/terminal.png)
+
 | App Launcher | Menú de sistema |
 |:---:|:---:|
 | ![Launcher](screenshots/launcher.png) | ![Menú](screenshots/menu.png) |
