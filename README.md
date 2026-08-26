@@ -7,6 +7,35 @@ Esta rama (`dotfiles`) reúne **todo en un solo lugar**. Las otras ramas del rep
 
 ---
 
+## 🚀 Instalación automática
+
+En una máquina nueva de Arch Linux (con Hyprland y `yay` ya instalados):
+
+```bash
+git clone -b dotfiles https://github.com/Ckabos/dotfiles.git
+cd dotfiles && ./install.sh
+```
+
+El `install.sh` hace, en orden:
+1. Instala las **dependencias** (paquetes).
+2. Copia las **configs** a `~/.config` y `~` (**respaldando** las previas en `~/.dotfiles-backup-*`).
+3. Instala **OkPanel** en `~/OkPanel` + `~/.local/bin`.
+4. Compila e instala los **parches de Astal** (anti-crash) y los **fija** en `/etc/pacman.conf`.
+5. Deshabilita `okpanel.service` de systemd (lo lanza Hyprland).
+6. Clona el sistema de temas (**Varda-Theme**).
+
+> Requiere `yay`. Pide `sudo` para `pacman` y `pacman.conf`. **No borra datos**: respalda lo previo.
+> Al terminar lista los **pasos manuales** que faltan (secretos, wallpapers, fuentes) — ver más abajo.
+
+### Instalación manual (si prefieres paso a paso)
+
+Ver la sección **🛡️ Stack anti-crash** para los parches, y estos manuales que el script también recuerda:
+- **Secretos:** crea `~/.config/zsh/secrets.zsh` (API key, `chmod 600`) y recrea tus llaves SSH.
+- **Wallpapers:** cópialos a `~/Imágenes/Wallpapers`.
+- **Fuentes/tema:** Anurati (manual), cursor miku; luego `~/Varda-Theme/themes/setTheme.sh <tema>`.
+
+---
+
 ## 📁 Estructura
 
 ```
