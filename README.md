@@ -26,11 +26,11 @@ Mi escritorio completo — barra propia sobre AGS/Astal, tema dinámico *Materia
 
 ## 🎥 Demo en video
 
-Recorrido completo por el escritorio, con música. **▸ Clic para reproducir en GitHub:**
+Recorrido completo por el escritorio, con música.
 
-[![Ver el demo](screenshots/terminal.png)](https://github.com/Ckabos/dotfiles/blob/dotfiles/demo.mp4)
+▸ **[Descargar / ver el video](https://github.com/Ckabos/dotfiles/blob/dotfiles/demo.mp4)** (GitHub lo abre para descargar; los `.mp4` del repo no se reproducen en la página).
 
-<sub>Para reproducción *inline* (sin salir del README): edita este README en GitHub y arrastra `demo.mp4` dentro del editor — GitHub lo vuelve un reproductor embebido.</sub>
+<sub>Para que se REPRODUZCA dentro del README: edita este archivo en GitHub y **arrastra** <code>dotfiles-demo.mp4</code> a esta sección — es la única forma en que GitHub embebe un reproductor de video.</sub>
 
 ## 📸 Galería
 
