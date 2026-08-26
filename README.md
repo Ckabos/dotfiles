@@ -57,6 +57,10 @@ Mi escritorio completo — barra propia sobre AGS/Astal, tema dinámico *Materia
 
 ![Reverse Shell Generator](screenshots/reverseshells.png)
 
+**Clipboard "ofensivo"** — bóveda de *fijadores* con tu cheatsheet de payloads (webshells, reverse shells, LFI, PTY…), historial y encoders B64/URL.
+
+![Clipboard con bóveda de fijadores](screenshots/clipboard.png)
+
 ### 🌈 Tema dinámico
 
 Cambias el wallpaper y **todo el entorno se recolorea solo** (barra, bordes, menús, apps) con
