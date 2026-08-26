@@ -1,9 +1,47 @@
-# dotfiles
+<div align="center">
 
-Configuración completa de mi escritorio: **Arch Linux + Hyprland + OkPanel** (barra propia sobre AGS/Astal).
+# 🍣 dotfiles
 
-Esta rama (`dotfiles`) reúne **todo en un solo lugar**. Las otras ramas del repo:
-`master` = OkPanel como proyecto publicable · `varda-theme` = repo del sistema de temas.
+**Arch Linux · Hyprland · OkPanel**
+
+Mi escritorio completo — barra propia sobre AGS/Astal, tema dinámico *Material You* y flujo de pentest integrado.
+
+![Arch Linux](https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=archlinux&logoColor=white)
+![Hyprland](https://img.shields.io/badge/Hyprland-00AAAE?style=for-the-badge&logo=wayland&logoColor=white)
+![Lua](https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white)
+![TypeScript](https://img.shields.io/badge/AGS_·_Astal-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+
+![Escritorio](screenshots/desktop.png)
+
+</div>
+
+## ✨ Características
+
+- 🎨 **Tema dinámico** — los colores (barra, bordes, apps) se extraen del wallpaper con pywal.
+- 📊 **Barra propia (OkPanel)** — construida sobre AGS/Astal: workspaces, red, bluetooth, audio, media, IPs.
+- 🛡️ **Stack anti-crash** — parches propios de Astal para que el panel no se congele/crashee.
+- 🖥️ **N monitores** — configuración genérica que auto-acomoda 2, 3, 4… monitores.
+- 🐚 **Widgets de pentest** — generador de reverse shells, tracker de target, monitor de puertos.
+- ⚡ **Config de Hyprland en Lua** (0.55+), lista para la deprecación de hyprlang en 0.57.
+
+## 📸 Galería
+
+<div align="center">
+
+| App Launcher | Menú de sistema |
+|:---:|:---:|
+| ![Launcher](screenshots/launcher.png) | ![Menú](screenshots/menu.png) |
+| **Calendario + clima** | **Selector de wallpapers** |
+| ![Calendario](screenshots/calendar.png) | ![Wallpapers](screenshots/wallpapers.png) |
+
+**Reverse Shell Generator** *(estilo revshells.com, integrado en la barra)*
+
+![Reverse Shell Generator](screenshots/reverseshells.png)
+
+</div>
+
+> Esta rama (`dotfiles`) reúne **todo en un solo lugar**. Otras ramas del repo:
+> `master` = OkPanel como proyecto publicable · `varda-theme` = repo del sistema de temas.
 
 ---
 
