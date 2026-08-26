@@ -55,11 +55,31 @@ hl.monitor({
     scale = "1",
 })
 
--- laptop dell
+-- ── Layout de ESTA laptop: DP-2 (izq) | eDP-1 (centro) | HDMI-A-1 (der) ──
+-- Posiciones FIJAS para que el orden no se descomponga en cada reload
+-- (todos 1920 de ancho, alineados arriba en y=0).
+
+-- Monitor izquierdo (primer externo)
+hl.monitor({
+    output = "DP-2",
+    mode = "preferred",
+    position = "0x0",
+    scale = "1",
+})
+
+-- laptop dell (centro)
 hl.monitor({
     output = "eDP-1",
     mode = "1920x1080@60.02",
-    position = "0x0",
+    position = "1920x0",
+    scale = "1",
+})
+
+-- Monitor derecho (segundo externo)
+hl.monitor({
+    output = "HDMI-A-1",
+    mode = "preferred",
+    position = "3840x0",
     scale = "1",
 })
 
