@@ -73,8 +73,8 @@ gtk() {
   dconf write /org/gnome/desktop/interface/font-name "'JetBrainsMono Nerd Font Medium 11'"
   dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrainsMono Nerd Font Medium 10'"
   dconf write /org/gnome/desktop/interface/document-font-name "'JetBrainsMono Nerd Font Medium 11'"
-  ln -sf $HOME/workspace/Varda-Theme/themes/$1/gtk/gtk-4.0 $HOME/.config/
-  cp -r $HOME/workspace/Varda-Theme/themes/$1/gtk/* $HOME/.themes/SystemTheme/
+  ln -sf $HOME/Varda-Theme/themes/$1/gtk/gtk-4.0 $HOME/.config/
+  cp -r $HOME/Varda-Theme/themes/$1/gtk/* $HOME/.themes/SystemTheme/
   dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita'"
   dconf write /org/gnome/desktop/interface/gtk-theme "'SystemTheme'"
   flatpak override --user --env=GTK_THEME=SystemTheme
@@ -88,11 +88,17 @@ hypr() {
   PRIMARY=$(grep '^primary:' "$COLORS_FILE" | cut -d':' -f2)
   ERROR=$(grep '^error:' "$COLORS_FILE" | cut -d':' -f2)
 
-  # Hyprland theme
+  # Hyprland theme (.conf)
   THEME_TEMPLATE="./hypr/conf/theme_template.conf"
   THEME_OUTPUT="./hypr/conf/theme.conf"
   # Replace the placeholders in the second file
   sed -e "s|\${bg}|$BG|g" -e "s|\${fg}|$FG|g" -e "s|\${primary}|$PRIMARY|g" -e "s|\${error}|$ERROR|g" "$THEME_TEMPLATE" > "$THEME_OUTPUT"
+
+  # Hyprland theme (.lua, 0.55+): mismo tema en formato Lua, en paralelo al .conf.
+  # Hyprland usa el .lua si el config es Lua; el .conf queda de respaldo/rollback.
+  THEME_TEMPLATE_LUA="./hypr/conf/theme_template.lua"
+  THEME_OUTPUT_LUA="./hypr/conf/theme.lua"
+  sed -e "s|\${bg}|$BG|g" -e "s|\${fg}|$FG|g" -e "s|\${primary}|$PRIMARY|g" -e "s|\${error}|$ERROR|g" "$THEME_TEMPLATE_LUA" > "$THEME_OUTPUT_LUA"
 
   # Hyprlock
   HYPRLOCK_TEMPLATE="./hypr/hyprlock_template.conf"
@@ -110,33 +116,6 @@ btop_theme() {
   ln -sf $HOME/workspace/Varda-Theme/themes/$1/btop/$1.theme $HOME/.config/btop/themes/
   sed -i "s|color_theme = \".*\"|color_theme = \"$HOME/.config/btop/themes/$1.theme\"|" $HOME/.config/btop/btop.conf
   pkill -SIGUSR2 btop
-}
-
-intellij_idea() {
-  # must have themes already installed
-  BASE_DIR="$HOME/.config/JetBrains/"
-  # Get the most recent directory based on modification time
-  RECENT_DIR=$(ls -lt "$BASE_DIR" | grep Intelli | grep '^d' | head -n 1 | awk '{print $9}')
-  # the scheme name is capitalized theme name
-  SCHEME=$(echo "$1" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
-  sed -i "s/<global_color_scheme name=\".*\" \/>/<global_color_scheme name=\"$SCHEME\" \/>/" "$BASE_DIR/$RECENT_DIR/options/colors.scheme.xml"
-  sed -i "s/<laf themeId=\".*\" \/>/<laf themeId=\"io.obez.themes.$1\" \/>/" "$BASE_DIR/$RECENT_DIR/options/laf.xml"
-}
-
-android_studio() {
-  # must have themes already installed
-  BASE_DIR="$HOME/.config/Google/"
-  # Get the most recent directory based on modification time
-  RECENT_DIR=$(ls -lt "$BASE_DIR" | grep Android | grep '^d' | head -n 1 | awk '{print $9}')
-  # the scheme name is capitalized theme name
-  SCHEME=$(echo "$1" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
-  sed -i "s/<global_color_scheme name=\".*\" \/>/<global_color_scheme name=\"$SCHEME\" \/>/" "$BASE_DIR/$RECENT_DIR/options/colors.scheme.xml"
-  sed -i "s/<laf themeId=\".*\" \/>/<laf themeId=\"io.obez.themes.$1\" \/>/" "$BASE_DIR/$RECENT_DIR/options/laf.xml"
-}
-
-darktable() {
-  mkdir -p $HOME/.config/darktable/
-  cp ./themes/$1/darktable/user.css $HOME/.config/darktable/
 }
 
 # Immediately visible first
@@ -158,9 +137,3 @@ echo "firefox"
 firefox_theme $1
 echo "zsh"
 zsh_theme $1
-echo "intellij"
-intellij_idea $1
-echo "android studio"
-android_studio $1
-echo "darktable"
-darktable $1
