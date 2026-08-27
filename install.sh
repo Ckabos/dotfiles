@@ -32,6 +32,7 @@ yay -Syu --needed --devel \
   pipewire-pulse power-profiles-daemon slurp sox ttf-jetbrains-mono-nerd upower \
   wf-recorder wireplumber wl-clipboard kitty rofi yazi ranger neovim btop \
   fastfetch python-pywal blueman ttf-vista-fonts \
+  ant-dracula-gtk-theme candy-icons \
   || die "Falló la instalación de dependencias."
 ok "Dependencias instaladas."
 
@@ -50,6 +51,18 @@ for f in .zshrc .zprofile .bashrc .gitconfig; do
   fi
 done
 ok "Configs copiadas."
+
+# ── 2b. Tema GTK (Ant-Dracula) — vía gsettings, no solo settings.ini ─────────
+# GTK_USE_PORTAL=1 hace que las apps pidan el tema al portal (org.freedesktop
+# portal.Settings), que lee gsettings. Si ese valor queda vacío/roto, las apps
+# no encuentran el tema y caen a Adwaita por defecto (ventanas blancas).
+if command -v gsettings >/dev/null; then
+  gsettings set org.gnome.desktop.interface gtk-theme 'Ant-Dracula' 2>/dev/null
+  gsettings set org.gnome.desktop.interface icon-theme 'candy-icons' 2>/dev/null
+  gsettings set org.gnome.desktop.interface cursor-theme 'miku-cursor-linux' 2>/dev/null
+  gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' 2>/dev/null
+  ok "Tema GTK (Ant-Dracula) fijado vía gsettings."
+fi
 
 # ── 3. OkPanel ───────────────────────────────────────────────────────────────
 info "Instalando OkPanel..."

@@ -106,6 +106,7 @@ Ver la sección **🛡️ Stack anti-crash** para los parches, y estos manuales 
 ├── OkPanel/      temas/config de la barra (el proyecto vive en ./OkPanel y en la rama master)
 ├── systemd/user/ servicios: okpanel.service (límites de RAM), wallpaper-rotator.service
 ├── fontconfig/   fix de fuentes WPS (Cambria/Candara)
+├── gtk-2.0/ gtk-3.0/ gtk-4.0/   tema Ant-Dracula (ventanas/diálogos GTK)
 ├── kitty/ rofi/ wal/            terminal, launcher, pywal (color dinámico)
 ├── yazi/ ranger/ nvim/          gestores de archivos, editor
 ├── cava/ btop/ fastfetch/ cliphist/
@@ -161,6 +162,7 @@ systemctl --user disable okpanel.service   # que lo lance Hyprland, no systemd
 - **Monitores genéricos:** regla comodín (output vacío) auto-configura N monitores; layout fijo `DP-2 | eDP-1 | HDMI-A-1`. Mover workspace al siguiente monitor: `Mod+T` (relativo `+1`, cicla por todos).
 - **Tema dinámico:** `wallpaperUpdate.sh` y `setTheme.sh` (repo Varda-Theme) generan `conf/theme.lua` con los colores del wallpaper.
 - **Fuentes WPS:** `fontconfig/conf.d/50-wps-office-fonts.conf` + `ttf-vista-fonts` arreglan Cambria/Candara faltantes.
+- **Tema GTK (Ant-Dracula):** las apps con `GTK_USE_PORTAL=1` piden el tema al portal (`org.freedesktop.portal.Settings`), que lee `gsettings`, no solo `settings.ini`. Si ese valor apunta a un tema no instalado, las apps caen a Adwaita por defecto (ventanas blancas) aunque `settings.ini` esté bien. `install.sh` fija ambos (`gsettings` + `settings.ini`) a `Ant-Dracula` / `candy-icons`.
 
 ---
 
