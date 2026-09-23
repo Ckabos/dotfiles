@@ -120,13 +120,23 @@ export function AnimatedFor<Item, El extends JSX.Element, Key>({
                             return ex.has(key)
                         })
 
-                        isClosing.subscribe(() => {
+                        // isClosing.subscribe() no se limpia solo: sin desuscribir
+                        // en "destroy", cada revealer que alguna vez existió queda
+                        // colgado escuchando `exiting` para siempre. "Clear all"
+                        // dispara TODOS esos callbacks colgados de golpe, cada uno
+                        // llamando revealedSet()/removeItem() sobre un widget GTK ya
+                        // destruido -> use-after-free -> crash del panel completo.
+                        const unsubClosing = isClosing.subscribe(() => {
                             if (isClosing.get()) {
                                 revealedSet(false)
                                 timeout(300, () => {
                                     removeItem(key)
                                 })
                             }
+                        })
+
+                        self.connect("destroy", () => {
+                            unsubClosing()
                         })
                     }}
                     revealChild={revealed}>
