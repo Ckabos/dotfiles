@@ -1,13 +1,15 @@
 # Maintainer: kotontrion <kotontrion@tutanota.de>
-# Build local PARCHEADO por efrain: tolerar títulos de ventana no-UTF8.
-#   Ver utf8-make-valid.patch para el porqué. pkgrel=99 marca este build local.
+# Build local PARCHEADO por efrain: tolerar títulos de ventana no-UTF8 +
+#   sanear 2 asserts de GLib vistos en journalctl (assertion 'address != NULL'
+#   failed / assertion 'line != NULL' failed). Ver utf8-make-valid.patch y
+#   null-safety.patch para el porqué. pkgrel=100 marca este build local.
 #   Mantener FIJADO en /etc/pacman.conf -> IgnorePkg = libastal-hyprland-git
 #   para que un 'yay -Syu' no lo revierta a la versión rota de upstream.
 
 pkgname=libastal-hyprland-git
 _pkgname=hyprland
-pkgver=r861.d3fa211
-pkgrel=99
+pkgver=r986.cbcd9f4
+pkgrel=100
 provides=(astal-hyprland libastal-hyprland libastal-hyprland.so=0-64)
 pkgdesc="Library and cli tool for Hyprland IPC sockets (parche local: tolera títulos no-UTF8)"
 arch=(x86_64)
@@ -48,6 +50,43 @@ prepare() {
     echo "ERROR: el parche UTF-8 no se aplicó como se esperaba (encontradas $n/2)." >&2
     return 1
   fi
+
+  # Null-safety #1: en sync_all(), si no hay ventana activa (workspace vacío)
+  # "j/activewindow" responde {} sin "address". get_member() devuelve null y
+  # get_string() sobre null dispara 'json_node_get_string: assertion
+  # JSON_NODE_IS_VALID failed', seguido de 'get_client: assertion address !=
+  # NULL failed' al pasarle ese null. Ver null-safety.patch.
+  python3 - <<'PYEOF'
+import pathlib
+p = pathlib.Path("lib/hyprland/src/hyprland.vala")
+src = p.read_text()
+old = '''        focused_client = get_client(Json.from_string(message("j/activewindow"))
+                .get_object().get_member("address").get_string());'''
+new = '''        var active_addr_node = Json.from_string(message("j/activewindow"))
+                .get_object().get_member("address");
+        focused_client = active_addr_node != null ? get_client(active_addr_node.get_string()) : null;'''
+if src.count(old) != 1:
+    raise SystemExit(f"ERROR: patrón de focused_client no encontrado tal cual (esperado 1, hallado {src.count(old)}).")
+p.write_text(src.replace(old, new))
+PYEOF
+
+  # Null-safety #2: en watch_socket(), read_line_async puede devolver null en
+  # EOF (el socket2 de eventos se reconecta); pasar null a handle_event()
+  # dispara 'astal_hyprland_hyprland_handle_event: assertion line != NULL
+  # failed'. Ver null-safety.patch.
+  python3 - <<'PYEOF'
+import pathlib
+p = pathlib.Path("lib/hyprland/src/hyprland.vala")
+src = p.read_text()
+old = '''                    var line = stream.read_line_async.end(res);
+                    handle_event.begin(line, (_, res) => {'''
+new = '''                    var line = stream.read_line_async.end(res);
+                    if (line == null) { watch_socket(stream); return; }
+                    handle_event.begin(line, (_, res) => {'''
+if src.count(old) != 1:
+    raise SystemExit(f"ERROR: patrón de watch_socket no encontrado tal cual (esperado 1, hallado {src.count(old)}).")
+p.write_text(src.replace(old, new))
+PYEOF
 }
 
 build() {
