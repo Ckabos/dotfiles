@@ -41,7 +41,6 @@ import {getHyprMonitorInfoById} from "./widget/utils/monitors";
 
 App.start({
     instanceName: "OkPanel",
-    css: "/tmp/OkPanel/style.css",
     main() {
         setThemeBasic()
 

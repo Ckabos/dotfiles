@@ -47,7 +47,7 @@ export default function IpWidget({ bar }: { bar: Bar }) {
     // Las VPN se excluyen del primer bloque para no salir duplicadas cuando además
     // se quedan con la ruta por defecto (p.ej. openvpn).
     const detectIpsScript =
-        "vpnre='^(tun|wg|tailscale|nordlynx|proton)'; " +
+        "vpnre='^(tun|wg|tailscale|nordlynx|proton|surfshark|mullvad|expressvpn|pia)'; " +
         "ip route 2>/dev/null | awk '/^default/ && !seen[$5]++ {print $5}' | while read -r i; do " +
         "  echo \"$i\" | grep -qE \"$vpnre\" && continue; " +
         "  a=$(ip -4 -o addr show dev \"$i\" 2>/dev/null | awk '{print $4}' | cut -d/ -f1 | head -n1); " +

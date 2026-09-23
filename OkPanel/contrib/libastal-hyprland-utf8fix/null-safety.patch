@@ -1,0 +1,42 @@
+From: parche local - sanear 2 asserts de GLib en journalctl
+
+Detectado revisando journalctl --user -u okpanel.service: cada arranque de
+OkPanel (o cada vez que el escritorio queda sin ventana activa) imprimía:
+
+  json_node_get_string: assertion 'JSON_NODE_IS_VALID (node)' failed
+  astal_hyprland_hyprland_get_client: assertion 'address != NULL' failed
+  astal_hyprland_hyprland_handle_event: assertion 'line != NULL' failed
+
+Ninguno tumbaba el panel, pero son bugs reales de la lib (no de OkPanel):
+
+1. sync_all() asume que "j/activewindow" siempre trae un member "address".
+   Cuando no hay ventana activa (workspace vacío al iniciar sesión, o justo
+   tras cerrar la última ventana), Hyprland responde "{}" y
+   get_member("address") devuelve null. Llamar get_string() sobre ese null
+   dispara el primer assert; el string basura resultante se pasa a
+   get_client(), que dispara el segundo.
+
+2. watch_socket() no comprueba que read_line_async() devolvió una línea real
+   antes de pasarla a handle_event(). read_line_async() devuelve null en EOF
+   (el socket de eventos de Hyprland se puede cerrar/reabrir), y handle_event
+   espera un string no-nulo.
+
+--- a/lib/hyprland/src/hyprland.vala
++++ b/lib/hyprland/src/hyprland.vala
+@@ -253,8 +253,9 @@ public class AstalHyprland.Hyprland : Object {
+                 .get_object().get_member("id").get_int());
+
+-        focused_client = get_client(Json.from_string(message("j/activewindow"))
+-                .get_object().get_member("address").get_string());
++        var active_addr_node = Json.from_string(message("j/activewindow"))
++                .get_object().get_member("address");
++        focused_client = active_addr_node != null ? get_client(active_addr_node.get_string()) : null;
+     }
+
+--- a/lib/hyprland/src/hyprland.vala
++++ b/lib/hyprland/src/hyprland.vala
+@@ -138,6 +138,7 @@ public class AstalHyprland.Hyprland : Object {
+                 try {
+                     var line = stream.read_line_async.end(res);
++                    if (line == null) { watch_socket(stream); return; }
+                     handle_event.begin(line, (_, res) => {

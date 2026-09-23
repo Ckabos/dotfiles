@@ -1,7 +1,8 @@
-# libastal-hyprland — parche UTF-8
+# libastal-hyprland — parche UTF-8 + null-safety
 
 Parche local para `libastal-hyprland-git` que evita que la barra (OkPanel)
-se **congele** cuando una ventana expone un título mal codificado.
+se **congele** cuando una ventana expone un título mal codificado, y sanea
+2 asserts de GLib que se veían en `journalctl` sin llegar a tumbar el panel.
 
 ## El problema
 
@@ -28,11 +29,31 @@ que sustituye los bytes inválidos por `U+FFFD` (`�`) — así el JSON vuelve 
 ser parseable y la barra sigue funcionando. Cubre todos los `sync` desde un
 único punto. Ver `utf8-make-valid.patch`.
 
+## Los null-asserts (sin crash, pero ensucian el log)
+
+Vistos en `journalctl --user -u okpanel.service`:
+
+```
+json_node_get_string: assertion 'JSON_NODE_IS_VALID (node)' failed
+astal_hyprland_hyprland_get_client: assertion 'address != NULL' failed
+astal_hyprland_hyprland_handle_event: assertion 'line != NULL' failed
+```
+
+- **`get_client`/`json_node_get_string`**: al iniciar sin ventana activa
+  (workspace vacío), `j/activewindow` responde `{}` sin `address`; el código
+  asumía que siempre existía. Se agrega un chequeo de null antes de leer
+  `address`.
+- **`handle_event`**: `read_line_async()` puede devolver `null` en EOF del
+  socket de eventos de Hyprland; se agrega un guard para reintentar sin
+  pasar `null` a `handle_event()`.
+
+Ver `null-safety.patch`.
+
 ## Reconstruir / reinstalar
 
 Necesario tras actualizar Astal (el paquete es `-git`). El `PKGBUILD` toma
-la fuente del repo ya clonado en la caché de yay y aplica el parche en
-`prepare()` con `sed` (verifica que se apliquen las 2 ocurrencias).
+la fuente del repo ya clonado en la caché de yay y aplica ambos parches en
+`prepare()` (verifica los patrones antes de escribir).
 
 ```sh
 cd ~/OkPanel/contrib/libastal-hyprland-utf8fix
