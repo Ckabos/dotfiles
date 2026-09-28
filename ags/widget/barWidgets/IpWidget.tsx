@@ -56,7 +56,13 @@ export default function IpWidget({ bar }: { bar: Bar }) {
         "done; " +
         "ip -4 -o addr show 2>/dev/null | awk '{print $2, $4}' | while read -r i c; do " +
         "  echo \"$i\" | grep -qE \"$vpnre\" && echo \"vpn:$i:${c%%/*}\"; " +
-        "done";
+        "done; " +
+        // El grep del último renglón deja su propio exit code como el del
+        // script completo cuando la última interfaz no matchea el patrón VPN
+        // (código ≠0 aunque el stdout ya tenga datos válidos). execAsync
+        // rechaza la promesa entera con cualquier exit code ≠0 y descarta el
+        // stdout -> el widget se quedaba invisible sin loguear nada útil.
+        "exit 0";
 
     const update = async () => {
         let entries: Array<{ kind: IpKind, iface: string, ip: string }> = [];
@@ -71,6 +77,9 @@ export default function IpWidget({ bar }: { bar: Bar }) {
                     ip: parts[2],
                 }));
         } catch (e) {
+            // No silenciar por completo: así un futuro fallo del script no
+            // vuelve a quedar invisible sin rastro en el log.
+            logError(e, "IpWidget: detectIpsScript falló");
             entries = [];
         }
 
