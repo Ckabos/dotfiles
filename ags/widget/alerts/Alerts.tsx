@@ -65,6 +65,19 @@ export function AlertWindow(
                 }, 1_000)
             })
             onCleanup(unsub)
+
+            // Si el monitor se desconecta, killOldMonitorWindows() destruye
+            // esta ventana directamente (sin pasar por showVariable). El
+            // setTimeout de arriba sigue vivo y, al disparar, toca
+            // self.visible sobre un GdkSurface ya destruido -> assertion
+            // 'GDK_IS_SURFACE' -> segfault del panel completo. Cancelarlo en
+            // destroy evita el use-after-free.
+            self.connect("destroy", () => {
+                if (windowVisibilityTimeout != null) {
+                    windowVisibilityTimeout.destroy()
+                    windowVisibilityTimeout = null
+                }
+            })
         }}>
         <box
             orientation={Gtk.Orientation.HORIZONTAL}
