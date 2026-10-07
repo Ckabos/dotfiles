@@ -11,7 +11,8 @@ export const [wallpaperPathState, wallpaperPathStateSet] = createState("")
 
 function applyWallpaper(
     path: string,
-    wallpaperStack: Gtk.Stack
+    wallpaperStack: Gtk.Stack,
+    isDestroyed: () => boolean
 ) {
     if (!wallpaperStack) return;
 
@@ -20,6 +21,11 @@ function applyWallpaper(
     const h = Math.max(1, wallpaperStack.get_allocated_height());
 
     createScaledTexture(w, h, path).then((texture) => {
+        // La ventana (p.ej. de un monitor que se acaba de desconectar) pudo
+        // destruirse mientras createScaledTexture seguía pendiente (es async,
+        // puede tardar >1 reintento). Tocar wallpaperStack ya destruido ->
+        // gdk_surface_get_display assertion -> segfault del panel completo.
+        if (isDestroyed()) return;
         const pic = Gtk.Picture.new_for_paintable(texture);
         pic.contentFit = Gtk.ContentFit.COVER;
         pic.hexpand = true;
@@ -38,6 +44,7 @@ function applyWallpaper(
 
         // cleanup: after the fade, remove any non-visible children (pause videos if you add support)
         GLib.timeout_add(GLib.PRIORITY_DEFAULT, duration + 40, () => {
+            if (isDestroyed()) return GLib.SOURCE_REMOVE;
             const keep = wallpaperStack.get_visible_child();
             let child = wallpaperStack.get_first_child();
             while (child) {
@@ -71,10 +78,14 @@ export default function (
         application={App}>
         <stack
             $={(self) => {
+                let destroyed = false
+                self.connect("destroy", () => { destroyed = true })
+
                 const wallpaperPath = resolveWallpaper()
 
                 if (wallpaperPath !== null) {
                     createScaledTexture(monitorWidth, monitorHeight, wallpaperPath).then((texture) => {
+                        if (destroyed) return
                         const picture = Gtk.Picture.new_for_paintable(texture)
                         picture.contentFit = Gtk.ContentFit.COVER
 
@@ -84,7 +95,7 @@ export default function (
                 }
 
                 const unsub = wallpaperPathState.subscribe(() => {
-                    applyWallpaper(wallpaperPathState.get(), self)
+                    applyWallpaper(wallpaperPathState.get(), self, () => destroyed)
                 })
                 onCleanup(unsub)
             }}
