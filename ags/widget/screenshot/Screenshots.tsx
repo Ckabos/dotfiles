@@ -239,6 +239,29 @@ export default function () {
                         })
                     }}/>
             </box>
+            <box
+                spacing={32}
+                orientation={Gtk.Orientation.HORIZONTAL}
+                halign={Gtk.Align.CENTER}>
+                <ScreenshotButton
+                    icon={"󰊄"}
+                    label={"OCR"}
+                    onClicked={() => {
+                        toggleIntegratedScreenshot()
+                        // El script hace todo el flujo (slurp -> grim -> tesseract
+                        // -> wl-copy) y manda su propia notificación con la vista
+                        // previa del texto, así que aquí no se usan saveType ni
+                        // showScreenshotNotification: lo que se copia es texto, no
+                        // la imagen. Tampoco suena el obturador si se cancela.
+                        execAsync([
+                            "bash",
+                            "-c",
+                            `${projectDir}/shellScripts/ocr.sh`
+                        ]).catch((error) => {
+                            console.error(error)
+                        })
+                    }}/>
+            </box>
         </box>
     </box>
 }
