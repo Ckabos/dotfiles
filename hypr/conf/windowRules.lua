@@ -163,6 +163,14 @@ hl.window_rule({
     fullscreen = true,
 })
 
+-- W4 – Visor de imágenes gThumb (TE LLEVA)
+hl.window_rule({
+    match = {
+        class = "^(org\\.gnome\\.gThumb)$",
+    },
+    workspace = "4",
+})
+
 -- W5 – IDEs / Dev (TE LLEVA)
 hl.window_rule({
     match = {
@@ -187,10 +195,18 @@ hl.window_rule({
     workspace = "6 silent",
 })
 
+-- W6 – Obsidian (TE LLEVA)
+hl.window_rule({
+    match = {
+        class = "^(md\\.obsidian\\.Obsidian)$",
+    },
+    workspace = "6",
+})
+
 -- W7 – Documentos / PDFs (TE LLEVA)
 hl.window_rule({
     match = {
-        class = "^(Wpspdf|pdf|wps|et|wpp|Zathura|okular|obsidian|Bless|org\\.gnome\\.GHex|org\\.pwmt\\.zathura|net\\.code-industry\\.masterpdfeditor5|MasterPDFEditor)$",
+        class = "^(Wpspdf|pdf|wps|et|wpp|Zathura|okular|Bless|org\\.gnome\\.GHex|org\\.pwmt\\.zathura|net\\.code-industry\\.masterpdfeditor5|MasterPDFEditor)$",
     },
     workspace = "7",
 })
@@ -198,7 +214,7 @@ hl.window_rule({
 -- W8 – Sistema / Utilidades (SILENT)
 hl.window_rule({
     match = {
-        class = "^(MEGAsync|Transmission-gtk|System-config-printer\\.py|obs|Protonvpn-gui|BlueMail|Alarm-clock-applet|Blueberry\\.py|Lxappearance|kdeconnect\\.app|kdeconnect-settings|kdeconnect-indicator|kdeconnect\\.sms|kdeconnect\\.daemon|Pavucontrol|Nitrogen|Flash_tool|Gnome-screenshot|copyq|arandr|org\\.pulseaudio\\.pavucontrol|blueman-manager|org\\.qbittorrent\\.qBittorrent|cheese|qbittorrent|Surfshark)$",
+        class = "^(MEGAsync|Transmission-gtk|System-config-printer\\.py|obs|Protonvpn-gui|BlueMail|Alarm-clock-applet|Blueberry\\.py|Lxappearance|kdeconnect\\.app|kdeconnect-settings|kdeconnect-indicator|kdeconnect\\.sms|kdeconnect\\.daemon|Nitrogen|Flash_tool|Gnome-screenshot|copyq|arandr|blueman-manager|org\\.qbittorrent\\.qBittorrent|cheese|qbittorrent|Surfshark)$",
     },
     workspace = "8 silent",
 })
@@ -215,6 +231,14 @@ hl.window_rule({
         class = "^(Surfshark)$",
     },
     fullscreen = true,
+})
+
+-- W7 – Control de audio pavucontrol (TE LLEVA)
+hl.window_rule({
+    match = {
+        class = "^(org\\.pulseaudio\\.pavucontrol|Pavucontrol|pavucontrol-qt)$",
+    },
+    workspace = "7",
 })
 
 -- W8 – VM Windows 11 (visor SPICE) (TE LLEVA)

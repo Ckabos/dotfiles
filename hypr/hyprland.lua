@@ -195,5 +195,8 @@ hl.on("hyprland.start", function()
     -- Agente de bluetooth: empareja entrante (diálogos), notifica conexiones y
     -- ayuda a reconectar dispositivos de confianza. Sale en el tray de OkPanel.
     hl.exec_cmd("uwsm app -- blueman-applet")
+    -- kanshi vive como systemd --user service (kanshi.service), no aquí: así
+    -- sobrevive por su cuenta con Restart=on-failure en vez de depender de
+    -- que algo lo relance cada sesión.
 end)
 
