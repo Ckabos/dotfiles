@@ -55,31 +55,19 @@ hl.monitor({
     scale = "1",
 })
 
--- ── Layout de ESTA laptop: DP-2 (izq) | eDP-1 (centro) | HDMI-A-1 (der) ──
--- Posiciones FIJAS para que el orden no se descomponga en cada reload
--- (todos 1920 de ancho, alineados arriba en y=0).
-
--- Monitor izquierdo (primer externo)
-hl.monitor({
-    output = "DP-2",
-    mode = "preferred",
-    position = "0x0",
-    scale = "1",
-})
-
--- laptop dell (centro)
+-- ── ESTA laptop: pantalla interna (eDP-1) ──
+-- El layout con monitores externos ya NO se fija aquí por nombre de puerto
+-- (DP-2/HDMI-A-1 no son estables: cambian de nombre según el orden de
+-- detección del kernel o el hub/dock). Eso es justo lo que causaba que el
+-- acomodo se "reiniciara" al conectar en otro lugar. Ahora kanshi
+-- (~/.config/kanshi/config) identifica cada monitor por su descripción EDID
+-- —estable sin importar el puerto— y aplica el layout recordado apenas
+-- detecta una combinación conocida. Esta regla solo da una posición inicial
+-- razonable antes de que kanshi actúe (o si kanshi no está corriendo).
 hl.monitor({
     output = "eDP-1",
     mode = "1920x1080@60.02",
-    position = "1920x0",
-    scale = "1",
-})
-
--- Monitor derecho (segundo externo)
-hl.monitor({
-    output = "HDMI-A-1",
-    mode = "preferred",
-    position = "3840x0",
+    position = "0x0",
     scale = "1",
 })
 

@@ -1,0 +1,35 @@
+# kanshi — recuerda el layout de monitores por combinación conectada.
+#
+# Reemplaza el intento anterior de fijar posiciones por nombre de puerto
+# (DP-2/HDMI-A-1 en hypr/conf/monitors.lua): esos nombres NO son estables,
+# cambian según el orden de detección del kernel o el hub/dock usado, así
+# que cada vez que la laptop se conectaba en otro lugar el layout se
+# desacomodaba (caía al fallback "auto" de Hyprland, sin orden garantizado).
+#
+# kanshi identifica cada monitor por su descripción EDID (fabricante+modelo+
+# serie, ver "hyprctl monitors -j"), que SÍ es estable sin importar el puerto
+# o el orden de conexión. Un perfil se activa solo cuando TODOS sus outputs
+# están conectados a la vez.
+#
+# Agregar un lugar nuevo: conecta los monitores ahí, corre
+# `hyprctl monitors -j` para ver sus descripciones/modos, y agrega un
+# profile{} más abajo. No hace falta tocar Hyprland para nada de esto.
+
+# El panel de la laptop no trae número de serie en su EDID (wlr-randr no
+# imprime línea "Serial:" para eDP-1) — kanshi exige rellenar el campo que
+# falta con el literal "Unknown", si no el criterio nunca matchea.
+
+# Solo la laptop (sin monitores externos).
+profile laptop-solo {
+    output "LG Display 0x0764 Unknown" mode 1920x1080@60.02 position 0,0
+}
+
+# Esta laptop + 2 Dell (setup actual): U2415 izquierda, laptop centro, P2421
+# derecha. Alineados por ABAJO: los Dell son más altos (1200px) que la
+# laptop (1080px), así que suben y=-120 para que sus bordes inferiores
+# queden parejos con el borde inferior de la pantalla de la laptop.
+profile laptop-2dell {
+    output "Dell Inc. DELL U2415 XKV0P0423GGU" mode 1920x1200@59.95 position 0,-120
+    output "LG Display 0x0764 Unknown" mode 1920x1080@60.02 position 1920,0
+    output "Dell Inc. DELL P2421 GXSL773" mode 1920x1200@59.95 position 3840,-120
+}

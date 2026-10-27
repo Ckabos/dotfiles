@@ -33,6 +33,7 @@ yay -Syu --needed --devel \
   wf-recorder wireplumber wl-clipboard kitty rofi yazi ranger neovim btop \
   fastfetch python-pywal blueman ttf-vista-fonts \
   ant-dracula-gtk-theme candy-icons \
+  kanshi tesseract tesseract-data-eng tesseract-data-spa \
   || die "Falló la instalación de dependencias."
 ok "Dependencias instaladas."
 
@@ -104,6 +105,13 @@ ok "Fijado: $(grep -E '^[[:space:]]*IgnorePkg' /etc/pacman.conf | head -1)"
 # ── 4. OkPanel: que lo lance Hyprland, no systemd (evita carrera de arranque) ─
 systemctl --user disable okpanel.service >/dev/null 2>&1 || true
 systemctl --user daemon-reload >/dev/null 2>&1 || true
+
+# ── 4b. kanshi: layout de monitores por combinación conectada ────────────────
+# Sí va por systemd (al revés que OkPanel): así sobrevive con Restart=on-failure
+# en vez de depender de que algo lo relance cada sesión.
+systemctl --user enable kanshi.service >/dev/null 2>&1 \
+  && ok "kanshi.service habilitado." \
+  || warn "No se pudo habilitar kanshi.service (revísalo a mano)."
 
 # ── 5. Sistema de temas (Varda-Theme) ────────────────────────────────────────
 if [ ! -d "$HOME/Varda-Theme" ]; then

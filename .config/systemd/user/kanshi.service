@@ -1,0 +1,14 @@
+[Unit]
+Description=kanshi - layout de monitores por combinación conectada
+Documentation=man:kanshi(1) man:kanshi(5)
+After=graphical-session.target
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/kanshi
+ExecReload=kill -SIGHUP $MAINPID
+Restart=on-failure
+RestartSec=2s
+
+[Install]
+WantedBy=graphical-session.target

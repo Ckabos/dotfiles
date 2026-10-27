@@ -20,7 +20,8 @@ Mi escritorio completo — barra propia sobre AGS/Astal, tema dinámico *Materia
 - 🎨 **Tema dinámico** — los colores (barra, bordes, apps) se extraen del wallpaper con pywal.
 - 📊 **Barra propia (OkPanel)** — construida sobre AGS/Astal: workspaces, red, bluetooth, audio, media, IPs.
 - 🛡️ **Stack anti-crash** — parches propios de Astal para que el panel no se congele/crashee.
-- 🖥️ **N monitores** — configuración genérica que auto-acomoda 2, 3, 4… monitores.
+- 🖥️ **N monitores** — kanshi recuerda el layout por combinación de monitores conectados, y una regla comodín acomoda los desconocidos.
+- 🔍 **OCR de pantalla** — selecciona un área y su texto se copia al portapapeles (`Super+Shift+Print`).
 - 🐚 **Widgets de pentest** — generador de reverse shells, tracker de target, monitor de puertos.
 - ⚡ **Config de Hyprland en Lua** (0.55+), lista para la deprecación de hyprlang en 0.57.
 
@@ -104,7 +105,8 @@ Ver la sección **🛡️ Stack anti-crash** para los parches, y estos manuales 
 .config/
 ├── hypr/         Hyprland — config en Lua (0.55+): keybinds, monitores, arranque, tema dinámico
 ├── OkPanel/      temas/config de la barra (el proyecto vive en ./OkPanel y en la rama master)
-├── systemd/user/ servicios: okpanel.service (límites de RAM), wallpaper-rotator.service
+├── systemd/user/ servicios: okpanel.service (límites de RAM), wallpaper-rotator.service, kanshi.service
+├── kanshi/       layout de monitores por combinación conectada (identificados por EDID)
 ├── fontconfig/   fix de fuentes WPS (Cambria/Candara)
 ├── gtk-2.0/ gtk-3.0/ gtk-4.0/   tema Ant-Dracula (ventanas/diálogos GTK)
 ├── kitty/ rofi/ wal/            terminal, launcher, pywal (color dinámico)
@@ -159,7 +161,8 @@ systemctl --user disable okpanel.service   # que lo lance Hyprland, no systemd
 ## 🎨 Notas de la config
 
 - **Hyprland en Lua:** migrado de `.conf` (hyprlang, deprecado en 0.57) a Lua. Los `.conf` originales quedan como respaldo/rollback (`rm ~/.config/hypr/hyprland.lua` vuelve al `.conf`).
-- **Monitores genéricos:** regla comodín (output vacío) auto-configura N monitores; layout fijo `DP-2 | eDP-1 | HDMI-A-1`. Mover workspace al siguiente monitor: `Mod+T` (relativo `+1`, cicla por todos).
+- **Monitores (kanshi):** el layout **no** se fija por nombre de puerto (`DP-2`, `HDMI-A-1`). Esos nombres no son estables — cambian según el orden de detección del kernel o el hub/dock — así que al conectar en otro lugar nunca coincidían y todo caía al fallback `auto`, sin orden garantizado: eso era lo que "reiniciaba" el acomodo cada tanto. `kanshi` (`.config/kanshi/config`, como `kanshi.service`) identifica cada monitor por su **EDID**, que sí es estable, y aplica el layout recordado al detectar una combinación conocida. Para agregar un sitio nuevo: conecta ahí, saca las descripciones con `wlr-randr` y añade un `profile{}`. Mover workspace al siguiente monitor: `Mod+T` (relativo `+1`, cicla por todos).
+- **OCR:** `Super+Shift+Print` (o el botón **OCR** del panel de `Print`) captura una región con `slurp`/`grim` y extrae su texto con `tesseract` (`spa+eng`) al portapapeles. Captura a **2x** a propósito: tesseract acierta bastante más sobre texto grande y el de UI suele venir muy chico. Script: `OkPanel/ags/shellScripts/ocr.sh`.
 - **Tema dinámico:** `wallpaperUpdate.sh` y `setTheme.sh` (repo Varda-Theme) generan `conf/theme.lua` con los colores del wallpaper.
 - **Fuentes WPS:** `fontconfig/conf.d/50-wps-office-fonts.conf` + `ttf-vista-fonts` arreglan Cambria/Candara faltantes.
 - **Tema GTK (Ant-Dracula):** las apps con `GTK_USE_PORTAL=1` piden el tema al portal (`org.freedesktop.portal.Settings`), que lee `gsettings`, no solo `settings.ini`. Si ese valor apunta a un tema no instalado, las apps caen a Adwaita por defecto (ventanas blancas) aunque `settings.ini` esté bien. `install.sh` fija ambos (`gsettings` + `settings.ini`) a `Ant-Dracula` / `candy-icons`.

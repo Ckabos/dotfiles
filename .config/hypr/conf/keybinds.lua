@@ -58,6 +58,9 @@ hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(okpanel .. " notification"))
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("ags request -i OkPanel dnd"))
 -- Screenshots
 hl.bind("print", hl.dsp.exec_cmd(okpanel .. " screenshot"))
+-- OCR: selecciona un área y copia su texto al portapapeles (tesseract spa+eng).
+-- También está como botón "OCR" dentro del panel de Print.
+hl.bind(mainMod .. " + SHIFT + Print", hl.dsp.exec_cmd("/home/efrain/OkPanel/ags/shellScripts/ocr.sh"))
 
 -- ======================
 -- Gestión de Ventanas
