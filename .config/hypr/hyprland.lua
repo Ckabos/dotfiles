@@ -195,8 +195,11 @@ hl.on("hyprland.start", function()
     -- Agente de bluetooth: empareja entrante (diálogos), notifica conexiones y
     -- ayuda a reconectar dispositivos de confianza. Sale en el tray de OkPanel.
     hl.exec_cmd("uwsm app -- blueman-applet")
-    -- kanshi vive como systemd --user service (kanshi.service), no aquí: así
-    -- sobrevive por su cuenta con Restart=on-failure en vez de depender de
-    -- que algo lo relance cada sesión.
+    -- kanshi (layout de monitores) se arranca igual que okpanel: por systemd,
+    -- pero disparado DESDE AQUÍ. Su unit dice WantedBy=graphical-session.target
+    -- y ese target nunca se activa en esta sesión de Hyprland, así que confiar
+    -- solo en el target dejaba el servicio muerto y los monitores sin acomodar.
+    -- El unit sigue aportando el Restart= si kanshi se cae por su cuenta.
+    hl.exec_cmd("systemctl --user start kanshi.service")
 end)
 

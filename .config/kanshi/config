@@ -33,3 +33,23 @@ profile laptop-2dell {
     output "LG Display 0x0764 Unknown" mode 1920x1080@60.02 position 1920,0
     output "Dell Inc. DELL P2421 GXSL773" mode 1920x1200@59.95 position 3840,-120
 }
+
+# Laptop + 2 externos genéricos: DP-2 izquierda, laptop centro, HDMI-A-1 derecha.
+#
+# OJO: este es el único perfil que identifica por NOMBRE DE PUERTO en vez de por
+# EDID, y es a propósito: estos dos monitores reportan exactamente la misma
+# descripción ("STD Computer Inc HDMI", sin número de serie), así que el EDID no
+# los distingue y el puerto es lo único que queda. Es menos robusto —si cambian
+# de puerto hay que ajustar— pero mitiga que ambos son 1920x1080: aunque se
+# intercambiaran, el layout sigue cuadrando en tamaños.
+#
+# Por la misma razón este perfil matchea CUALQUIER par de monitores que conectes
+# a esos dos puertos, no solo estos. De ahí "preferred" en vez de un modo fijo
+# (un modo hardcodeado fallaría con un monitor que no lo soporte). Las
+# posiciones sí asumen ~1920 de ancho; con monitores más anchos habría que
+# recalcularlas.
+profile laptop-2genericos {
+    output DP-2 mode preferred position 0,0
+    output "LG Display 0x0764 Unknown" mode 1920x1080@60.02 position 1920,0
+    output HDMI-A-1 mode preferred position 3840,0
+}
