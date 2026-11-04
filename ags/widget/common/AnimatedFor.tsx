@@ -110,7 +110,16 @@ export function AnimatedFor<Item, El extends JSX.Element, Key>({
 
                 return <revealer
                     $={(self) => {
-                        timeout(200, () => {
+                        // Los dos timers de abajo sobreviven al widget si no se
+                        // cancelan: "Clear all" cierra el panel en el mismo tick en
+                        // que marca todo como saliente, así que los revealers se
+                        // destruyen con sus timers aún pendientes y estos terminan
+                        // escribiendo estado de un scope ya dispuesto.
+                        let revealTimer: any = null
+                        let removeTimer: any = null
+
+                        revealTimer = timeout(200, () => {
+                            revealTimer = null
                             revealedSet(true)
                         })
 
@@ -120,16 +129,15 @@ export function AnimatedFor<Item, El extends JSX.Element, Key>({
                             return ex.has(key)
                         })
 
-                        // isClosing.subscribe() no se limpia solo: sin desuscribir
-                        // en "destroy", cada revealer que alguna vez existió queda
-                        // colgado escuchando `exiting` para siempre. "Clear all"
-                        // dispara TODOS esos callbacks colgados de golpe, cada uno
-                        // llamando revealedSet()/removeItem() sobre un widget GTK ya
-                        // destruido -> use-after-free -> crash del panel completo.
+                        // isClosing.subscribe() tampoco se limpia solo: sin
+                        // desuscribir en "destroy", cada revealer que alguna vez
+                        // existió queda colgado escuchando `exiting` para siempre.
                         const unsubClosing = isClosing.subscribe(() => {
                             if (isClosing.get()) {
                                 revealedSet(false)
-                                timeout(300, () => {
+                                if (removeTimer !== null) removeTimer.cancel()
+                                removeTimer = timeout(300, () => {
+                                    removeTimer = null
                                     removeItem(key)
                                 })
                             }
@@ -137,6 +145,8 @@ export function AnimatedFor<Item, El extends JSX.Element, Key>({
 
                         self.connect("destroy", () => {
                             unsubClosing()
+                            if (revealTimer !== null) { revealTimer.cancel(); revealTimer = null }
+                            if (removeTimer !== null) { removeTimer.cancel(); removeTimer = null }
                         })
                     }}
                     revealChild={revealed}>
