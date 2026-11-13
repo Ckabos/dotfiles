@@ -62,11 +62,31 @@ export function AnimatedFor<Item, El extends JSX.Element, Key>({
         for (const [k, item] of newRendered) {
             if (!eachMap.has(k)) {
                 newExiting.set(k, item)
+                scheduleRemoval(k)
             }
         }
 
         renderedSet(newRendered)
         exitingSet(newExiting)
+    }
+
+    // Los timers de salida viven AQUÍ, en el scope del AnimatedFor, y no en
+    // cada <revealer>. El reconciliador de <For> hace fragment.remove() sobre
+    // TODOS sus hijos en cada cambio —no solo sobre los que se van—, así que un
+    // revealer se desparenta (y en GTK4 eso puede destruirlo) por el simple
+    // hecho de que otro item salió de la lista. Cuando el timer de limpieza
+    // colgaba del revealer, esa destrucción incidental lo cancelaba y el item
+    // se quedaba atrapado en `rendered` para siempre: notificaciones fantasma
+    // que ya no existen en notifd y un panel que no se vacía nunca. Este scope,
+    // en cambio, solo muere cuando muere el AnimatedFor entero.
+    const exitTimers = new Map<Key, any>()
+
+    function scheduleRemoval(key: Key) {
+        if (exitTimers.has(key)) return
+        exitTimers.set(key, timeout(transitionDuration + 80, () => {
+            exitTimers.delete(key)
+            removeItem(key)
+        }))
     }
 
     // Reconcile on each() changes
@@ -75,7 +95,11 @@ export function AnimatedFor<Item, El extends JSX.Element, Key>({
     })
     update()
 
-    onCleanup(unsub)
+    onCleanup(() => {
+        unsub()
+        exitTimers.forEach((t) => t.cancel())
+        exitTimers.clear()
+    })
 
     function removeItem(key: Key) {
         const cur = new Map(rendered.get())
@@ -110,15 +134,12 @@ export function AnimatedFor<Item, El extends JSX.Element, Key>({
 
                 return <revealer
                     $={(self) => {
-                        // Los dos timers de abajo sobreviven al widget si no se
-                        // cancelan: "Clear all" cierra el panel en el mismo tick en
-                        // que marca todo como saliente, así que los revealers se
-                        // destruyen con sus timers aún pendientes y estos terminan
-                        // escribiendo estado de un scope ya dispuesto.
-                        let revealTimer: any = null
-                        let removeTimer: any = null
-
-                        revealTimer = timeout(200, () => {
+                        // El revealer SOLO anima. Quitar el item de `rendered` es
+                        // responsabilidad del AnimatedFor (ver scheduleRemoval):
+                        // este widget se desparenta en cada reconciliación del
+                        // <For>, así que no es un sitio fiable para colgar nada
+                        // que deba completarse sí o sí.
+                        let revealTimer: any = timeout(200, () => {
                             revealTimer = null
                             revealedSet(true)
                         })
@@ -129,24 +150,16 @@ export function AnimatedFor<Item, El extends JSX.Element, Key>({
                             return ex.has(key)
                         })
 
-                        // isClosing.subscribe() tampoco se limpia solo: sin
-                        // desuscribir en "destroy", cada revealer que alguna vez
-                        // existió queda colgado escuchando `exiting` para siempre.
+                        // isClosing.subscribe() no se limpia solo: sin desuscribir
+                        // en "destroy", cada revealer que alguna vez existió queda
+                        // colgado escuchando `exiting` para siempre.
                         const unsubClosing = isClosing.subscribe(() => {
-                            if (isClosing.get()) {
-                                revealedSet(false)
-                                if (removeTimer !== null) removeTimer.cancel()
-                                removeTimer = timeout(300, () => {
-                                    removeTimer = null
-                                    removeItem(key)
-                                })
-                            }
+                            if (isClosing.get()) revealedSet(false)
                         })
 
                         self.connect("destroy", () => {
                             unsubClosing()
                             if (revealTimer !== null) { revealTimer.cancel(); revealTimer = null }
-                            if (removeTimer !== null) { removeTimer.cancel(); removeTimer = null }
                         })
                     }}
                     revealChild={revealed}>
